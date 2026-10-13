@@ -1,3 +1,29 @@
+@php
+    $validPolicies = [
+        'privacy-policy' => [
+            'name' => 'Privacy Policy & Data Protection Charter',
+            'view' => 'frontend.policies.privacy'
+        ],
+        'terms-of-use' => [
+            'name' => 'Website Terms of Use',
+            'view' => 'frontend.policies.terms'
+        ],
+        'shipping-policy' => [
+            'name' => 'Shipping Policy',
+            'view' => 'frontend.policies.shipping'
+        ],
+        'buyback-refund-policy' => [
+            'name' => 'Buyback / Refund / Cancellation Policy',
+            'view' => 'frontend.policies.buyback-refund'
+        ],
+        'cooling-off-policy' => [
+            'name' => 'Cooling Off Policy',
+            'view' => 'frontend.policies.cooling-off'
+        ],
+    ];
+    $currentPolicy = request()->query('policy');
+    $activePolicyData = ($currentPolicy && isset($validPolicies[$currentPolicy])) ? $validPolicies[$currentPolicy] : null;
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -15,7 +41,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('logo/favicon/apple-touch-icon.png') }}" />
     <link rel="manifest" href="{{ asset('logo/favicon/site.webmanifest') }}" />
     
-    <title>Amberveda Wellness Pvt Ltd</title>
+    <title>{{ $activePolicyData ? $activePolicyData['name'] . ' — Amberveda Wellness Pvt Ltd' : 'Amberveda Wellness Pvt Ltd' }}</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -2569,6 +2595,131 @@
                 justify-content: center;
             }
         }
+
+        /* ===================================================
+           DEDICATED POLICY PAGES STYLES
+           =================================================== */
+        .policy-page-section {
+            padding: 50px 0 90px;
+            background: #fbfbf7;
+            min-height: 85vh;
+        }
+
+        .policy-container {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .policy-breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding: 14px 22px;
+            background: #fff;
+            border: 1px solid rgba(201, 168, 76, 0.22);
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(15, 30, 12, 0.03);
+        }
+
+        .policy-breadcrumb-links {
+            font-size: 13.5px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .policy-breadcrumb-links a {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .policy-breadcrumb-links a:hover {
+            color: var(--gold-dark);
+        }
+
+        .btn-back-website {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+            color: #fff !important;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(30, 61, 24, 0.18);
+        }
+
+        .btn-back-website:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(30, 61, 24, 0.3);
+            color: #fff;
+        }
+
+        .policy-content-card {
+            background: #fff;
+            border: 1px solid rgba(201, 168, 76, 0.22);
+            border-radius: 20px;
+            padding: clamp(24px, 5vw, 48px);
+            box-shadow: 0 10px 36px rgba(15, 30, 12, 0.04);
+        }
+
+        .policy-doc-header .sec-title {
+            font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+            margin-bottom: 12px;
+        }
+
+        .policy-content-card h3.policy-section-title {
+            color: var(--green);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 2vw, 1.6rem);
+            font-weight: 700;
+            margin-top: 32px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+            padding-bottom: 8px;
+        }
+
+        .policy-content-card h5.policy-subheading {
+            color: var(--dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+        .policy-content-card p {
+            font-size: 14.5px;
+            line-height: 1.85;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .policy-content-card li {
+            font-size: 14.5px;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 767px) {
+            .policy-breadcrumb {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .policy-content-card {
+                padding: 22px 18px;
+            }
+        }
     </style>
 </head>
 
@@ -2595,7 +2746,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg" id="mainNav">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="{{ $activePolicyData ? url('/') : '#' }}">
                 <img src="{{ asset('front_assets/assets/img/logo.png') }}" alt="">
                 <span class="brand-text">AMBER<span>VEDA</span></span>
 
@@ -2605,12 +2756,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#mission">Mission &amp; Vision</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#refer">Refer &amp; Earn</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/') : '#' }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#about') : '#about' }}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#products') : '#products' }}">Products</a></li>
+                    {{-- <li class="nav-item"><a class="nav-link" href="#mission">Mission &amp; Vision</a></li> --}}
+                    <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#refer') : '#refer' }}">Refer &amp; Earn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#contact') : '#contact' }}">Contact</a></li>
                     
                 </ul>
                 <div class="d-flex align-items-center">
@@ -2626,6 +2777,40 @@
             </div>
         </div>
     </nav>
+
+    @if($activePolicyData)
+        <!-- DEDICATED POLICY PAGE VIEW -->
+        <section class="policy-page-section" id="policy-content">
+            <div class="container policy-container">
+                <!-- Breadcrumbs and Return Button -->
+                <div class="policy-breadcrumb">
+                    <div class="policy-breadcrumb-links">
+                        <a href="{{ url('/') }}"><i class="fas fa-home me-1"></i> Home</a>
+                        <span class="mx-2 text-muted">/</span>
+                        <span class="text-muted">Policies</span>
+                        <span class="mx-2 text-muted">/</span>
+                        <strong style="color: var(--green); font-weight: 600;">{{ $activePolicyData['name'] }}</strong>
+                    </div>
+                    <div>
+                        <a href="{{ url('/') }}" class="btn-back-website">
+                            <i class="fas fa-arrow-left"></i> Back to Website
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Policy Document View -->
+                @include($activePolicyData['view'])
+
+                <!-- Bottom Return Navigation -->
+                <div class="policy-footer-nav text-center mt-5 pt-4 border-top" style="border-color: rgba(201, 168, 76, 0.25) !important;">
+                    <p class="text-muted small mb-3">Questions regarding this policy? Contact our compliance desk at <a href="mailto:info@ambervedawellness.com" style="color: var(--green); font-weight: 600;">info@ambervedawellness.com</a></p>
+                    <a href="{{ url('/') }}" class="btn-back-website px-4 py-2" style="font-size: 14px;">
+                        <i class="fas fa-arrow-left me-2"></i> Return to Main Website
+                    </a>
+                </div>
+            </div>
+        </section>
+    @else
 
     <!-- HERO -->
     <section class="hero" id="home">
@@ -2851,6 +3036,55 @@
                 </div>
             </div>
 
+            <!-- MISSION & VISION SECTION (Moved into About Us) -->
+            <div class="mv-sec mt-5" id="mission" style="border-radius: 24px; padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 44px); position: relative; overflow: hidden;">
+                <div class="text-center" style="margin-bottom: 40px; position: relative; z-index: 1;">
+                    <span class="sec-label" style="color:var(--gold-light);">Our Purpose</span>
+                    <h2 class="sec-title" style="color:#fff;">Mission &amp; <span
+                            style="color:var(--gold-light); font-style:italic;">Vision</span></h2>
+                    <div class="sec-div c"></div>
+                </div>
+                <div class="row g-4" style="position: relative; z-index: 1;">
+                    <div class="col-lg-6">
+                        <div class="mv-card anim">
+                            <div class="mv-ico"><i class="fas fa-eye"></i></div>
+                            <h3>Our <span>Vision</span></h3>
+                            <p>To be a reputed Company of Smart people who add value across generations.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mv-card anim">
+                            <div class="mv-ico"><i class="fas fa-bullseye"></i></div>
+                            <h3>Our <span>Mission</span></h3>
+                            <p>Amberveda Wellness Private Limited is dedicated to spread quality lifestyle in the Society and help people choose value-for-money products for healthy and better living.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4 mt-2 mv-sm" style="position: relative; z-index: 1;">
+                    <div class="col-lg-4">
+                        <div class="mv-card anim">
+                            <div class="emoji">🌿</div>
+                            <h3>Nature First</h3>
+                            <p>Every product begins with nature's finest, ethically sourced ingredients.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mv-card anim">
+                            <div class="emoji">🔬</div>
+                            <h3>Science Backed</h3>
+                            <p>Modern science validates ancient formulations for proven efficacy and safety.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mv-card anim">
+                            <div class="emoji">🤝</div>
+                            <h3>Community Driven</h3>
+                            <p>We grow together — building a wellness community that earns and thrives as one.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- MANAGEMENT DETAILS (Phase 2) -->
             <div class="about-mgmt-wrapper mt-5 pt-4 border-top" style="border-color: rgba(201, 168, 76, 0.18) !important;">
                 <div class="mb-4">
@@ -2976,6 +3210,7 @@
                 </div>
             </div>
 
+            {{-- PHASE 6 BUSINESS PLAN SECTION (TEMPORARILY COMMENTED OUT - PRESERVED FOR RESTORATION)
             <!-- BUSINESS PLAN SECTION (Phase 6) -->
             <div class="about-bp-section mt-5 pt-4 border-top" id="business-plan" style="border-color: rgba(201, 168, 76, 0.18) !important;">
                 <div class="mb-4">
@@ -3510,6 +3745,7 @@
                     </div>
                 </div>
             </div>
+            --}}
 
             <!-- LEGAL DOCUMENTS TAB & SECTION (Phase 3) -->
             <div class="about-legal-section mt-5 pt-4 border-top" id="legal-documents" style="border-color: rgba(201, 168, 76, 0.18) !important;">
@@ -3929,6 +4165,7 @@
         </div>
     </section>
 
+    {{-- ORIGINAL STANDALONE MISSION & VISION SECTION (Preserved for future restoration - moved into About Us)
     <!-- MISSION VISION -->
     <section class="mv-sec" id="mission">
         <div class="container">
@@ -3979,6 +4216,7 @@
             </div>
         </div>
     </section>
+    --}}
 
     <!-- REFER & EARN -->
     <section class="refer-sec" id="refer" style="display:none;">
@@ -4446,6 +4684,8 @@
         </div>
     </section>
 
+    @endif
+
     <!-- FOOTER -->
     <footer>
         <div class="container">
@@ -4469,22 +4709,22 @@
                 <div class="col-lg-2 col-md-6 col-6">
                     <h5 class="f-head">Quick Links</h5>
                     <ul class="f-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#products"><i class="fas fa-chevron-right"></i> Products</a></li>
-                        <li><a href="#mission"><i class="fas fa-chevron-right"></i> Mission &amp; Vision</a></li>
-                        <li><a href="#refer"><i class="fas fa-chevron-right"></i> Refer &amp; Earn</a></li>
-                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="{{ $activePolicyData ? url('/') : '#' }}"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="{{ $activePolicyData ? url('/#about') : '#about' }}"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="{{ $activePolicyData ? url('/#products') : '#products' }}"><i class="fas fa-chevron-right"></i> Products</a></li>
+                        <li><a href="{{ $activePolicyData ? url('/#mission') : '#mission' }}"><i class="fas fa-chevron-right"></i> Mission &amp; Vision</a></li>
+                        <li><a href="{{ $activePolicyData ? url('/#refer') : '#refer' }}"><i class="fas fa-chevron-right"></i> Refer &amp; Earn</a></li>
+                        <li><a href="{{ $activePolicyData ? url('/#contact') : '#contact' }}"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 col-6">
                     <h5 class="f-head">Policies</h5>
                     <ul class="f-links">
-                        <li><a href="{{ asset('uploads/policies/privacy-policy.pdf') }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
-                        <li><a href="{{ asset('uploads/policies/website-terms-of-use.pdf') }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chevron-right"></i> Website Terms of Use</a></li>
-                        <li><a href="{{ asset('uploads/policies/shipping-policy.pdf') }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chevron-right"></i> Shipping Policy</a></li>
-                        <li><a href="{{ asset('uploads/policies/buyback-refund-policy.pdf') }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chevron-right"></i> Buyback / Refund / Cancellation</a></li>
-                        <li><a href="{{ asset('uploads/policies/cooling-off-policy.pdf') }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chevron-right"></i> Cooling Off Policy</a></li>
+                        <li><a href="{{ url('/?policy=privacy-policy') }}"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="{{ url('/?policy=terms-of-use') }}"><i class="fas fa-chevron-right"></i> Website Terms of Use</a></li>
+                        <li><a href="{{ url('/?policy=shipping-policy') }}"><i class="fas fa-chevron-right"></i> Shipping Policy</a></li>
+                        <li><a href="{{ url('/?policy=buyback-refund-policy') }}"><i class="fas fa-chevron-right"></i> Buyback / Refund / Cancellation</a></li>
+                        <li><a href="{{ url('/?policy=cooling-off-policy') }}"><i class="fas fa-chevron-right"></i> Cooling Off Policy</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 col-6">
