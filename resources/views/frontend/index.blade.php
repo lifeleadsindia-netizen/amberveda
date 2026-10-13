@@ -834,6 +834,590 @@
             margin: 0;
         }
 
+        .about-profile-card {
+            background: var(--cream);
+            border: 1px solid rgba(201, 168, 76, 0.22);
+            border-radius: 22px;
+            padding: 38px 34px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .about-profile-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(61, 107, 53, 0.08);
+            border-color: rgba(201, 168, 76, 0.35);
+        }
+
+        .about-mv-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 28px 26px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .about-mission-card {
+            border: 1px solid rgba(61, 107, 53, 0.2);
+            box-shadow: 0 6px 22px rgba(61, 107, 53, 0.04);
+        }
+
+        .about-mission-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(61, 107, 53, 0.1);
+            border-color: var(--green);
+        }
+
+        .about-vision-card {
+            border: 1px solid rgba(201, 168, 76, 0.28);
+            box-shadow: 0 6px 22px rgba(201, 168, 76, 0.06);
+        }
+
+        .about-vision-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(201, 168, 76, 0.14);
+            border-color: var(--gold);
+        }
+
+        .about-mgmt-card {
+            background: var(--white);
+            border: 1px solid rgba(201, 168, 76, 0.22);
+            border-radius: 20px;
+            padding: 28px 26px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(61, 107, 53, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .about-mgmt-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(61, 107, 53, 0.09);
+            border-color: var(--gold);
+        }
+
+        .about-mgmt-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .about-mgmt-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--green-pale), rgba(201, 168, 76, 0.12));
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .about-mgmt-role {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 4px;
+        }
+
+        .about-mgmt-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 4px;
+            line-height: 1.25;
+        }
+
+        .about-mgmt-desc {
+            font-size: 13px;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .about-mgmt-contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(201, 168, 76, 0.15);
+        }
+
+        .about-mgmt-citem {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13.5px;
+            color: var(--text-light);
+        }
+
+        .about-mgmt-citem i {
+            color: var(--green);
+            font-size: 13px;
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .about-mgmt-citem a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .about-mgmt-citem a:hover {
+            color: var(--gold-dark);
+        }
+
+        /* BUSINESS PLAN (Phase 6) */
+        .about-bp-section {
+            position: relative;
+        }
+
+        .bp-card {
+            background: var(--white);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 20px;
+            padding: 28px 32px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+            margin-bottom: 24px;
+        }
+
+        .bp-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 10px 28px rgba(61, 107, 53, 0.08);
+        }
+
+        .bp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, rgba(61, 107, 53, 0.1), rgba(201, 168, 76, 0.15));
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--green);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .bp-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .bp-title span {
+            color: var(--gold-dark);
+        }
+
+        .bp-lead {
+            font-size: 14.5px;
+            color: var(--text-light);
+            line-height: 1.85;
+            margin-bottom: 16px;
+        }
+
+        .bp-lead:last-child {
+            margin-bottom: 0;
+        }
+
+        .bp-incentives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .bp-inc-pill {
+            background: var(--cream);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .bp-inc-pill:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold);
+            box-shadow: 0 6px 16px rgba(61, 107, 53, 0.08);
+            background: #fff;
+        }
+
+        .bp-inc-pill-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .bp-inc-pill-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .bp-formula-box {
+            background: linear-gradient(135deg, rgba(61, 107, 53, 0.05), rgba(201, 168, 76, 0.08));
+            border-left: 4px solid var(--gold);
+            border-radius: 0 12px 12px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-family: monospace, sans-serif;
+            font-size: 14px;
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        .bp-table-wrap {
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 14px;
+            overflow: hidden;
+            margin: 18px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .bp-table {
+            width: 100%;
+            margin-bottom: 0;
+            font-size: 13.5px;
+            border-collapse: collapse;
+        }
+
+        .bp-table thead th {
+            background: linear-gradient(135deg, #1e3d18, #2d5527);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 12.5px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 12px 16px;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .bp-table tbody td {
+            padding: 11px 16px;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+            color: var(--text);
+            vertical-align: middle;
+            background: #fff;
+        }
+
+        .bp-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .bp-table tbody tr:nth-child(even) td {
+            background: rgba(247, 244, 238, 0.5);
+        }
+
+        .bp-table tbody tr:hover td {
+            background: rgba(201, 168, 76, 0.08);
+        }
+
+        .bp-table-rank-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .bp-notes-box {
+            background: var(--cream);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-top: 18px;
+        }
+
+        .bp-notes-title {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bp-notes-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .bp-notes-list li {
+            position: relative;
+            padding-left: 18px;
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+
+        .bp-notes-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .bp-notes-list li::before {
+            content: "•";
+            position: absolute;
+            left: 2px;
+            top: 0;
+            color: var(--gold-dark);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .bp-disclaimer-card {
+            background: #fff;
+            border: 1.5px solid rgba(201, 168, 76, 0.35);
+            border-radius: 18px;
+            padding: 28px 32px;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.04);
+            margin-bottom: 24px;
+        }
+
+        .bp-disclaimer-item {
+            display: flex;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(201, 168, 76, 0.2);
+            font-size: 13.5px;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .bp-disclaimer-item:last-child {
+            border-bottom: none;
+        }
+
+        .bp-disc-num {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--green-pale);
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .bp-card, .bp-disclaimer-card {
+                padding: 20px 18px;
+            }
+            .bp-title {
+                font-size: 1.35rem;
+            }
+        }
+
+        /* LEGAL DOCUMENTS (Phase 3) */
+        .about-legal-section {
+            position: relative;
+        }
+
+        .about-tabs-nav {
+            background: var(--cream);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 30px;
+            padding: 5px;
+            display: inline-flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .about-tab-btn {
+            background: transparent;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .about-tab-btn.active {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(61, 107, 53, 0.25);
+        }
+
+        .about-tab-btn:hover:not(.active) {
+            color: var(--gold-dark);
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .legal-docs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .legal-doc-item {
+            background: var(--white);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 16px;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .legal-doc-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(61, 107, 53, 0.08);
+            border-color: var(--gold);
+        }
+
+        .legal-doc-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .legal-doc-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--green-pale), rgba(201, 168, 76, 0.15));
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--green);
+            flex-shrink: 0;
+        }
+
+        .legal-doc-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .legal-doc-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 3px;
+            line-height: 1.3;
+        }
+
+        .legal-doc-title a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .legal-doc-title a:hover {
+            color: var(--green);
+        }
+
+        .legal-doc-sub {
+            font-size: 13px;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .legal-doc-action {
+            flex-shrink: 0;
+        }
+
+        .btn-doc-view {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: #fff;
+            padding: 9px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(61, 107, 53, 0.2);
+        }
+
+        .btn-doc-view:hover {
+            color: #fff;
+            background: linear-gradient(135deg, var(--green-light), var(--green));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(61, 107, 53, 0.3);
+        }
+
+        .badge-doc-unavailable {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px dashed rgba(0, 0, 0, 0.2);
+            color: var(--text-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 500;
+        }
+
         /* PRODUCTS */
         .prod-sec {
             padding: 100px 0;
@@ -1796,7 +2380,7 @@
             font-size: 13.5px;
             transition: all 0.3s;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 7px;
         }
 
@@ -1808,6 +2392,8 @@
         .f-links a i {
             font-size: 9px;
             color: var(--gold);
+            margin-top: 5px;
+            flex-shrink: 0;
         }
 
         .f-contact-item {
@@ -1949,6 +2535,38 @@
 
             .feat-item {
                 margin-bottom: 14px;
+            }
+
+            .about-profile-card {
+                padding: 26px 20px;
+            }
+
+            .about-mv-card {
+                padding: 22px 18px;
+            }
+
+            .about-mgmt-card {
+                padding: 22px 18px;
+            }
+
+            .legal-doc-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 16px 18px;
+                gap: 14px;
+            }
+
+            .legal-doc-left {
+                width: 100%;
+            }
+
+            .legal-doc-action {
+                width: 100%;
+            }
+
+            .btn-doc-view, .badge-doc-unavailable {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -2212,6 +2830,996 @@
                     </div>
                 </div>
             </div>
+
+            <!-- COMPANY PROFILE (Phase 1) -->
+            <div class="row g-4 mt-5 pt-2">
+                <!-- Company Profile Card -->
+                <div class="col-12">
+                    <div class="about-profile-card anim">
+                        <span class="sec-label">Company Profile</span>
+                        <h3 class="sec-title" style="font-size: clamp(1.45rem, 2.2vw, 1.95rem); margin-bottom: 10px;">
+                            Amberveda Wellness <span>Private Limited</span>
+                        </h3>
+                        <div class="sec-div" style="margin: 14px 0 20px;"></div>
+                        <p style="font-size: 14.5px; color: var(--text-light); line-height: 1.85; margin-bottom: 14px;">
+                            Amberveda Wellness Private Limited is much more than a company. It is a revolutionary idea that has transcended itself beyond the ordinary. It is a commitment that brings a positive change in the lives of people it touches, through its genuine quality products that are value-for-money and by opening profitable and career oriented opportunities for the motivated youth.
+                        </p>
+                        <p style="font-size: 14.5px; color: var(--text-light); line-height: 1.85; margin-bottom: 0;">
+                            In Amberveda Wellness Private Limited Business Plan Entity allows a Direct Seller to set up its own business to distribute products of Amberveda (Referred to as Company hereinafter). Amberveda Wellness Private Limited offers a rewarding system of compensation that is based on the resales of products to consumers and prospective direct sellers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MANAGEMENT DETAILS (Phase 2) -->
+            <div class="about-mgmt-wrapper mt-5 pt-4 border-top" style="border-color: rgba(201, 168, 76, 0.18) !important;">
+                <div class="mb-4">
+                    <span class="sec-label">Key Management</span>
+                    <h3 class="sec-title" style="font-size: clamp(1.45rem, 2.2vw, 1.95rem); margin-bottom: 8px;">
+                        Management <span>Details &amp; Officers</span>
+                    </h3>
+                    <div class="sec-div" style="margin: 12px 0 24px;"></div>
+                </div>
+
+                <div class="row g-4 align-items-stretch">
+                    <!-- 1. DIRECTOR PROFILE -->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="about-mgmt-card anim">
+                            <div>
+                                <div class="about-mgmt-header">
+                                    <div class="about-mgmt-icon">
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                    <div>
+                                        <span class="about-mgmt-role">Director Profile</span>
+                                        <h4 class="about-mgmt-name">Ankit Yadav &amp; Parul Yadav</h4>
+                                        <p class="about-mgmt-desc">Directors, Amberveda Wellness Private Limited</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about-mgmt-contacts">
+                                <div class="about-mgmt-citem">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <span>Phone: <a href="tel:+919259234438">+91 9259234438</a></span>
+                                </div>
+                                <div class="about-mgmt-citem">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email: <a href="mailto:info@ambervedawellness.com">info@ambervedawellness.com</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. NODAL OFFICER -->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="about-mgmt-card anim">
+                            <div>
+                                <div class="about-mgmt-header">
+                                    <div class="about-mgmt-icon">
+                                        <i class="fas fa-user-shield"></i>
+                                    </div>
+                                    <div>
+                                        <span class="about-mgmt-role">Nodal Officer</span>
+                                        <h4 class="about-mgmt-name">Nodal Officer</h4>
+                                        <p class="about-mgmt-desc">Designated Officer for Compliance &amp; Verification</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about-mgmt-contacts">
+                                <div class="about-mgmt-citem">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <span>Phone: <a href="tel:+919259234438">+91 9259234438</a></span>
+                                </div>
+                                <div class="about-mgmt-citem">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email: <a href="mailto:nodal@ambervedawellness.com">nodal@ambervedawellness.com</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. GRIEVANCE OFFICER -->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="about-mgmt-card anim">
+                            <div>
+                                <div class="about-mgmt-header">
+                                    <div class="about-mgmt-icon">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <div>
+                                        <span class="about-mgmt-role">Grievance Officer</span>
+                                        <h4 class="about-mgmt-name">Grievance Redressal Officer</h4>
+                                        <p class="about-mgmt-desc">Consumer &amp; Direct Seller Grievance Redressal Cell</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about-mgmt-contacts">
+                                <div class="about-mgmt-citem">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <span>Phone: <a href="tel:+919917566662">+91 9917566662</a> / <a href="tel:+919259234438">+91 9259234438</a></span>
+                                </div>
+                                <div class="about-mgmt-citem">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email: <a href="mailto:grievance@ambervedawellness.com">grievance@ambervedawellness.com</a> / <a href="mailto:care@ambervedawellness.com">care@ambervedawellness.com</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. ACCOUNTS HEAD -->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="about-mgmt-card anim">
+                            <div>
+                                <div class="about-mgmt-header">
+                                    <div class="about-mgmt-icon">
+                                        <i class="fas fa-file-invoice-dollar"></i>
+                                    </div>
+                                    <div>
+                                        <span class="about-mgmt-role">Accounts Head</span>
+                                        <h4 class="about-mgmt-name">Accounts &amp; Finance Head</h4>
+                                        <p class="about-mgmt-desc">Accounts, Payouts &amp; Financial Management</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about-mgmt-contacts">
+                                <div class="about-mgmt-citem">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <span>Phone: <a href="tel:+919259234438">+91 9259234438</a></span>
+                                </div>
+                                <div class="about-mgmt-citem">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email: <a href="mailto:accounts@ambervedawellness.com">accounts@ambervedawellness.com</a> / <a href="mailto:info@ambervedawellness.com">info@ambervedawellness.com</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUSINESS PLAN SECTION (Phase 6) -->
+            <div class="about-bp-section mt-5 pt-4 border-top" id="business-plan" style="border-color: rgba(201, 168, 76, 0.18) !important;">
+                <div class="mb-4">
+                    <span class="sec-label">Growth &amp; Opportunity</span>
+                    <h3 class="sec-title" style="font-size: clamp(1.45rem, 2.2vw, 1.95rem); margin-bottom: 6px;">
+                        Amberveda <span>Business Plan</span>
+                    </h3>
+                    <div class="sec-div" style="margin: 10px 0 20px;"></div>
+                </div>
+
+                <!-- 1. Introduction -->
+                <div class="bp-card">
+                    <span class="bp-badge"><i class="fas fa-briefcase"></i> Overview</span>
+                    <h4 class="bp-title">Amberveda <span>Business Plan</span></h4>
+                    <p class="bp-lead">Amberveda is a modern entrepreneurship program providing a great earning opportunity to all its customers. To become a part of Amberveda Wellness Private Limited, one has to register himself / herself as a customer with the company by filling a simple registration form. A customer of Amberveda can purchase Amberveda products for personal use for lifetime.</p>
+                    <p class="bp-lead">Products available on the website: <a href="http://www.ambervedawellness.com" target="_blank" rel="noopener noreferrer">www.ambervedawellness.com</a> are sold only through registered Customers and / or Direct Sellers. If any consumer wants to buy products from Amberveda website: <a href="http://www.ambervedawellness.com" target="_blank" rel="noopener noreferrer">www.ambervedawellness.com</a> must use a registered ID No. of an existing Customer / Direct Seller.</p>
+                    <p class="bp-lead">Once a customer is satisfied with the quality of Amberveda products, he / she may refer the Amberveda products to their friends, relatives, contacts, etc. and earn financial benefits in the form of incentives and rewards. To earn these incentives and rewards, customers have to become an Direct Seller/ consumer of Amberveda by accepting the Direct Seller Contract/ consumer terms and condition, providing KYC details and abiding by the Contract / terms and condition of Amberveda Wellness Private Limited.</p>
+                </div>
+
+                <!-- 2. Types of Incentives -->
+                <div class="bp-card">
+                    <span class="bp-badge"><i class="fas fa-coins"></i> Rewarding Structure</span>
+                    <h4 class="bp-title">Types of <span>Incentives</span></h4>
+                    <p class="bp-lead">Amberveda Wellness Private Limited has one of the best Business Plan at all levels of business to drive maximum benefits of motivation and earning by all its Direct Sellers/ consumers.</p>
+                    <div class="bp-incentives-grid">
+                        <div class="bp-inc-pill">
+                            <span class="bp-inc-pill-num">1</span>
+                            <span class="bp-inc-pill-text">Retail Profit</span>
+                        </div>
+                        <div class="bp-inc-pill">
+                            <span class="bp-inc-pill-num">2</span>
+                            <span class="bp-inc-pill-text">Business Matching Incentive</span>
+                        </div>
+                        <div class="bp-inc-pill">
+                            <span class="bp-inc-pill-num">3</span>
+                            <span class="bp-inc-pill-text">Mentor-ship Incentive</span>
+                        </div>
+                        <div class="bp-inc-pill">
+                            <span class="bp-inc-pill-num">4</span>
+                            <span class="bp-inc-pill-text">Achiever Incentive</span>
+                        </div>
+                        <div class="bp-inc-pill">
+                            <span class="bp-inc-pill-num">5</span>
+                            <span class="bp-inc-pill-text">Royalty Incentive</span>
+                        </div>
+                        <div class="bp-inc-pill">
+                            <span class="bp-inc-pill-num">6</span>
+                            <span class="bp-inc-pill-text">Awards &amp; Rewards</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Retail Profit -->
+                <div class="bp-card">
+                    <span class="bp-badge"><i class="fas fa-store"></i> Incentive 01</span>
+                    <h4 class="bp-title">Retail <span>Profit</span></h4>
+                    <p class="bp-lead">Selling products directly to the customers is the first step to success and building a solid foundation for their business. Retail Selling is the surest method of earning immediate income even as you build a long-term business and satisfied customers.</p>
+                    <p class="bp-lead">Retail profit is the margin between the prices at which the Amberveda Direct Seller purchase the products (Distributor Price / DP) and the prices at which these products are sold (Maximum Retail Price / MRP). Direct Sellers in Amberveda Business Plan can earn Retail profit up to 25% on MRP of the products.</p>
+                    <p class="bp-lead"><strong>For Example:</strong> Every product in the Amberveda portfolio has a MRP &amp; Distributor Price (DP). If a product has a MRP of Rs. 1000/-, Amberveda Direct Sellers can purchase the same product on DP which is Rs. 750/- and may resell the same product on MRP and earn Rs. 250/- (i.e. 25% profit on MRP) on reselling the product.</p>
+                    
+                    <div class="bp-formula-box">
+                        <div><strong>Retail Profit = MRP – DP</strong></div>
+                        <div>MRP = 1000</div>
+                        <div>DP = 750</div>
+                        <div>Retail Profit = 1000 – 750 = 250/-</div>
+                        <div style="color: var(--green); font-weight: 700;">25% Retail Profit</div>
+                    </div>
+
+                    <div class="bp-notes-box">
+                        <div class="bp-notes-title"><i class="fas fa-info-circle"></i> Notes</div>
+                        <ul class="bp-notes-list">
+                            <li>DP is referred as Distributor Price</li>
+                            <li>MRP is referred as Maximum Retail Price</li>
+                            <li>Retail Profit is not calculated and paid by the company.</li>
+                            <li>Company reserves the right to further give discount on any product below DP</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 4. Business Matching Incentive -->
+                <div class="bp-card">
+                    <span class="bp-badge"><i class="fas fa-users-cog"></i> Incentive 02</span>
+                    <h4 class="bp-title">Business Matching <span>Incentive</span></h4>
+                    <p class="bp-lead">If you are a registered Direct Seller of Amberveda and you have more Direct Sellers joined voluntarily under you and these Direct Sellers sale/ marketing some products from Amberveda, then on every sale/ market of products some special points are generated which are called as Sales Point (SP). These SP points are given to every Direct Sellers and their Direct Seller who sale / market products and these SP’s are added with all upward sellers. Business Matching Incentive is calculated and paid to the Direct Seller based on successfully building Sales Points within the ORGS. As your ORGS begins to grow you are entitled to earn Business Matching Incentive based on the total SP generated in your Org 1 and Org 2, within the network in ratio of 30SP:30SP, for this Direct Seller will be entitled to get 10% of every matched Sales Points (SPs) generated on either side as per their Accumulated Sales Points (ASP) matched as Business Matching Incentive, where value of 1 SP is equal to Rs. 100/-</p>
+
+                    <h5 style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: var(--dark); margin: 20px 0 10px;">
+                        <i class="fas fa-calculator text-gold me-1"></i> For Example:
+                    </h5>
+
+                    <!-- Example 1 Table -->
+                    <div class="bp-table-wrap">
+                        <div class="table-responsive">
+                            <table class="bp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Calculation Parameter</th>
+                                        <th>ORG 1</th>
+                                        <th>ORG 2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>As per closing period</strong></td>
+                                        <td>30 SP</td>
+                                        <td>50 SP</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Matched SP</strong></td>
+                                        <td>30 SP</td>
+                                        <td>30 SP</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>10% of Matched SP</strong></td>
+                                        <td colspan="2" class="text-center font-monospace" style="color: var(--green); font-weight: 600;">
+                                            1SP = 100/- in ratio of 30SP:30SP
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Balance SP</strong></td>
+                                        <td>0 SP</td>
+                                        <td>20 SP</td>
+                                    </tr>
+                                    <tr style="background: rgba(61, 107, 53, 0.05);">
+                                        <td colspan="3" class="text-center font-monospace" style="font-weight: 700;">
+                                            10% * 30 SP = 3 SP &nbsp;|&nbsp; 3 SP * 100/- = 300/-
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Example 2 Table -->
+                    <div class="bp-table-wrap">
+                        <div class="table-responsive">
+                            <table class="bp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Calculation Parameter</th>
+                                        <th>ORG 1</th>
+                                        <th>ORG 2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>As per Next closing period</strong></td>
+                                        <td>100 SP</td>
+                                        <td>110 SP</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total SP</strong></td>
+                                        <td>100 SP</td>
+                                        <td>130 SP</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Matched SP</strong></td>
+                                        <td>90 SP</td>
+                                        <td>90 SP</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>10% of Matched SP</strong></td>
+                                        <td colspan="2" class="text-center font-monospace" style="color: var(--green); font-weight: 600;">
+                                            1SP = 100/- in ratio of 30SP:30SP
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Balance SP</strong></td>
+                                        <td>0 SP</td>
+                                        <td>40 SP</td>
+                                    </tr>
+                                    <tr style="background: rgba(61, 107, 53, 0.05);">
+                                        <td colspan="3" class="text-center font-monospace" style="font-weight: 700;">
+                                            10% * 90 SP = 9 SP &nbsp;|&nbsp; 9 SP * 100/- = 900/-
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h5 style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: var(--dark); margin: 24px 0 10px;">
+                        <i class="fas fa-chart-line text-gold me-1"></i> Weekly Threshold Limit
+                    </h5>
+                    <p class="bp-lead" style="font-size: 13.5px; margin-bottom: 8px;">The maximum threshold limit for earning Business Matching Incentive for every business cycle is as per Sale /purchase done by Direct seller, is as shown below.</p>
+                    <div class="bp-table-wrap">
+                        <div class="table-responsive">
+                            <table class="bp-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 80px;">S NO.</th>
+                                        <th>SELF PURCHASE/SALE</th>
+                                        <th>THRESHOLD IN AMOUNT EVERY WEEK</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>30 SP</td>
+                                        <td>Rs. 30000/-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>50 SP</td>
+                                        <td>Rs.60000/-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>75 SP</td>
+                                        <td>Rs.100000/-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>100 SP</td>
+                                        <td>RS. 150000/-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="bp-notes-box">
+                        <div class="bp-notes-title"><i class="fas fa-info-circle"></i> Notes</div>
+                        <ul class="bp-notes-list">
+                            <li>Business Matching Incentive is Calculated and paid to the Direct Sellers on weekly basis.</li>
+                            <li>Closing period = Business Matching Incentive is calculated on sales done between 00:00:00 am of Tuesday to 23:59:59 am of Monday every week</li>
+                            <li>Payout period = Business Matching Incentive is paid on every corresponding Wednesday for each closing period..</li>
+                            <li>To get Business Matching Incentive Direct Seller has to generate minimum self-sale/purchase of 30 SP in accumulation</li>
+                            <li>To get Business Matching Incentive Direct Seller has to introduce minimum 2 Direct Seller</li>
+                            <li>Un-matched SP’s in a closing period will be carried forward to the next closing period.</li>
+                            <li>The maximum threshold limit for earning Business Matching Incentive for every business cycle is as per Sale /purchase done by Direct seller, is as shown below.</li>
+                            <li>Company reserves the right to change / amend the Business Matching Incentive.</li>
+                            <li>Active Business is calculated after all cancellations and refunds deducted from the current payout period.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5. Rank Recognition -->
+                <div class="bp-card">
+                    <span class="bp-badge"><i class="fas fa-award"></i> Honors &amp; Levels</span>
+                    <h4 class="bp-title">RANK <span>Recognition</span></h4>
+                    <p class="bp-lead">Amberveda recognizes the efforts and hard work done by its direct sellers through its down line team to achieve the highest possible sales of its products. In recognition of the efforts and hard work of a team leader he is awarded Recognition by bestowing the following Ranks on the basis of total matching accumulated SP sales achieved by him/her from the date of his/her joining within the network in ratio of 1:2 or 2:1 as given below:</p>
+                    
+                    <div class="bp-table-wrap">
+                        <div class="table-responsive">
+                            <table class="bp-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 70px;">SNO.</th>
+                                        <th>SP From ORG 1</th>
+                                        <th>SP From ORG 2</th>
+                                        <th>RANK RECOGNITION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td>100 SP</td><td>200 SP</td><td><span class="bp-table-rank-badge">STARTER</span></td></tr>
+                                    <tr><td>2</td><td>Next 250 SP</td><td>Next 500 SP</td><td><span class="bp-table-rank-badge">BRONZE</span></td></tr>
+                                    <tr><td>3</td><td>Next 500 SP</td><td>Next 1000 SP</td><td><span class="bp-table-rank-badge">SILVER</span></td></tr>
+                                    <tr><td>4</td><td>Next 1000 SP</td><td>Next 2000 SP</td><td><span class="bp-table-rank-badge">GOLD</span></td></tr>
+                                    <tr><td>5</td><td>Next 2000 SP</td><td>Next 4000 SP</td><td><span class="bp-table-rank-badge">RUBY</span></td></tr>
+                                    <tr><td>6</td><td>Next 4000 SP</td><td>Next 8000 SP</td><td><span class="bp-table-rank-badge">PEARL</span></td></tr>
+                                    <tr><td>7</td><td>Next 8000 SP</td><td>Next 16000 SP</td><td><span class="bp-table-rank-badge">SAPPHIRE</span></td></tr>
+                                    <tr><td>8</td><td>Next 16000 SP</td><td>Next 32000 SP</td><td><span class="bp-table-rank-badge">EMERALD</span></td></tr>
+                                    <tr><td>9</td><td>Next 32000 SP</td><td>Next 64000 SP</td><td><span class="bp-table-rank-badge">DIAMOND</span></td></tr>
+                                    <tr><td>10</td><td>Next 64000 SP</td><td>Next 128000 SP</td><td><span class="bp-table-rank-badge">CROWN DIAMOND</span></td></tr>
+                                    <tr><td>11</td><td>Next 128000 SP</td><td>Next 256000 SP</td><td><span class="bp-table-rank-badge">ROYAL CROWN</span></td></tr>
+                                    <tr><td>12</td><td>Next 256000 SP</td><td>Next 512000 SP</td><td><span class="bp-table-rank-badge">ROYAL BLUE</span></td></tr>
+                                    <tr><td>13</td><td>Next 512000 SP</td><td>Next 1024000 SP</td><td><span class="bp-table-rank-badge">ROYAL BLACK</span></td></tr>
+                                    <tr><td>14</td><td>Next 1024000 SP</td><td>Next 2048000 SP</td><td><span class="bp-table-rank-badge">AMBASSADOR</span></td></tr>
+                                    <tr><td>15</td><td>Next 2048000 SP</td><td>Next 4096000 SP</td><td><span class="bp-table-rank-badge">CROWN AMBASSADOR</span></td></tr>
+                                    <tr><td>16</td><td>Next 4096000 SP</td><td>Next 8192000 SP</td><td><span class="bp-table-rank-badge">GLOBAL AMBASSADOR</span></td></tr>
+                                    <tr><td>17</td><td>Next 8192000 SP</td><td>Next 16384000 SP</td><td><span class="bp-table-rank-badge">INTERNATIONAL CROWN</span></td></tr>
+                                    <tr><td>18</td><td>Next 16384000 SP</td><td>Next 32768000 SP</td><td><span class="bp-table-rank-badge">LEGEND STAR</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="bp-notes-box">
+                        <div class="bp-notes-title"><i class="fas fa-calendar-alt"></i> Note</div>
+                        <p style="font-size: 13.5px; color: var(--text-light); margin: 0;"><strong>Note:</strong> Rank Recognition is awarded every MONTH</p>
+                    </div>
+                </div>
+
+                <!-- 6. Mentor-ship Incentive -->
+                <div class="bp-card">
+                    <span class="bp-badge"><i class="fas fa-hands-helping"></i> Incentive 03</span>
+                    <h4 class="bp-title">Mentor-ship <span>Incentive</span></h4>
+                    <p class="bp-lead">Mentor-ship is a relationship in which a more experienced person guides a less experienced person or group of people. Amberveda Business Plan truly rewards the Mentor-ship efforts done by its Direct Sellers. To encourage these efforts by Direct Sellers for their sales and their down line organizational sales, Amberveda Business Plan rewards its Direct Sellers with 20% of Business Matching Incentive earned by Direct Sellers who joined voluntarily under him/her up to 4th generation as Mentor-ship Incentive.</p>
+                    
+                    <h5 style="font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.5px; margin: 20px 0 10px;">
+                        Below Mentioned is the Criteria for Earning Mentor-ship Incentive
+                    </h5>
+
+                    <div class="bp-table-wrap">
+                        <div class="table-responsive">
+                            <table class="bp-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 70px;">S. NO</th>
+                                        <th>Generation</th>
+                                        <th>MINIMUM DIRECT SELLER REQUIRED</th>
+                                        <th>INCENTIVE IN %</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Generation 1</td>
+                                        <td>2</td>
+                                        <td><strong>10 %</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Generation 2</td>
+                                        <td>3</td>
+                                        <td><strong>5 %</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Generation 3</td>
+                                        <td>4</td>
+                                        <td><strong>3 %</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Generation 4</td>
+                                        <td>5</td>
+                                        <td><strong>2 %</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="bp-notes-box">
+                        <div class="bp-notes-title"><i class="fas fa-info-circle"></i> Notes</div>
+                        <ul class="bp-notes-list">
+                            <li>Mentor-ship Incentive is calculated and paid on weekly basis.</li>
+                            <li>Closing Period: Mentor-ship Incentive is calculated on sales done between 00:00:00 am of Tuesday to 23:59:59 am of Monday every week.</li>
+                            <li>Payout Period: Mentor-ship Incentive is paid on every corresponding Wednesday for each closing period.</li>
+                            <li>Active Business is calculated after all cancellations and refunds deducted from the current payout period.</li>
+                            <li>Company reserves the right to change / modify the Mentor-ship Incentive.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 7. Achiever Incentive -->
+                <div class="bp-card">
+                    <span class="bp-badge"><i class="fas fa-trophy"></i> Incentive 04</span>
+                    <h4 class="bp-title">Achiever <span>Incentive</span></h4>
+                    <p class="bp-lead">A Direct Seller can rise through the Business Plan by increasing the sales/marketing of Products. The Achiever Incentive is based on the Sales Point (SP) matched in 2 ORGs. In the below mentioned table it is shown how a Direct Seller can achieve his/her achiever Incentive as per the Fresh Sales Point (SP) matched time to time within the network in ratio of 1:2 or 2:1. In Amberveda Business Plan Achiever Incentive is paid to the Direct Seller only once.</p>
+                    
+                    <h5 style="font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.5px; margin: 20px 0 10px;">
+                        Below Mentioned is the Criteria for Earning Achiever Incentive:
+                    </h5>
+
+                    <div class="bp-table-wrap">
+                        <div class="table-responsive">
+                            <table class="bp-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 70px;">SNO.</th>
+                                        <th>ORG1</th>
+                                        <th>ORG2</th>
+                                        <th>Incentive % on matched SP</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td>100 SP</td><td>200 SP</td><td><strong>15% of matched SP</strong></td></tr>
+                                    <tr><td>2</td><td>Next 250 SP</td><td>Next 500 SP</td><td><strong>15% of matched SP</strong></td></tr>
+                                    <tr><td>3</td><td>Next 500 SP</td><td>Next 1000 SP</td><td><strong>15% of matched SP</strong></td></tr>
+                                    <tr><td>4</td><td>Next 1000 SP</td><td>Next 2000 SP</td><td><strong>15% of matched SP</strong></td></tr>
+                                    <tr><td>5</td><td>Next 2000 SP</td><td>Next 4000 SP</td><td><strong>10% of matched SP</strong></td></tr>
+                                    <tr><td>6</td><td>Next 4000 SP</td><td>Next 8000 SP</td><td><strong>10% of matched SP</strong></td></tr>
+                                    <tr><td>7</td><td>Next 8000 SP</td><td>Next 16000 SP</td><td><strong>10% of matched SP</strong></td></tr>
+                                    <tr><td>8</td><td>Next 16000 SP</td><td>Next 32000 SP</td><td><strong>8% of matched SP</strong></td></tr>
+                                    <tr><td>9</td><td>Next 32000 SP</td><td>Next 64000 SP</td><td><strong>7.81% of matched SP</strong></td></tr>
+                                    <tr><td>10</td><td>Next 64000 SP</td><td>Next 128000 SP</td><td><strong>2.18% of matched SP</strong></td></tr>
+                                    <tr><td>11</td><td>Next 128000 SP</td><td>Next 256000 SP</td><td><strong>1.95% of matched SP</strong></td></tr>
+                                    <tr><td>12</td><td>Next 256000 SP</td><td>Next 512000 SP</td><td><strong>1.95% of matched SP</strong></td></tr>
+                                    <tr><td>13</td><td>Next 512000 SP</td><td>Next 1024000 SP</td><td><strong>1.95% of matched SP</strong></td></tr>
+                                    <tr><td>14</td><td>Next 1024000 SP</td><td>Next 2048000 SP</td><td><strong>1.46% of matched SP</strong></td></tr>
+                                    <tr><td>15</td><td>Next 2048000 SP</td><td>Next 4096000 SP</td><td><strong>0.97% of matched SP</strong></td></tr>
+                                    <tr><td>16</td><td>Next 4096000 SP</td><td>Next 8192000 SP</td><td><strong>0.73% of matched SP</strong></td></tr>
+                                    <tr><td>17</td><td>Next 8192000 SP</td><td>Next 16384000 SP</td><td><strong>0.48% of matched SP</strong></td></tr>
+                                    <tr><td>18</td><td>Next 16384000 SP</td><td>Next 32768000 SP</td><td><strong>0.30% of matched SP</strong></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="bp-notes-box">
+                        <div class="bp-notes-title"><i class="fas fa-info-circle"></i> Notes</div>
+                        <ul class="bp-notes-list">
+                            <li>Achiever Incentive is Calculated and paid to the Direct Sellers on monthly basis.</li>
+                            <li>Closing period = Achiever Incentive s calculated on business done between1st day to last day of every month</li>
+                            <li>Payout period = Achiever Incentive is paid on every corresponding Wednesday for closing period.</li>
+                            <li>Un-matched SPs in a closing period will not be carried forward to the next closing period.</li>
+                            <li>Company reserves the right to change / amend the Achiever Incentive.</li>
+                            <li>Active Business is calculated after all cancellations and refunds deducted from the current payout period.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 8. Royalty Incentive -->
+                <div class="bp-card">
+                    <span class="bp-badge"><i class="fas fa-crown"></i> Incentive 05</span>
+                    <h4 class="bp-title">Royalty <span>Incentive</span></h4>
+                    <p class="bp-lead">In Amberveda Business Plan a Direct Seller can direct, guide and influence the behavior and work of others towards accomplishment of specific goals in a given situation, Amberveda entitles its Direct Seller with Royalty Incentive equivalent to 10 (TEN) percent of total Sales Point (SP) turnover of the month to develop his/ her business as per the club achieved by the direct seller which is as shown below:</p>
+                    
+                    <div class="bp-table-wrap">
+                        <div class="table-responsive">
+                            <table class="bp-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 70px;">STAGE.</th>
+                                        <th>CLUB</th>
+                                        <th>MINIMUM MATCHED SP REQUIRED IN ACCUMULATION</th>
+                                        <th>MINIMUM MATCHED SP REQUIRED EVERY MONTH</th>
+                                        <th>INCENTIVE % ON SP CTO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><strong>SILVER CLUB</strong></td>
+                                        <td>100000 SP</td>
+                                        <td>100 SP</td>
+                                        <td><strong>5% of Company Monthly SP Turnover</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><strong>GOLD CLUB</strong></td>
+                                        <td>500000 SP</td>
+                                        <td>250 SP</td>
+                                        <td><strong>3% of Company Monthly SP Turnover</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><strong>DIAMOND CLUB</strong></td>
+                                        <td>1000000 SP</td>
+                                        <td>500 SP</td>
+                                        <td><strong>2% of Company Monthly SP Turnover</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <p class="bp-lead" style="margin-top: 16px;">Amberveda will Distribute the Royalty Incentive equally among all the achievers as per the club achieved by direct seller every month.</p>
+                    <p class="bp-lead" style="margin-bottom: 8px;"><strong>Royalty Incentive is calculated as per below mentioned formula:</strong></p>
+
+                    <div class="bp-formula-box" style="font-family: inherit; font-size: 14.5px;">
+                        <div style="font-weight: 700; color: var(--green); margin-bottom: 6px;">Royalty Incentive =</div>
+                        <div style="display: inline-block; text-align: center; vertical-align: middle; margin-left: 10px;">
+                            <div style="border-bottom: 2px solid var(--gold); padding-bottom: 3px; font-weight: 600;">% total Monthly SP Turnover as per club</div>
+                            <div style="padding-top: 3px; font-weight: 600; color: var(--text-light);">Total no of achiever as per the club</div>
+                        </div>
+                    </div>
+
+                    <div class="bp-notes-box">
+                        <div class="bp-notes-title"><i class="fas fa-info-circle"></i> Notes</div>
+                        <ul class="bp-notes-list">
+                            <li>Royalty Incentive is calculated and paid on Monthly basis.</li>
+                            <li>Closing Period: Royalty Incentive is calculated on the Business done between 1st&amp; last day of every month.</li>
+                            <li>Payout Period Royalty Incentive is paid to the Direct Sellers on every corresponding Wednesday for each closing period.</li>
+                            <li>Direct seller will get the Royalty incentive from 1 club at a time as per the club achieved by him/her</li>
+                            <li>Direct seller will get the Royalty Incentive from club achieved by him till he/she achieved the next club.</li>
+                            <li>Active Business is calculated after all cancellations and refunds deducted from the current payout period.</li>
+                            <li>Company reserves the right to change / modify Royalty Incentive.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 9. Awards & Rewards -->
+                <div class="bp-card">
+                    <span class="bp-badge"><i class="fas fa-gift"></i> Incentive 06</span>
+                    <h4 class="bp-title">Awards &amp; <span>Rewards</span></h4>
+                    <p class="bp-lead">Amberveda appreciates the hard work done by the Direct Sellers in promoting sales of Products in the form of Awards &amp; Rewards. Direct Sellers can earn Awards &amp; Rewards on the level of Business they have achieved. For more details on Awards &amp; Rewards, please visit our website: <a href="http://www.ambervedawellness.com" target="_blank" rel="noopener noreferrer">www.ambervedawellness.com</a>.</p>
+                </div>
+
+                <!-- 10. Notes & Disclaimer -->
+                <div class="bp-disclaimer-card">
+                    <span class="bp-badge" style="background: rgba(184, 51, 42, 0.08); border-color: rgba(184, 51, 42, 0.25); color: #b8332a;">
+                        <i class="fas fa-shield-alt"></i> Compliance &amp; Guidelines
+                    </span>
+                    <h4 class="bp-title" style="margin-bottom: 16px;">Notes &amp; <span>Disclaimer</span></h4>
+
+                    <div class="bp-disclaimer-item">
+                        <span class="bp-disc-num">1</span>
+                        <div>The Customer Registration is absolutely free and the company does not ask for any registration fee for it.</div>
+                    </div>
+                    <div class="bp-disclaimer-item">
+                        <span class="bp-disc-num">2</span>
+                        <div>Calculations of weekly &amp; monthly incentives will be carried out by the software systems only.</div>
+                    </div>
+                    <div class="bp-disclaimer-item">
+                        <span class="bp-disc-num">3</span>
+                        <div>All necessary tax deductions from earned incomes and rewards would be made as per the Govt. laws.</div>
+                    </div>
+                    <div class="bp-disclaimer-item">
+                        <span class="bp-disc-num">4</span>
+                        <div>All the illustrations and examples given herein are just for readers’ understanding purpose.</div>
+                    </div>
+                    <div class="bp-disclaimer-item">
+                        <span class="bp-disc-num">5</span>
+                        <div>All the calculations work on the pro rata basis.</div>
+                    </div>
+                    <div class="bp-disclaimer-item">
+                        <span class="bp-disc-num">6</span>
+                        <div>Amberveda Business Plan is a hardcore sales &amp; marketing of its Products. It is not any type of money making scheme. It is not an overnight millionaire making program.</div>
+                    </div>
+                    <div class="bp-disclaimer-item">
+                        <span class="bp-disc-num">7</span>
+                        <div>The incomes from any plan are subject to your efforts and as per terms &amp; conditions given on the website: <a href="http://www.ambervedawellness.com" target="_blank" rel="noopener noreferrer">www.ambervedawellness.com</a>.</div>
+                    </div>
+                    <div class="bp-disclaimer-item">
+                        <span class="bp-disc-num">8</span>
+                        <div>Grievances or complaints, if any, shall be resolved in accordance with the Grievance Redressal Mechanism provided by the company or through arbitration as per laws of the land.</div>
+                    </div>
+                    <div class="bp-disclaimer-item">
+                        <span class="bp-disc-num">9</span>
+                        <div>Disputes if any will be resolved in the legal jurisdiction of Meerut courts (U.P, India) only.</div>
+                    </div>
+                    <div class="bp-disclaimer-item">
+                        <span class="bp-disc-num">10</span>
+                        <div>All rights reserved. The company may change / amend / alter / update any income or payment calculation method without any prior information. For updates please visit our website: <a href="http://www.ambervedawellness.com" target="_blank" rel="noopener noreferrer">www.ambervedawellness.com</a> .</div>
+                    </div>
+                    <div class="bp-disclaimer-item" style="background: rgba(201, 168, 76, 0.05); padding: 14px 16px; border-radius: 12px; margin-top: 8px;">
+                        <span class="bp-disc-num" style="background: var(--gold); color: #fff;">11</span>
+                        <div><strong>Disclaimer –</strong> A Direct Seller’s success depends in great part upon his or her skills, efforts, dedication, desire, and motivation. Becoming an Direct Seller of Amberveda Wellness Private Limited is not a guarantee of income. Average income from the Amberveda Business Plan has not been established. This explanation of the Amberveda Business Plan is a description of how commissions may be earned under the Amberveda Business Plan. It is for illustrative purposes only. There are no guarantees, warranties or assurances that any level of income, earnings or success will be earned or attained by any Direct Seller. Actual results will vary and will be a result of various factors such as expertise, ability, motivation and time spent promoting and selling Amberveda Products.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEGAL DOCUMENTS TAB & SECTION (Phase 3) -->
+            <div class="about-legal-section mt-5 pt-4 border-top" id="legal-documents" style="border-color: rgba(201, 168, 76, 0.18) !important;">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+                    <div>
+                        <span class="sec-label">Statutory &amp; Compliance</span>
+                        <h3 class="sec-title" style="font-size: clamp(1.45rem, 2.2vw, 1.95rem); margin-bottom: 6px;">
+                            Legal, <span>Certificates &amp; Compliance</span>
+                        </h3>
+                        <div class="sec-div" style="margin: 10px 0 0;"></div>
+                    </div>
+
+                    <!-- TAB NAVIGATION -->
+                    <div class="about-tabs-nav">
+                        <button type="button" class="about-tab-btn active" id="tabLegalBtn" onclick="switchAboutTab('legal')">
+                            <i class="fas fa-balance-scale me-2"></i> Legal Documents
+                        </button>
+                        <button type="button" class="about-tab-btn" id="tabCertBtn" onclick="switchAboutTab('certificates')">
+                            <i class="fas fa-certificate me-2"></i> Certificates
+                        </button>
+                        <button type="button" class="about-tab-btn" id="tabComplianceBtn" onclick="switchAboutTab('compliance')">
+                            <i class="fas fa-clipboard-check me-2"></i> Compliance
+                        </button>
+                    </div>
+                </div>
+
+                <!-- LEGAL DOCUMENTS PANEL -->
+                <div class="about-tab-panel" id="panelLegal">
+                    <div class="legal-docs-list">
+                        <!-- 1. Certificate of Incorporation -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">01</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">
+                                        <a href="{{ asset('uploads/documents/COI.pdf') }}" target="_blank" rel="noopener noreferrer">Certificate of Incorporation</a>
+                                    </h5>
+                                    <p class="legal-doc-sub">Corporate Identity Number (CIN): U21003UW2026PTC253557 &bull; Central Registration Centre, Ministry of Corporate Affairs, Govt. of India</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <a href="{{ asset('uploads/documents/COI.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn-doc-view">
+                                    <i class="fas fa-file-pdf"></i> View Document <i class="fas fa-external-link-alt ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2. Memorandum of Association (MOA) and Articles of Association (AOA) -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">02</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">
+                                        <a href="{{ asset('uploads/documents/aoa.pdf') }}" target="_blank" rel="noopener noreferrer">Memorandum of Association (MOA) and Articles of Association (AOA)</a>
+                                    </h5>
+                                    <p class="legal-doc-sub">Form INC-34 (SPICe+ Articles of Association) &bull; Registered under Companies Act, 2013 with MCA, Govt. of India</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <a href="{{ asset('uploads/documents/aoa.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn-doc-view">
+                                    <i class="fas fa-file-pdf"></i> View Document <i class="fas fa-external-link-alt ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 3. Permanent Account Number (PAN) and Tax Deduction and Collection Account Number (TAN) -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">03</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">
+                                        <a href="{{ asset('uploads/documents/pan-card.jpeg') }}" target="_blank" rel="noopener noreferrer">Permanent Account Number (PAN) and Tax Deduction and Collection Account Number (TAN)</a>
+                                    </h5>
+                                    <p class="legal-doc-sub">PAN: ABFCA7551D &bull; TAN: MRTA30771G &bull; Income Tax Department, Government of India (Physical PAN Card &amp; Official TAN Allotment Letter)</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <a href="{{ asset('uploads/documents/pan-card.jpeg') }}" target="_blank" rel="noopener noreferrer" class="btn-doc-view" title="View PAN Card">
+                                    <i class="fas fa-id-card"></i> View PAN <i class="fas fa-external-link-alt ms-1"></i>
+                                </a>
+                                <a href="{{ asset('uploads/documents/tan-allotment.jpeg') }}" target="_blank" rel="noopener noreferrer" class="btn-doc-view" style="background: linear-gradient(135deg, var(--gold-dark), var(--gold));" title="View TAN Letter">
+                                    <i class="fas fa-file-invoice"></i> View TAN <i class="fas fa-external-link-alt ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 4. GST Registration Certificate -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">04</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">
+                                        <a href="{{ asset('uploads/documents/gst-certificate.pdf') }}" target="_blank" rel="noopener noreferrer">Goods and Services Tax (GST) Registration Certificate</a>
+                                    </h5>
+                                    <p class="legal-doc-sub">GSTIN: 09ABFCA7551D1ZP &bull; Form GST REG-06, Government of India</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <a href="{{ asset('uploads/documents/gst-certificate.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn-doc-view">
+                                    <i class="fas fa-file-pdf"></i> View Document <i class="fas fa-external-link-alt ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 5. Importer-Exporter Code (IEC), if applicable -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">05</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">Certificate of Importer-Exporter Code (IEC)</h5>
+                                    <p class="legal-doc-sub">Applicable in case of imported goods under Directorate General of Foreign Trade (DGFT)</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 6. FSSAI Licence, if applicable -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">06</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">
+                                        <a href="{{ asset('uploads/documents/fssai-license.pdf') }}" target="_blank" rel="noopener noreferrer">Food Safety and Standards Authority of India (FSSAI) Licence</a>
+                                    </h5>
+                                    <p class="legal-doc-sub">License issued under the Food Safety and Standards Authority of India Act, 2006 (FSSAI Uttar Pradesh)</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <a href="{{ asset('uploads/documents/fssai-license.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn-doc-view">
+                                    <i class="fas fa-file-pdf"></i> View Document <i class="fas fa-external-link-alt ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 7. Applicable Drugs and Cosmetics Licence -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">07</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">Applicable Drugs and Cosmetics Licence</h5>
+                                    <p class="legal-doc-sub">License and Registration Certificate issued under Drugs and Cosmetics Act, 1940 (Ayurvedic/Herbal Formulations)</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 8. Trademark Registration Certificate -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">08</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">Certificate of Registration of Trademark</h5>
+                                    <p class="legal-doc-sub">Trademark registration under Trade Marks Act, 1999 (Intellectual Property India)</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 9. MSME Certificate -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">09</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">Micro, Small and Medium Enterprises (MSME) Certificate</h5>
+                                    <p class="legal-doc-sub">Udyam Registration Certificate under Ministry of Micro, Small and Medium Enterprises, Govt. of India</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CERTIFICATES PANEL (Phase 4) -->
+                <div class="about-tab-panel" id="panelCertificates" style="display: none;">
+                    <div class="legal-docs-list">
+                        <!-- 1. ISO Certificate -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">01</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">ISO Certificate</h5>
+                                    <p class="legal-doc-sub">International Organization for Standardization (ISO) Certification</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 2. Good Manufacturing Practice (GMP) Certificate -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">02</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">Good Manufacturing Practice (GMP) Certificate</h5>
+                                    <p class="legal-doc-sub">Good Manufacturing Practice (GMP) Quality Certification</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMPLIANCE PANEL (Phase 5) -->
+                <div class="about-tab-panel" id="panelCompliance" style="display: none;">
+                    <div class="legal-docs-list">
+                        <!-- 1. Goods and Services Tax (GST) Returns — CS-attested PDF -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">01</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">Goods and Services Tax (GST) Returns</h5>
+                                    <p class="legal-doc-sub">Goods and Services Tax Returns (CS-attested PDF)</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 2. Income Tax Returns — Last year, if any (CS-attested PDF) -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">02</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">Income Tax Returns</h5>
+                                    <p class="legal-doc-sub">Income Tax Returns – Last Year, if any (CS-attested PDF)</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 3. Balance Sheet — Last year, if any (CS-attested PDF) -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">03</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">Balance Sheet</h5>
+                                    <p class="legal-doc-sub">Balance Sheet – Last Year, if any (CS-attested PDF)</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 4. Audit Report — Last year, if any (CS-attested PDF) -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">04</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">Audit Report</h5>
+                                    <p class="legal-doc-sub">Audit Report and such other relevant reports – Last Year, if any (CS-attested PDF)</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- 5. Other Compliance Documents Submitted to Department -->
+                        <div class="legal-doc-item anim">
+                            <div class="legal-doc-left">
+                                <div class="legal-doc-num">05</div>
+                                <div class="legal-doc-info">
+                                    <h5 class="legal-doc-title">Other Compliance Documents</h5>
+                                    <p class="legal-doc-sub">Compliance documents submitted to the department</p>
+                                </div>
+                            </div>
+                            <div class="legal-doc-action">
+                                <span class="badge-doc-unavailable">
+                                    <i class="fas fa-info-circle"></i> Document not available
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2335,18 +3943,14 @@
                     <div class="mv-card anim">
                         <div class="mv-ico"><i class="fas fa-eye"></i></div>
                         <h3>Our <span>Vision</span></h3>
-                        <p>To become India's most trusted Ayurvedic wellness brand — making authentic, science-backed
-                            herbal healthcare accessible to every household. We envision a healthier India where ancient
-                            wisdom and modern living coexist in beautiful harmony.</p>
+                        <p>To be a reputed Company of Smart people who add value across generations.</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mv-card anim">
                         <div class="mv-ico"><i class="fas fa-bullseye"></i></div>
                         <h3>Our <span>Mission</span></h3>
-                        <p>To empower individuals and families through high-quality, natural Ayurvedic products — while
-                            building a thriving community of wellness ambassadors through our rewarding and
-                            refer-and-earn ecosystem.</p>
+                        <p>Amberveda Wellness Private Limited is dedicated to spread quality lifestyle in the Society and help people choose value-for-money products for healthy and better living.</p>
                     </div>
                 </div>
             </div>
@@ -2846,7 +4450,7 @@
     <footer>
         <div class="container">
             <div class="row g-4">
-                <div class="col-lg-4">
+                <div class="col-lg-3 col-md-6">
                     <div class="f-logo">
                         <span
                             style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:700; color:#fff;">AMBER<span
@@ -2862,7 +4466,7 @@
                         <a href="#"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4 offset-lg-1">
+                <div class="col-lg-2 col-md-6 col-6">
                     <h5 class="f-head">Quick Links</h5>
                     <ul class="f-links">
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
@@ -2873,7 +4477,17 @@
                         <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-4">
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h5 class="f-head">Policies</h5>
+                    <ul class="f-links">
+                        <li><a href="{{ asset('uploads/policies/privacy-policy.pdf') }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="{{ asset('uploads/policies/website-terms-of-use.pdf') }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chevron-right"></i> Website Terms of Use</a></li>
+                        <li><a href="{{ asset('uploads/policies/shipping-policy.pdf') }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chevron-right"></i> Shipping Policy</a></li>
+                        <li><a href="{{ asset('uploads/policies/buyback-refund-policy.pdf') }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chevron-right"></i> Buyback / Refund / Cancellation</a></li>
+                        <li><a href="{{ asset('uploads/policies/cooling-off-policy.pdf') }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chevron-right"></i> Cooling Off Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 col-6">
                     <h5 class="f-head">Member Area</h5>
                     <ul class="f-links">
                         <li><a href="{{ url('/member') }}"><i class="fas fa-chevron-right"></i> Member Login</a></li>
@@ -2884,7 +4498,7 @@
                         <li><a href="#"><i class="fas fa-chevron-right"></i> My Referrals</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-3 col-md-6 col-6">
                     <h5 class="f-head">Contact Info</h5>
                     <div class="f-contact-item"><i class="fas fa-map-marker-alt mt-1"></i> Amberveda Wellness Pvt Ltd,
                         India</div>
@@ -2894,12 +4508,14 @@
                 </div>
             </div>
             <hr class="f-hr">
-            <div class="f-bottom d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="f-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
                 <span>&#169; 2026 Amberveda Wellness Pvt Ltd. All Rights Reserved.</span>
-                <div>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms &amp; Conditions</a>
-                    <a href="#">Refund Policy</a>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ asset('uploads/policies/privacy-policy.pdf') }}" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                    <a href="{{ asset('uploads/policies/website-terms-of-use.pdf') }}" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+                    <a href="{{ asset('uploads/policies/shipping-policy.pdf') }}" target="_blank" rel="noopener noreferrer">Shipping Policy</a>
+                    <a href="{{ asset('uploads/policies/buyback-refund-policy.pdf') }}" target="_blank" rel="noopener noreferrer">Refund Policy</a>
+                    <a href="{{ asset('uploads/policies/cooling-off-policy.pdf') }}" target="_blank" rel="noopener noreferrer">Cooling Off Policy</a>
                 </div>
             </div>
         </div>
@@ -2970,6 +4586,34 @@
         if (contactPhone) {
             contactPhone.addEventListener('input', function() {
                 this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+            });
+        }
+
+        // Tab switcher for About Us (Legal Documents / Certificates / Compliance)
+        function switchAboutTab(tabName) {
+            const tabs = ['legal', 'certificates', 'compliance'];
+            const btnMap = {
+                'legal': document.getElementById('tabLegalBtn'),
+                'certificates': document.getElementById('tabCertBtn'),
+                'compliance': document.getElementById('tabComplianceBtn')
+            };
+            const panelMap = {
+                'legal': document.getElementById('panelLegal'),
+                'certificates': document.getElementById('panelCertificates'),
+                'compliance': document.getElementById('panelCompliance')
+            };
+
+            tabs.forEach(t => {
+                if (t === tabName) {
+                    if (btnMap[t]) btnMap[t].classList.add('active');
+                    if (panelMap[t]) {
+                        panelMap[t].style.display = 'block';
+                        panelMap[t].querySelectorAll('.anim').forEach(el => el.classList.add('visible'));
+                    }
+                } else {
+                    if (btnMap[t]) btnMap[t].classList.remove('active');
+                    if (panelMap[t]) panelMap[t].style.display = 'none';
+                }
             });
         }
     </script>
