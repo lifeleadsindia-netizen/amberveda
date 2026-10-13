@@ -1,5 +1,5 @@
 @extends('member.layouts.main')
-@section('title', 'Create Support Ticket')
+@section('title', 'Create Grievance Ticket')
 @section('container')
 
     <div class="container-fluid">
@@ -11,11 +11,11 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item active" aria-current="page"><a href="#"
-                                        style="text-decoration: none">Create Support Ticket</a></li>
+                                        style="text-decoration: none">Create Grievance Ticket</a></li>
                             </ol>
                         </nav>
                     </div>
-                    <h4 class="page-title">Create Support Ticket</h4>
+                    <h4 class="page-title">Create Grievance Ticket</h4>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 @endif
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-3">Create New Support Ticket</h4>
+                        <h4 class="card-title mb-3">Create New Grievance Ticket</h4>
                         <form class="forms-sample" method="post" action="{{ route('createTicket') }}"
                             enctype="multipart/form-data">
                             @csrf
@@ -53,7 +53,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
-                                <button type="submit" class="btn btn-primary me-2 float-end">Create New Ticket</button>
+                                <button type="submit" class="btn btn-primary me-2 float-end">Submit Grievance</button>
                             </div>
 
                         </form>

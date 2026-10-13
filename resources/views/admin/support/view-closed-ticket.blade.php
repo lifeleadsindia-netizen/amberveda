@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', 'View Closed Tickets')
+@section('title', 'View Closed Grievance Tickets')
 @section('content')
     @push('head')
         <link rel="stylesheet" href="{{ asset('adm_assets/assets/plugins/DataTables/datatables.min.css') }}">
@@ -14,8 +14,8 @@
                     <div class="page-header-title">
                         <i class="ik ik-edit bg-blue"></i>
                         <div class="d-inline">
-                            <h5>{{ __('View Closed Tickets')}}</h5>
-                            <span>{{ __('View Closed Tickets ')}}</span>
+                            <h5>{{ __('View Closed Grievance Tickets')}}</h5>
+                            <span>{{ __('View Closed Grievance Tickets ')}}</span>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                                 <a href="#"><i class="ik ik-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#">{{ __('Admin')}}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ __('View Closed Tickets')}}</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ __('View Closed Grievance Tickets')}}</li>
                         </ol>
                     </nav>
                 </div>

@@ -298,14 +298,14 @@
 
                 <div
                     class="nav-item {{ $segment1 == 'alerts' || $segment1 == 'buttons' || $segment1 == 'badges' || $segment1 == 'navigation' ? 'active open' : '' }} has-sub">
-                    <a href="#"><i class="ik ik-mail"></i><span>{{ __('Support') }}</span></a>
+                    <a href="#"><i class="ik ik-mail"></i><span>{{ __('Grievance System') }}</span></a>
                     <div class="submenu-content">
                         <a href="{{ url('admin/support/new-support-ticket') }}"
-                            class="menu-item {{ $segment1 == 'alerts' ? 'active' : '' }}">{{ __('New Support Tickets') }}</a>
+                            class="menu-item {{ $segment1 == 'alerts' ? 'active' : '' }}">{{ __('New Grievance Tickets') }}</a>
                         <a href="{{ url('admin/support/open-support-ticket') }}"
-                            class="menu-item {{ $segment1 == 'alerts' ? 'active' : '' }}">{{ __('Open Support Tickets') }}</a>
+                            class="menu-item {{ $segment1 == 'alerts' ? 'active' : '' }}">{{ __('Open Grievance Tickets') }}</a>
                         <a href="{{ url('admin/support/close-support-ticket') }}"
-                            class="menu-item {{ $segment1 == 'badges' ? 'active' : '' }}">{{ __('Closed Support Tickets') }}</a>
+                            class="menu-item {{ $segment1 == 'badges' ? 'active' : '' }}">{{ __('Closed Grievance Tickets') }}</a>
                     </div>
                 </div>
                 <div class="nav-item {{ $segment1 == 'rest-api' ? 'active' : '' }}">

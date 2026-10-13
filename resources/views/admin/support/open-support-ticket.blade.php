@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', 'Open Support Tickets')
+@section('title', 'Open Grievance Tickets')
 @section('content')
     @push('head')
         <link rel="stylesheet" href="{{ asset('adm_assets/assets/plugins/DataTables/datatables.min.css') }}">
@@ -11,8 +11,8 @@
                     <div class="page-header-title">
                         <i class="ik ik-edit bg-blue"></i>
                         <div class="d-inline">
-                            <h5>{{ __('Open Support Tickets')}}</h5>
-                            <span>{{ __('Open Support Tickets ')}}</span>
+                            <h5>{{ __('Open Grievance Tickets')}}</h5>
+                            <span>{{ __('Open Grievance Tickets ')}}</span>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                                 <a href="#"><i class="ik ik-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#">{{ __('Admin')}}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ __('Open Support Tickets')}}</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ __('Open Grievance Tickets')}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -37,7 +37,7 @@
                    <div class="alert alert-primary">{{session('wMessage')}}</div>
                 @endif
                 <div class="card">
-                    <div class="card-header"><h3>{{ __('Open Support Tickets')}}</h3></div>
+                    <div class="card-header"><h3>{{ __('Open Grievance Tickets')}}</h3></div>
                     <div class="card-body px-5">
                         <table id="data_table" class="table text-center">
                             <thead>

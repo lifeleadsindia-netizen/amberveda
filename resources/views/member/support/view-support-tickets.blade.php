@@ -1,5 +1,5 @@
 @extends('member.layouts.main')
-@section('title', 'View Support Tickets')
+@section('title', 'View Grievance Ticket')
 @section('container')
 
     <!-- Start Content-->
@@ -12,11 +12,11 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item active" aria-current="page"><a href="#"
-                                        style="text-decoration: none">View Support Tickets</a></li>
+                                        style="text-decoration: none">View Grievance Ticket</a></li>
                             </ol>
                         </nav>
                     </div>
-                    <h4 class="page-title">View Support Tickets</h4>
+                    <h4 class="page-title">View Grievance Ticket</h4>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="conversation-text">
                                                 <div class="ctext-wrap" style="width: 400px">
-                                                    <i>Support Team</i>
+                                                    <i>Grievance Team</i>
                                                     <p>{{ $item['text'] }}</p>
                                                 </div>
                                             </div>

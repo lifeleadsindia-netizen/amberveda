@@ -1,5 +1,5 @@
 @extends('member.layouts.main')
-@section('title', 'Support Ticket')
+@section('title', 'Grievance Tickets')
 @section('container')
 
     <div class="container-fluid">
@@ -11,11 +11,11 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item active" aria-current="page"><a href="#"
-                                        style="text-decoration: none">Support Ticket</a></li>
+                                        style="text-decoration: none">Grievance Tickets</a></li>
                             </ol>
                         </nav>
                     </div>
-                    <h4 class="page-title">Support Ticket</h4>
+                    <h4 class="page-title">Grievance Tickets</h4>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <div class="col-md-4 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{ __('Support Ticket') }}</h4>
+                            <h4>{{ __('Grievance Ticket') }}</h4>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">ID : {{ $list['ticket_id'] }} <span class="float-end "><a

@@ -12,6 +12,7 @@ use App\Models\IndiaState;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
+use App\Services\SmsService;
 
 class MemberDetailController extends Controller
 {
@@ -70,10 +71,137 @@ class MemberDetailController extends Controller
         $sponsorid['sdata'] = $id;
         $sponsorid['side'] = $side;
         $sponsorid['countries'] = Country::all();
+        $sponsorid['states'] = IndiaState::all();
+        $sponsorid['introducer'] = null;
         if ($id != 1) {
             session()->put('sponsorid', $id);
+            $sponsorid['introducer'] = MemberDetail::where('memberid', $id)->first();
         }
         return view('member.signup')->with($sponsorid);
+    }
+
+        public function sendRegistrationOtp(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $email = trim($request->post('email'));
+        $name = trim($request->post('name') ?: 'Direct Seller');
+
+        // Check if email already registered
+        $emailExists = MemberDetail::where('email', $email)->exists();
+        if ($emailExists) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This email has already been used. Please use another email.'
+            ], 422);
+        }
+
+        // Generate secure 6-digit OTP
+        $otp = (string) rand(100000, 999999);
+
+        // Store OTP in session
+        session()->put('registration_otp', $otp);
+        session()->put('registration_otp_email', $email);
+        session()->put('registration_otp_time', now());
+
+        session()->put('distributor_otp', $otp);
+        session()->put('distributor_otp_sponsor', $request->post('sponsor'));
+        session()->put('distributor_otp_time', now());
+
+        // Dispatch OTP to registrant's email
+        $mailData = [
+            'name' => $name,
+            'email' => $email,
+            'otp' => $otp,
+        ];
+
+        try {
+            Mail::send('member.mails.registration-otp', $mailData, function ($message) use ($email) {
+                $message->to($email);
+                $message->subject('AMBER VEDA - Registration Verification OTP');
+            });
+            \Log::info("[EmailService] Registration OTP dispatched to email", [
+                'email' => $email,
+                'otp' => $otp,
+                'timestamp' => now()->toDateTimeString()
+            ]);
+        } catch (\Exception $e) {
+            \Log::warning("[EmailService] SMTP Dispatch notice", [
+                'email' => $email,
+                'otp' => $otp,
+                'error' => $e->getMessage()
+            ]);
+        }
+
+        // Mask email for display (e.g. ro***@gmail.com)
+        $parts = explode('@', $email);
+        $userPart = $parts[0];
+        $domainPart = $parts[1] ?? '';
+        $maskedUser = strlen($userPart) > 2 ? substr($userPart, 0, 2) . '***' : $userPart . '***';
+        $maskedEmail = $maskedUser . '@' . $domainPart;
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Verification OTP has been sent to your registered email address.',
+            'masked_email' => $maskedEmail,
+            'email' => $email
+        ]);
+    }
+
+    public function sendDistributorOtp(Request $request)
+    {
+        if ($request->filled('email')) {
+            return $this->sendRegistrationOtp($request);
+        }
+
+        $request->validate([
+            'sponsor' => 'required',
+        ]);
+
+        $sponsorId = $request->post('sponsor');
+        $distributor = MemberDetail::where('memberid', $sponsorId)->first();
+
+        if (!$distributor) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Introducer ID not found in system.'
+            ], 404);
+        }
+
+        $distributorMobile = trim($distributor->mobile ?? '');
+        if (empty($distributorMobile)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Registered distributor does not have a registered mobile number.'
+            ], 422);
+        }
+
+        // Generate secure 6-digit OTP
+        $otp = (string) rand(100000, 999999);
+
+        // Store OTP in session with sponsor ID and creation timestamp
+        session()->put('distributor_otp', $otp);
+        session()->put('distributor_otp_sponsor', $sponsorId);
+        session()->put('distributor_otp_time', now());
+
+        // Dispatch via SmsService to the registered distributor's mobile
+        $smsResult = SmsService::sendDistributorOtp($distributorMobile, $otp, $distributor->name);
+
+        // Mask distributor mobile (e.g. ******5891)
+        $len = strlen($distributorMobile);
+        $maskedMobile = $len > 4 
+            ? str_repeat('*', max(0, $len - 4)) . substr($distributorMobile, -4)
+            : '****';
+
+        return response()->json([
+            'success' => true,
+            'message' => 'OTP sent to registered distributor mobile number.',
+            'masked_mobile' => $maskedMobile,
+            'distributor_name' => $distributor->name,
+            'sms_status' => $smsResult['status'] ?? 'sent'
+        ]);
     }
 
     public function register(Request $request)
@@ -88,55 +216,103 @@ class MemberDetailController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        // Additional manual checks for sponsor, email, and mobile uniqueness
+        // 1. Verify Verification OTP (sent to registrant's email)
+        $otp = $request->post('distributor_otp') ?: ($request->post('registration_otp') ?: $request->post('otp'));
+        $sessionOtp = session()->get('registration_otp') ?: session()->get('distributor_otp');
+        $sessionEmail = session()->get('registration_otp_email');
+        $otpTime = session()->get('registration_otp_time') ?: session()->get('distributor_otp_time');
+
+        if (empty($otp)) {
+            if ($request->ajax() || $request->expectsJson()) {
+                return response()->json(['success' => false, 'message' => 'Please enter the verification OTP sent to your registered email.'], 422);
+            }
+            session()->flash('failedMsg', 'Please enter the verification OTP sent to your registered email.');
+            return redirect()->back()->withInput();
+        }
+
+        if (empty($sessionOtp) || ($sessionEmail && $sessionEmail != $request->post('email'))) {
+            if ($request->ajax() || $request->expectsJson()) {
+                return response()->json(['success' => false, 'message' => 'OTP has expired or was not requested. Please request a new OTP.'], 422);
+            }
+            session()->flash('failedMsg', 'OTP has expired or was not requested. Please request a new OTP.');
+            return redirect()->back()->withInput();
+        }
+
+        // Expire after 10 minutes (600 seconds)
+        if ($otpTime && now()->diffInSeconds($otpTime) > 600) {
+            session()->forget(['registration_otp', 'registration_otp_email', 'registration_otp_time', 'distributor_otp', 'distributor_otp_sponsor', 'distributor_otp_time']);
+            if ($request->ajax() || $request->expectsJson()) {
+                return response()->json(['success' => false, 'message' => 'OTP has expired. Please request a new OTP.'], 422);
+            }
+            session()->flash('failedMsg', 'OTP has expired. Please request a new OTP.');
+            return redirect()->back()->withInput();
+        }
+
+        // Verify OTP value match
+        if (trim((string)$otp) !== trim((string)$sessionOtp)) {
+            if ($request->ajax() || $request->expectsJson()) {
+                return response()->json(['success' => false, 'message' => 'Entered OTP does not match. Please check and try again.'], 422);
+            }
+            session()->flash('failedMsg', 'Entered OTP does not match. Please check and try again.');
+            return redirect()->back()->withInput();
+        }
+
+        // OTP verified successfully: invalidate immediately to prevent reuse
+        session()->forget(['registration_otp', 'registration_otp_email', 'registration_otp_time', 'distributor_otp', 'distributor_otp_sponsor', 'distributor_otp_time']);
+
+        // 2. Validate sponsor, email, and mobile uniqueness
         $sponsorExists = MemberDetail::where('memberid', $request->post('sponsor'))->exists();
         if (!$sponsorExists) {
+            if ($request->ajax() || $request->expectsJson()) {
+                return response()->json(['success' => false, 'message' => 'Sponsor ID does not exist.'], 422);
+            }
             session()->flash('failedMsg', 'Sponsor ID does not exist.');
             return redirect()->back()->withInput();
         }
 
         $emailExists = MemberDetail::where('email', $request->post('email'))->exists();
         if ($emailExists) {
+            if ($request->ajax() || $request->expectsJson()) {
+                return response()->json(['success' => false, 'message' => 'This email has already been used. Please use another email.'], 422);
+            }
             session()->flash('failedMsg', 'This email has already been used. Please use another email.');
             return redirect()->back()->withInput();
         }
 
         $mobileExists = MemberDetail::where('mobile', $request->post('mobile'))->exists();
         if ($mobileExists) {
+            if ($request->ajax() || $request->expectsJson()) {
+                return response()->json(['success' => false, 'message' => 'This mobile number has already been used. Please use another mobile number.'], 422);
+            }
             session()->flash('failedMsg', 'This mobile number has already been used. Please use another mobile number.');
             return redirect()->back()->withInput();
         }
+
         $sponsorid = $request->post('sponsor');
         $position = $request->post('position');
         $email = $request->post('email');
         $country = $request->post('country');
         $mobile = $request->post('mobile');
         $password = $request->post('password');
-        $position = $request->post('position');
 
-        $emailCount = MemberDetail::where('email', $email)->count();
-        if ($emailCount >= 1) {
-            session()->flash('failedMsg', 'This email has already been used 1 times. Please use another email.');
-            return redirect()->back();
-        }
-
-        $mobileCount = MemberDetail::where('mobile', $mobile)->count();
-        if ($mobileCount >= 1) {
-            session()->flash('failedMsg', 'This mobile number has already been used 1 times. Please use another mobile number.');
-            return redirect()->back();
-        }
-
-        $var  = new MemberDetail();
+        $var = new MemberDetail();
         $var->memberid = userId();
         $var->sponsorid = $sponsorid;
         $var->name = $request->post('name');
         $var->email = $email;
-        $var->mobile = $request->post('mobile');
-        $password =  $request->post('password');
+        $var->mobile = $mobile;
         $var->password = Hash::make($password);
-        $var->country = $request->post('country');
+        $var->country = $country;
         $var->position = $position;
+
         $var->save();
+
+        // Connect to existing member panel profile section KYC backend function (memKyc)
+        if ($request->filled('bank') || $request->filled('adhar_no') || $request->hasFile('pan_image')) {
+            $request->request->set('id', $var->id);
+            $request->merge(['id' => $var->id]);
+            $this->memKyc($request);
+        }
 
         addPlacementId($var->memberid, $sponsorid, $position);
         updateUpline($sponsorid, $var->memberid);
@@ -145,11 +321,11 @@ class MemberDetailController extends Controller
         $userid = $data->memberid;
         $email = $data->email;
         $name = $data->name;
-        $mobile = $data->mobile;
         $mobile = $data->country_code . ' ' . $data->mobile;
         $placementid = $data->placementid;
         binary_count_update($userid, $placementid, $position);
-         if ($email != '') {
+
+        if ($email != '') {
             $mailData = [
                 'name' => $name,
                 'email' => $email,
@@ -158,12 +334,16 @@ class MemberDetailController extends Controller
                 'password' => $password,
             ];
             $user['to'] = $email;
-            Mail::send('member.mails.mail', $mailData, function ($message) use ($user) {
-
-                $message->to($user['to']);
-                $message->subject('AMBER VEDA Member Login Credentials');
-            });
+            try {
+                Mail::send('member.mails.mail', $mailData, function ($message) use ($user) {
+                    $message->to($user['to']);
+                    $message->subject('AMBER VEDA Member Login Credentials');
+                });
+            } catch (\Exception $e) {
+                // Email failure should not crash registration completion
+            }
         }
+
         $request->session()->put('name', $request->post('name'));
         $request->session()->put('memberid', $userid);
         $request->session()->put('email', $email);
@@ -171,6 +351,14 @@ class MemberDetailController extends Controller
         $request->session()->put('country', $country);
         $request->session()->put('password', $request->post('password'));
         session()->flash('successMsg', 'Account has been created Successfully!.');
+
+        if ($request->ajax() || $request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Registration completed successfully!',
+                'redirect' => url('member/account-created')
+            ]);
+        }
         return redirect('member/account-created');
     }
 
@@ -270,7 +458,7 @@ class MemberDetailController extends Controller
                 // } elseif ($data['status'] == 'Active') {
                 return response()->json([
                     'code' => 1,
-                    'data' => '<span class="text-success">Sponsor Name :' . $data['name'] . '</span>'
+                    'data' => '<span class="text-success">Introducer Name :' . $data['name'] . '</span>'
                 ]);
                 // }
             } else {

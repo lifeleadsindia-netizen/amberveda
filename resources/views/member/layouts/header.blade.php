@@ -839,7 +839,7 @@
                         <a data-bs-toggle="collapse" href="#sidebarPages8" aria-expanded="false"
                             aria-controls="sidebarPages8" class="side-nav-link">
                             <i class="uil-money-withdrawal"></i>
-                            <span> Support </span>
+                            <span> Grievance System </span>
                             <span class="menu-arrow"></span>
                         </a>
                         <div class="collapse" id="sidebarPages8">
@@ -848,7 +848,7 @@
                                     <a href="{{ url('/member/support/create-ticket') }}">Create New Ticket</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/member/support/support-tickets') }}">Support Ticket</a>
+                                    <a href="{{ url('/member/support/support-tickets') }}">Grievance Ticket</a>
                                 </li>
                             </ul>
                         </div>
