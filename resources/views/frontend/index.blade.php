@@ -4504,7 +4504,7 @@
                         <div class="test-author">
                             <div class="t-avatar">P</div>
                             <div>
-                                <div class="t-name">Priya Sharma</div>
+                                <div class="t-name">Priya Verma</div>
                                 <div class="t-role">Wellness Ambassador, Delhi</div>
                             </div>
                         </div>
@@ -4623,7 +4623,7 @@
                                     <div class="col-md-6">
                                         <div class="f-group">
                                             <label class="f-label">Your Name</label>
-                                            <input type="text" name="name" class="f-control" placeholder="Arjun Sharma" value="{{ old('name') }}" style="@error('name') border-color: #dc3545; @enderror">
+                                            <input type="text" name="name" class="f-control" placeholder="Enter Your Name" value="{{ old('name') }}" style="@error('name') border-color: #dc3545; @enderror">
                                             @error('name')
                                                 <span class="text-danger small d-block mt-1">{{ $message }}</span>
                                             @enderror

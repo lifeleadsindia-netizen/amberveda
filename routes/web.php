@@ -287,6 +287,8 @@ Route::get('/member/register/{id}/{side}', [MemberDetailController::class, 'sign
 Route::get('/member/account-created', [MemberDetailController::class, 'accountCreated']);
 Route::post('/userLogin', [MemberDetailController::class, 'authenticate'])->name('userLogin');
 Route::post('/userRegister', [MemberDetailController::class, 'register'])->name('userRegister');
+Route::post('/sendDistributorOtp', [MemberDetailController::class, 'sendDistributorOtp'])->name('sendDistributorOtp');
+Route::post('/sendRegistrationOtp', [MemberDetailController::class, 'sendRegistrationOtp'])->name('sendRegistrationOtp');
 Route::post('/getSponname', [MemberDetailController::class, 'getSponname']);
 Route::post('/getMember', [MemberDetailController::class, 'getMember']);
 Route::post('/getUserid', [MemberDetailController::class, 'getUserid']);

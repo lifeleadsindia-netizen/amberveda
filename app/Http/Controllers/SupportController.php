@@ -47,7 +47,7 @@ class SupportController extends Controller
         $text->text = $issue;
         $text->save();
 
-        session()->flash('createMsg', 'Support Ticket has been created successfully. We will get back to you as soon as possible');
+        session()->flash('createMsg', 'Grievance Ticket has been created successfully. We will get back to you as soon as possible');
         return redirect()->back();
     }
 

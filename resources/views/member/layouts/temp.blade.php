@@ -321,17 +321,17 @@
                         <li class="nav-item">
                             <a class="nav-link menu-link collapsed" href="#support" data-bs-toggle="collapse"
                                 role="button" aria-expanded="false" aria-controls="sidebarFund">
-                                <i class="ti-heart"></i><span data-key="t-layouts">Support Section</span>
+                                <i class="ti-heart"></i><span data-key="t-layouts">Grievance System</span>
                             </a>
                             <div class="collapse menu-dropdown" id="support">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                         <a href="{{ url('/member/support/create-ticket') }}" class="nav-link"
-                                            data-key="t-Report">Create New Ticket</a>
+                                             data-key="t-Report">Create New Ticket</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url('/member/support/support-tickets') }}" class="nav-link"
-                                            data-key="t-Transfer">Support Ticket</a>
+                                            data-key="t-Transfer">Grievance Ticket</a>
                                     </li>
                                 </ul>
                             </div>
