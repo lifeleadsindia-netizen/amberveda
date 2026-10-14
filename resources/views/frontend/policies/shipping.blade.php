@@ -1,6 +1,6 @@
 <div class="policy-doc-header text-center mb-5">
     <span class="sec-label">Logistical Specifications & Delivery Terms</span>
-    <h1 class="sec-title mb-3">SHIPPING POLICY</h1>
+    <h1 class="sec-title mb-3">SHIPPING &amp; <span>DELIVERY POLICY</span></h1>
     <div class="sec-div c"></div>
     <p class="text-muted small mt-2">Amberveda Wellness Private Limited • Official Logistics, Transit & Fulfillment Charter</p>
 </div>
@@ -10,21 +10,21 @@
     <p>This Shipping Policy outlines the statutory and contractual terms governing the dispatch, transit, delivery, and collection of products purchased on or through the digital e-commerce platform  www.ambervedawellness.com . This policy is published and executed in compliance with the Consumer Protection Act, 2019, the Consumer Protection (E-Commerce) Rules, 2020, and the Consumer Protection (Direct Selling) Rules, 2021 to ensure complete transparency in logistics, risk allocation, and consumer grievance redressal.</p>
     <h3 class="policy-section-title mt-4 mb-3">1. MODALITIES OF ORDER PLACEMENT AND FULFILLMENT</h3>
     <p>Orders for products offered by Amberveda Wellness Private Limited (hereinafter referred to as &quot;Amberveda&quot; or the &quot;Company&quot;) may be initiated via the following approved fulfillment channels:</p>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.03); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Digital Orders:</strong> Placed remotely through the official e-commerce or Amberveda Domain interface at  www.ambervedawellness.com .
     </div>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.03); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Physical Pickups:</strong> Initiated online or at a physical point-of-sale and explicitly designated for collection from the registered Corporate Office or any authorized third-party Franchisee Outlet of Amberveda.
     </div>
     <h3 class="policy-section-title mt-4 mb-3">2. IN-STORE PICKUP AND FRANCHISEE OUTLET PROTOCOLS</h3>
     <p>For users opting for the physical collection model, the following protocols apply:</p>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.03); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Fulfillment Centers:</strong> Pickup orders may be executed at any authorized Amberveda corporate center or franchisee counter.
     </div>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.03); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Approved Financial Instruments:</strong> Consideration for pickup fulfillment may be remitted via Cash, Demand Draft (DD), or validly authorized Credit and Debit Card networks.
     </div>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.03); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Standard Operating Hours:</strong> Physical collection is strictly bound by the following operational timeline (subject to public holidays):
     </div>
     <ul class="policy-list mb-3" style="list-style-type: disc; padding-left: 24px;">
@@ -32,16 +32,16 @@
         <li>Saturday: 10:00 AM to 01:30 PM</li>
         <li>Sunday: Closed</li>
     </ul>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.03); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Corporate Note:</strong> Users are advised to regularly monitor the web interface at  www.ambervedawellness.com  for localized administrative modifications or updates to the operating schedule.
     </div>
     <h3 class="policy-section-title mt-4 mb-3">3. HOME DELIVERY AND LOGISTICAL SPECIFICATIONS</h3>
     <h5 class="policy-subheading mt-3 mb-2">3.1. Order Initiation and Payment Gateways</h5>
     <p>To optimize consumer access, Home Delivery arrangements may be requested via the web portal or designated at physical corporate/franchisee hubs. Settlement of consideration must be processed through the following validated mechanisms:</p>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.03); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>On-Site Orders:</strong> Cash, or point-of-sale processing via Debit Card or Credit Card.
     </div>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.03); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Digital E-Commerce Orders:</strong> Secure online routing via Credit Card, Debit Card, Net Banking, or other authorized Unified Payments Interfaces (UPI).
     </div>
     <h5 class="policy-subheading mt-3 mb-2">3.2. Delivery Fee Transparency</h5>

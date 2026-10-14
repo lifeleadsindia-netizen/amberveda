@@ -1,6 +1,6 @@
 <div class="policy-doc-header text-center mb-5">
     <span class="sec-label">Customer Satisfaction & Return Standards</span>
-    <h1 class="sec-title mb-3">BUY BACK / EXCHANGE / REFUND POLICY</h1>
+    <h1 class="sec-title mb-3">BUY BACK / EXCHANGE / <span>REFUND POLICY</span></h1>
     <div class="sec-div c"></div>
     <p class="text-muted small mt-2">Amberveda Wellness Private Limited • Direct Selling Entity Return & Refund Framework</p>
 </div>
@@ -11,10 +11,10 @@
     <h3 class="policy-section-title mt-4 mb-3">Buyback / Refund Policy:</h3>
     <p>If the product is in marketable* condition and is returned within 30 days of receipt of goods accompanied by the original invoice,100% of the amount as refund will be given within 10 working days.</p>
     <p>If the product is in Unmarketable** condition and is returned within 30 days of receipt of goods refund value will be assessed by Grievance Redressal Officer and appropriate value will be given within 10 working days.</p>
-    <div class="policy-definition-box mb-3" style="background: rgba(201, 168, 76, 0.08); border-left: 3px solid var(--gold); padding: 12px 18px; border-radius: 6px; font-size: 13.5px; color: var(--text);">
+    <div class="policy-definition-box mb-3">
         *Marketable refers to products that are unopened, sealed and undamaged in any form whatsoever.
     </div>
-    <div class="policy-definition-box mb-3" style="background: rgba(201, 168, 76, 0.08); border-left: 3px solid var(--gold); padding: 12px 18px; border-radius: 6px; font-size: 13.5px; color: var(--text);">
+    <div class="policy-definition-box mb-3">
         **Unmarketable products are those which have been opened and its seal broken.
     </div>
     <h3 class="policy-section-title mt-4 mb-3">Exchange</h3>
@@ -31,15 +31,15 @@
     <h3 class="policy-section-title mt-4 mb-3">Shipping Cost</h3>
     <p>You will be responsible for paying your own shipping cost for returning your items. Shipping costs are non-refundable. In some exceptional cases, if the cost of the shipping is paid by the Direct Selling entity / franchisee/ pickup Centre the shipping cost of the return product will be deducted from the refund amount.</p>
     <h3 class="policy-section-title mt-4 mb-3">Cancellation of transaction / orders</h3>
-    <div class="mb-3 p-3 rounded" style="background: rgba(61, 107, 53, 0.03); border: 1px solid rgba(61, 107, 53, 0.12);">
+    <div class="policy-clause-box mb-3">
         <h5 style="font-size: 1.05rem; font-weight: 600; color: var(--dark); margin-bottom: 6px;">Cancellation by Direct selling entity:</h5>
         <p style="font-size: 14.5px; line-height: 1.8; color: var(--text); margin-bottom: 0;">There may be certain orders that Direct Selling entity is unable to accept and has the right to cancel such order. Direct Selling entity reserves the right, at its sole discretion, to refuse or cancel any order for any reason whatsoever. Some situations that may result in Consumer / Independent Direct Seller’s order being canceled include, without limitation, non-availability of the Product or quantities ordered. Direct Selling entity may also require additional verification or information before processing any order. If Consumer / Independent Direct Seller&#x27;s order is canceled, after the payment has been processed, the said amount will be reversed / remitted to the Consumer / Independent Direct Seller either to the bank account provided for such reversal, or to the payment instrument from which payment was made within 10 working days. Direct Selling entity shall have the sole discretion to determine the mode of reversal from the above options.</p>
     </div>
-    <div class="mb-3 p-3 rounded" style="background: rgba(61, 107, 53, 0.03); border: 1px solid rgba(61, 107, 53, 0.12);">
+    <div class="policy-clause-box mb-3">
         <h5 style="font-size: 1.05rem; font-weight: 600; color: var(--dark); margin-bottom: 6px;">Cancellation by the Consumer / Independent Direct Seller:</h5>
         <p style="font-size: 14.5px; line-height: 1.8; color: var(--text); margin-bottom: 0;">As part of usual business practice, if the Direct selling entity receives a cancellation notice and the order has not been processed, Direct Selling entity may cancel the order and refund the entire amount to Consumer / Independent Direct Seller within a reasonable period of time. Direct Selling entity will not be able to cancel orders that have already been processed and have left the Direct Selling entity / Franchisee or Pickup Center&#x27;s premises the Consumer shall be informed of its right to return the product to the Direct Selling entity by bearing its own shipping costs.</p>
     </div>
-    <div class="mb-3 p-3 rounded" style="background: rgba(61, 107, 53, 0.03); border: 1px solid rgba(61, 107, 53, 0.12);">
+    <div class="policy-clause-box mb-3">
         <h5 style="font-size: 1.05rem; font-weight: 600; color: var(--dark); margin-bottom: 6px;">Set-off of any benefits availed by Consumer / Independent Direct Seller:</h5>
         <p style="font-size: 14.5px; line-height: 1.8; color: var(--text); margin-bottom: 0;">In case Independent Direct Seller has availed any benefit under any marketing or promotions provided by the Direct Selling entity in relation to the Product for which the order has been canceled by the Consumer / Independent Direct Seller or by the Direct Selling entity, Independent Direct Seller agrees and authorizes the Direct Selling entity to recover such benefits from Independent Direct Seller’s incentive / compensation payable or set-off the same from any refunds to Independent Direct Seller.</p>
     </div>

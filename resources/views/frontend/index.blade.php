@@ -44,6 +44,7 @@
     <title>{{ $activePolicyData ? $activePolicyData['name'] . ' — Amberveda Wellness Pvt Ltd' : 'Amberveda Wellness Pvt Ltd' }}</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('front_assets/assets/css/lib/all.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('front_assets/assets/css/lib/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -71,6 +72,7 @@
             --gold-light: #E8C96A;
             --gold-dark: #9A7A35;
             --green: #3D6B35;
+            --green-dark: #1E3D18;
             --green-light: #5A8A50;
             --green-pale: #E8F0E6;
             --cream: #FAF7F0;
@@ -2575,24 +2577,125 @@
                 padding: 22px 18px;
             }
 
+            /* About Legal, Certificates & Compliance Tabs & Cards (Mobile Responsive) */
+            .about-legal-section > .d-flex {
+                flex-direction: column;
+                align-items: stretch !important;
+                gap: 16px !important;
+            }
+
+            .about-tabs-nav {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                background: var(--cream);
+                border: 1px solid rgba(201, 168, 76, 0.25);
+                border-radius: 16px;
+                padding: 6px;
+                gap: 6px;
+                box-sizing: border-box;
+            }
+
+            .about-tab-btn {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 11px 16px;
+                font-size: 13.5px;
+                font-weight: 600;
+                border-radius: 12px;
+                text-align: center;
+                min-height: 44px;
+                box-sizing: border-box;
+            }
+
             .legal-doc-item {
                 flex-direction: column;
-                align-items: flex-start;
-                padding: 16px 18px;
-                gap: 14px;
+                align-items: stretch;
+                padding: 15px 14px;
+                gap: 12px;
+                border-radius: 14px;
+                box-sizing: border-box;
             }
 
             .legal-doc-left {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
                 width: 100%;
+                min-width: 0;
+                box-sizing: border-box;
+            }
+
+            .legal-doc-num {
+                width: 38px;
+                height: 38px;
+                border-radius: 10px;
+                font-size: 1.15rem;
+                flex-shrink: 0;
+                margin-top: 1px;
+            }
+
+            .legal-doc-info {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .legal-doc-title {
+                font-size: 1.12rem;
+                line-height: 1.35;
+                margin: 0 0 4px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            .legal-doc-sub {
+                font-size: 12.5px;
+                line-height: 1.5;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .legal-doc-action {
                 width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                padding-top: 10px;
+                border-top: 1px dashed rgba(201, 168, 76, 0.22);
+                box-sizing: border-box;
             }
 
-            .btn-doc-view, .badge-doc-unavailable {
+            .legal-doc-action .btn-doc-view,
+            .legal-doc-action .badge-doc-unavailable,
+            .btn-doc-view,
+            .badge-doc-unavailable {
+                flex: 1 1 calc(50% - 4px);
+                min-width: 125px;
                 width: 100%;
                 justify-content: center;
+                text-align: center;
+                padding: 9px 12px;
+                font-size: 12.5px;
+                border-radius: 20px;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (min-width: 576px) and (max-width: 767px) {
+            .about-tabs-nav {
+                flex-direction: row;
+                border-radius: 25px;
+                padding: 5px;
+            }
+
+            .about-tab-btn {
+                flex: 1 1 0;
+                border-radius: 20px;
+                padding: 10px 12px;
+                font-size: 12.5px;
+                white-space: nowrap;
             }
         }
 
@@ -2600,9 +2703,12 @@
            DEDICATED POLICY PAGES STYLES
            =================================================== */
         .policy-page-section {
-            padding: 50px 0 90px;
-            background: #fbfbf7;
+            padding: 55px 0 95px;
+            background: var(--cream);
+            background-image: radial-gradient(rgba(201, 168, 76, 0.12) 1.2px, transparent 1.2px);
+            background-size: 28px 28px;
             min-height: 85vh;
+            position: relative;
         }
 
         .policy-container {
@@ -2617,11 +2723,11 @@
             flex-wrap: wrap;
             gap: 16px;
             margin-bottom: 32px;
-            padding: 14px 22px;
-            background: #fff;
-            border: 1px solid rgba(201, 168, 76, 0.22);
-            border-radius: 12px;
-            box-shadow: 0 4px 18px rgba(15, 30, 12, 0.03);
+            padding: 14px 24px;
+            background: #ffffff;
+            border: 1px solid rgba(201, 168, 76, 0.32);
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(61, 107, 53, 0.05);
         }
 
         .policy-breadcrumb-links {
@@ -2637,64 +2743,124 @@
             color: var(--green);
             text-decoration: none;
             font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             transition: color 0.2s ease;
+        }
+
+        .policy-breadcrumb-links a i {
+            color: var(--gold);
+            font-size: 13px;
         }
 
         .policy-breadcrumb-links a:hover {
             color: var(--gold-dark);
         }
 
+        .policy-breadcrumb-links .crumb-sep {
+            color: rgba(201, 168, 76, 0.5);
+            font-size: 12px;
+        }
+
+        .policy-breadcrumb-links .crumb-active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
         .btn-back-website {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-            color: #fff !important;
-            padding: 8px 18px;
+            justify-content: center;
+            gap: 9px;
+            background-color: var(--green);
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark, #1e3d18) 100%);
+            color: #ffffff !important;
+            padding: 10px 22px;
             border-radius: 50px;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 600;
-            text-decoration: none;
+            text-decoration: none !important;
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            box-shadow: 0 4px 14px rgba(30, 61, 24, 0.22);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(30, 61, 24, 0.18);
+            letter-spacing: 0.3px;
+            cursor: pointer;
         }
 
         .btn-back-website:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(30, 61, 24, 0.3);
-            color: #fff;
+            background: linear-gradient(135deg, var(--green-light) 0%, var(--green) 100%);
+            color: #ffffff !important;
+            box-shadow: 0 6px 20px rgba(30, 61, 24, 0.32);
+            border-color: var(--gold-light);
+        }
+
+        .btn-back-website i {
+            color: var(--gold-light) !important;
+            font-size: 13px;
+            transition: transform 0.25s ease;
+        }
+
+        .btn-back-website:hover i {
+            transform: translateX(-3px);
         }
 
         .policy-content-card {
-            background: #fff;
-            border: 1px solid rgba(201, 168, 76, 0.22);
-            border-radius: 20px;
-            padding: clamp(24px, 5vw, 48px);
-            box-shadow: 0 10px 36px rgba(15, 30, 12, 0.04);
+            background: #ffffff;
+            border: 1px solid rgba(201, 168, 76, 0.28);
+            border-top: 4px solid var(--gold);
+            border-radius: 22px;
+            padding: clamp(28px, 5vw, 52px);
+            box-shadow: 0 12px 36px rgba(61, 107, 53, 0.06);
+            position: relative;
         }
 
         .policy-doc-header .sec-title {
-            font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
             margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.25;
+        }
+
+        .policy-doc-header .sec-title span {
+            color: var(--green);
+            font-style: italic;
         }
 
         .policy-content-card h3.policy-section-title {
             color: var(--green);
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.3rem, 2vw, 1.6rem);
+            font-size: clamp(1.35rem, 2.2vw, 1.7rem);
             font-weight: 700;
-            margin-top: 32px;
-            margin-bottom: 14px;
-            border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+            margin-top: 36px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.28);
             padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .policy-content-card h3.policy-section-title::before {
+            content: '';
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
         }
 
         .policy-content-card h5.policy-subheading {
             color: var(--dark);
-            font-size: 1.1rem;
+            font-size: 1.12rem;
             font-weight: 600;
-            margin-top: 18px;
-            margin-bottom: 8px;
+            margin-top: 22px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid var(--gold);
         }
 
         .policy-content-card p {
@@ -2704,6 +2870,13 @@
             margin-bottom: 14px;
         }
 
+        .policy-content-card ul.policy-list,
+        .policy-content-card ol.policy-list,
+        .policy-content-card ul {
+            padding-left: 24px;
+            margin-bottom: 18px;
+        }
+
         .policy-content-card li {
             font-size: 14.5px;
             line-height: 1.8;
@@ -2711,13 +2884,301 @@
             margin-bottom: 8px;
         }
 
+        .policy-clause-box {
+            background: rgba(61, 107, 53, 0.04);
+            border: 1px solid rgba(61, 107, 53, 0.14);
+            border-left: 4px solid var(--green);
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--dark);
+        }
+
+        .policy-definition-box {
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-left: 4px solid var(--gold);
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin-bottom: 12px;
+            font-size: 13.5px;
+            color: var(--text);
+        }
+
+        .policy-lead-box {
+            background: rgba(61, 107, 53, 0.05);
+            border: 1px solid rgba(61, 107, 53, 0.18);
+            border-left: 4px solid var(--green);
+            padding: 28px 32px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(61, 107, 53, 0.04);
+        }
+
         @media (max-width: 767px) {
             .policy-breadcrumb {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: stretch;
+            }
+            .policy-breadcrumb .btn-back-website {
+                width: 100%;
+                justify-content: center;
             }
             .policy-content-card {
                 padding: 22px 18px;
+            }
+        }
+
+        /* ===================================================
+           HOMEPAGE DISCLAIMER CLAUSE POPUP MODAL
+           =================================================== */
+        html.disclaimer-locked,
+        body.disclaimer-locked {
+            overflow: hidden !important;
+            height: 100% !important;
+        }
+
+        .disclaimer-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(14, 24, 13, 0.82);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            box-sizing: border-box;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .disclaimer-modal-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .disclaimer-modal-dialog {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            border-top: 5px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 30px rgba(201, 168, 76, 0.12);
+            width: 100%;
+            max-width: 840px;
+            max-height: min(90vh, 760px);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            animation: disclaimerZoomIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            overflow: hidden;
+        }
+
+        @keyframes disclaimerZoomIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.92) translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .disclaimer-modal-header {
+            padding: 24px 28px 16px;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.22);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .disclaimer-header-content {
+            padding-right: 115px;
+        }
+
+        .disclaimer-modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(61, 107, 53, 0.08);
+            border: 1px solid rgba(61, 107, 53, 0.22);
+            color: var(--green);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .disclaimer-modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.2;
+            margin: 0 0 4px 0;
+        }
+
+        .disclaimer-modal-title span {
+            color: var(--green);
+            font-style: italic;
+        }
+
+        .disclaimer-modal-sub {
+            font-size: 12.5px;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .disclaimer-modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark, #1e3d18) 100%);
+            border: 1px solid rgba(201, 168, 76, 0.45);
+            color: #ffffff !important;
+            font-family: 'Jost', sans-serif;
+            font-size: 13.5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 10px rgba(61, 107, 53, 0.22);
+            flex-shrink: 0;
+            line-height: 1;
+            text-decoration: none;
+        }
+
+        .disclaimer-modal-close-btn i {
+            font-size: 13px;
+            line-height: 1;
+        }
+
+        .disclaimer-modal-close-btn:hover {
+            background: linear-gradient(135deg, var(--green-light) 0%, var(--green) 100%);
+            color: #ffffff !important;
+            border-color: var(--gold-light);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 14px rgba(61, 107, 53, 0.32);
+        }
+
+        .disclaimer-modal-close-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(61, 107, 53, 0.2);
+        }
+
+        .disclaimer-modal-body {
+            padding: 24px 28px 28px;
+            overflow-y: auto;
+            flex: 1;
+            background: #ffffff;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .disclaimer-modal-body::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .disclaimer-modal-body::-webkit-scrollbar-track {
+            background: var(--cream);
+            border-radius: 4px;
+        }
+
+        .disclaimer-modal-body::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+
+        .disclaimer-modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-dark);
+        }
+
+        .disclaimer-modal-body p {
+            font-size: 14.5px;
+            line-height: 1.85;
+            color: var(--text);
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+
+        .disclaimer-note-card {
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-left: 4px solid var(--gold);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-top: 22px;
+            margin-bottom: 4px;
+        }
+
+        .disclaimer-note-card strong {
+            color: var(--green);
+            font-size: 14px;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .disclaimer-note-card p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--dark);
+            font-weight: 600;
+            margin: 0;
+            text-align: left;
+        }
+
+        @media (max-width: 767px) {
+            .disclaimer-modal-overlay {
+                padding: 12px;
+            }
+            .disclaimer-modal-dialog {
+                max-height: 94vh;
+                border-radius: 16px;
+            }
+            .disclaimer-modal-header {
+                padding: 18px 18px 14px;
+            }
+            .disclaimer-header-content {
+                padding-right: 95px;
+            }
+            .disclaimer-modal-body {
+                padding: 18px 16px 22px;
+            }
+            .disclaimer-modal-body p {
+                font-size: 13.5px;
+                line-height: 1.75;
+                margin-bottom: 14px;
+            }
+            .disclaimer-modal-close-btn {
+                top: 15px;
+                right: 15px;
+                padding: 6px 14px;
+                font-size: 12px;
+                gap: 5px;
+                border-radius: 40px;
+            }
+            .disclaimer-modal-close-btn i {
+                font-size: 11px;
             }
         }
     </style>
@@ -2785,11 +3246,11 @@
                 <!-- Breadcrumbs and Return Button -->
                 <div class="policy-breadcrumb">
                     <div class="policy-breadcrumb-links">
-                        <a href="{{ url('/') }}"><i class="fas fa-home me-1"></i> Home</a>
-                        <span class="mx-2 text-muted">/</span>
-                        <span class="text-muted">Policies</span>
-                        <span class="mx-2 text-muted">/</span>
-                        <strong style="color: var(--green); font-weight: 600;">{{ $activePolicyData['name'] }}</strong>
+                        <a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a>
+                        <span class="crumb-sep">/</span>
+                        <span>Policies</span>
+                        <span class="crumb-sep">/</span>
+                        <span class="crumb-active">{{ $activePolicyData['name'] }}</span>
                     </div>
                     <div>
                         <a href="{{ url('/') }}" class="btn-back-website">
@@ -2802,10 +3263,13 @@
                 @include($activePolicyData['view'])
 
                 <!-- Bottom Return Navigation -->
-                <div class="policy-footer-nav text-center mt-5 pt-4 border-top" style="border-color: rgba(201, 168, 76, 0.25) !important;">
-                    <p class="text-muted small mb-3">Questions regarding this policy? Contact our compliance desk at <a href="mailto:info@ambervedawellness.com" style="color: var(--green); font-weight: 600;">info@ambervedawellness.com</a></p>
-                    <a href="{{ url('/') }}" class="btn-back-website px-4 py-2" style="font-size: 14px;">
-                        <i class="fas fa-arrow-left me-2"></i> Return to Main Website
+                <div class="policy-footer-nav text-center mt-5 pt-4" style="border-top: 1px solid rgba(201, 168, 76, 0.25);">
+                    <p class="text-muted small mb-3">
+                        <i class="fas fa-shield-alt me-1" style="color: var(--gold);"></i> Questions regarding this policy? Contact our compliance desk at 
+                        <a href="mailto:info@ambervedawellness.com" style="color: var(--green); font-weight: 600;">info@ambervedawellness.com</a>
+                    </p>
+                    <a href="{{ url('/') }}" class="btn-back-website">
+                        <i class="fas fa-arrow-left"></i> Return to Main Website
                     </a>
                 </div>
             </div>
@@ -4857,6 +5321,10 @@
             });
         }
     </script>
+
+    @if(!$activePolicyData)
+        @include('frontend.partials.disclaimer-modal')
+    @endif
 </body>
 
 </html>
