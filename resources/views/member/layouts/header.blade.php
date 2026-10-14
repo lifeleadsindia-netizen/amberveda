@@ -8,12 +8,12 @@
     <title>@yield('title') :: {{ config('detailsApp.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-   <!-- App favicon -->
-<link rel="icon" type="image/png" href="{{ asset('logo/favicon/favicon-96x96.png') }}" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="{{ asset('logo/favicon/favicon.svg') }}" />
-<link rel="shortcut icon" href="{{ asset('logo/favicon/favicon.ico') }}" />
-<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('logo/favicon/apple-touch-icon.png') }}" />
-<link rel="manifest" href="{{ asset('logo/favicon/site.webmanifest') }}" />
+    <!-- App favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('logo/favicon/favicon-96x96.png') }}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{{ asset('logo/favicon/favicon.svg') }}" />
+    <link rel="shortcut icon" href="{{ asset('logo/favicon/favicon.ico') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('logo/favicon/apple-touch-icon.png') }}" />
+    <link rel="manifest" href="{{ asset('logo/favicon/site.webmanifest') }}" />
 
     <!-- Google Fonts - Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,7 @@
 
     <!-- Vector Map css -->
     <link href="{{ asset('mem_assets/vendor/jsvectormap/jsvectormap.min.css') }}" rel="stylesheet" type="text/css">
-    
+
     <link rel="stylesheet" href="{{ asset('mem_assets/css/style.css') }}">
 
     <!-- Premium Sidebar & Topbar Styles -->
@@ -608,7 +608,7 @@
             background: #142947 !important;
         }
 
-        .simplebar-offset{
+        .simplebar-offset {
             margin-bottom: 200px !important;
         }
     </style>
@@ -730,7 +730,7 @@
                         <div class="collapse" id="sidebarPages100">
                             <ul class="side-nav-second-level">
 
-                               <li>
+                                <li>
                                     <a href="{{ url('member/income/binary-matching-income') }}">Binary Matching
                                         Income</a>
                                 </li>
@@ -746,13 +746,16 @@
                                 <li>
                                     <a href="{{ url('member/income/club-income') }}">Club Income</a>
                                 </li>
-                               
+                                <li>
+                                    <a href="{{ url('member/income/mentorship-income') }}">Mentorship Income</a>
+                                </li>
+
 
                             </ul>
                         </div>
                     </li>
-                    
-                     <li class="side-nav-item">
+
+                    <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarPages101" aria-expanded="false"
                             aria-controls="sidebarPages101" class="side-nav-link">
                             <i class="uil-suitcase"></i>
@@ -893,16 +896,16 @@
                                 style="background: transparent;border:none !important">
                                 <span class="account-user-avatar">
                                     @if ($data['profile_image'] != '')
-                                        <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}"
-                                            class="rounded-circle header-profile-user" alt="profile"
-                                            width="32" />
+                                    <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}"
+                                        class="rounded-circle header-profile-user" alt="profile"
+                                        width="32" />
                                     @else
-                                        <img src="{{ asset('uploads/avatar.jpg') }}"
-                                            class="rounded-circle header-profile-user" alt="profile"
-                                            width="32" />
+                                    <img src="{{ asset('uploads/avatar.jpg') }}"
+                                        class="rounded-circle header-profile-user" alt="profile"
+                                        width="32" />
                                     @endif
                                     {{-- <img src="{{ asset('uploads/avatar.jpg') }}" alt="user-image" width="32"
-                                        class="rounded-circle"> --}}
+                                    class="rounded-circle"> --}}
                                 </span>
                                 <span class="d-lg-flex flex-column gap-1 d-none">
                                     <h5 class="my-0">{{ $data['name'] }}</h5>
@@ -913,39 +916,39 @@
                                 <!-- item-->
                                 {{-- <div class=" dropdown-header noti-title">
                                     <h6 class="text-overflow m-0">Welcome {{ $data['memberid'] }}! </h6>
-                                </div> --}}
+                            </div> --}}
 
-                                <!-- item-->
-                                <a href="{{ url('/member/profile/profile-details') }}" class="dropdown-item">
-                                    <i class="mdi mdi-account-circle me-1"></i>
-                                    <span>Profile</span>
-                                </a>
+                            <!-- item-->
+                            <a href="{{ url('/member/profile/profile-details') }}" class="dropdown-item">
+                                <i class="mdi mdi-account-circle me-1"></i>
+                                <span>Profile</span>
+                            </a>
 
-                                <!-- item-->
-                                <!--<a href="{{ url('/member/buy-product') }}" class="dropdown-item">-->
-                                <!--    <i class="mdi mdi-account-edit me-1"></i>-->
-                                <!--    <span>Order</span>-->
-                                <!--</a>-->
+                            <!-- item-->
+                            <!--<a href="{{ url('/member/buy-product') }}" class="dropdown-item">-->
+                            <!--    <i class="mdi mdi-account-edit me-1"></i>-->
+                            <!--    <span>Order</span>-->
+                            <!--</a>-->
 
-                                <!-- item-->
-                                <a href="{{ url('member/logout') }}" class="dropdown-item">
-                                    <i class="mdi mdi-logout me-1"></i>
-                                    <span>Logout</span>
-                                </a>
-                            </div>
-                        </li>
-
-
-
-                    </ul>
-                    <button class="button-menu-mobile open-left me-2"
-                        style="margin-top:15px !important;margin-left:2px">
-                        <i class="mdi mdi-menu"></i>
-                    </button>
-
-                    <div class="d-none d-lg-block pt-2">
-                        <h3>{{ config('detailsApp.name') }} / <span class="text-primary">@yield('title')</span></h3>
-                    </div>
-
+                            <!-- item-->
+                            <a href="{{ url('member/logout') }}" class="dropdown-item">
+                                <i class="mdi mdi-logout me-1"></i>
+                                <span>Logout</span>
+                            </a>
                 </div>
-                <!-- end Topbar -->
+                </li>
+
+
+
+                </ul>
+                <button class="button-menu-mobile open-left me-2"
+                    style="margin-top:15px !important;margin-left:2px">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+
+                <div class="d-none d-lg-block pt-2">
+                    <h3>{{ config('detailsApp.name') }} / <span class="text-primary">@yield('title')</span></h3>
+                </div>
+
+            </div>
+            <!-- end Topbar -->

@@ -9,6 +9,8 @@ use App\Models\ClubIncome;
 use App\Models\DeliveryIncome;
 use App\Models\FranchiseDetail;
 use App\Models\MemberDetail;
+use App\Models\MentorshipIncome;
+use App\Models\UplineMember;
 use App\Models\RewardIncome;
 use App\Models\WithdrawalRequest;
 use Illuminate\Support\Facades\Hash;
@@ -223,11 +225,11 @@ class TempController extends Controller
                 ['sales_bonus_status', $level],
                 ['reward_status', $level - 1],
             ])->get();
-            
+
             foreach ($members as $member) {
-               
+
                 if ($data['reward']) {
-                    
+
                     $var = new RewardIncome();
                     $var->memberid = $member->memberid;
                     $var->reward =  $data['reward'];
@@ -241,50 +243,50 @@ class TempController extends Controller
             }
         }
     }
-    
+
     public function weeklyPayouts()
     {
-        
+
         // if (date('D') == 'Mon') {
-            ini_set('max_execution_time', 120);
-            $members = MemberDetail::where([['status', 'Active'], ['kyc_status', 'Verified'], ['wallet', '>=', 500]])->get();
-            if (count($members) > 0) {
-                foreach ($members as $key) {
-                    $memberid = $key->memberid;
-                    $amount = $key->wallet;
-                    $date = date('Y-m-d H:i:s');
-                    $requestId = $memberid . time();
-    
-                    $var = new WithdrawalRequest();
-                    $var->request_date = $date;
-                    $var->request_id = $requestId;
-                    $var->memberid = $memberid;
-                    $var->name = $key['name'];
-                    $var->bank = $key['bank'];
-                    $var->ifsc = $key['ifsc'];
-                    $var->holder = $key['holder'];
-                    $var->account = $key['account_no'];
-                    $var->gross_amount = $amount;
-                    $service = $amount / 100 * 5;
-                    $var->service_charge = $service;
-                    $tds_charge = $amount / 100 * 2;
-                    $var->tds = $tds_charge;
-                    $total_charge = $service + $tds_charge;
-                    $netAmount = $amount - $total_charge;
-                    $var->net_amount = $netAmount;
-                    $var->save();
-                    
-                    $qry = MemberDetail::find($key->id);
-                    $wallet = $qry->wallet;
-                    $qry->wallet -= $amount;
-                    $qry->save();
-    
-                    walletTransfer($memberid, $amount, 'credit', $wallet, 'Withdrawal', ' ₹ ' . $amount . ' have been withdrawn by Member from wallet. Payment Id-' . $requestId);
-                }
+        ini_set('max_execution_time', 120);
+        $members = MemberDetail::where([['status', 'Active'], ['kyc_status', 'Verified'], ['wallet', '>=', 500]])->get();
+        if (count($members) > 0) {
+            foreach ($members as $key) {
+                $memberid = $key->memberid;
+                $amount = $key->wallet;
+                $date = date('Y-m-d H:i:s');
+                $requestId = $memberid . time();
+
+                $var = new WithdrawalRequest();
+                $var->request_date = $date;
+                $var->request_id = $requestId;
+                $var->memberid = $memberid;
+                $var->name = $key['name'];
+                $var->bank = $key['bank'];
+                $var->ifsc = $key['ifsc'];
+                $var->holder = $key['holder'];
+                $var->account = $key['account_no'];
+                $var->gross_amount = $amount;
+                $service = $amount / 100 * 5;
+                $var->service_charge = $service;
+                $tds_charge = $amount / 100 * 2;
+                $var->tds = $tds_charge;
+                $total_charge = $service + $tds_charge;
+                $netAmount = $amount - $total_charge;
+                $var->net_amount = $netAmount;
+                $var->save();
+
+                $qry = MemberDetail::find($key->id);
+                $wallet = $qry->wallet;
+                $qry->wallet -= $amount;
+                $qry->save();
+
+                walletTransfer($memberid, $amount, 'credit', $wallet, 'Withdrawal', ' ₹ ' . $amount . ' have been withdrawn by Member from wallet. Payment Id-' . $requestId);
             }
+        }
         // }
     }
-    
+
     public function travelFund()
     {
         // First Travel Reward
@@ -387,7 +389,7 @@ class TempController extends Controller
             $value->save();
         }
     }
-    
+
     public function updateClub()
     {
         $members = MemberDetail::where([['status', 'Active'], ['left_amount', '>=', 100000], ['right_amount', '>=', 100000]])->get();
@@ -407,7 +409,7 @@ class TempController extends Controller
             $value->save();
         }
     }
-    
+
     public function clubIncomeDis()
     {
         // first cto
@@ -419,7 +421,7 @@ class TempController extends Controller
             $amount = $total_amount / $membersCount;
             foreach ($members as $value) {
                 $memberid = $value->memberid;
-                                              
+
                 $insert = new ClubIncome();
                 $insert->memberid = $memberid;
                 $insert->monthly_cto = $cto;
@@ -447,7 +449,7 @@ class TempController extends Controller
             $amount = $total_amount / $membersCount;
             foreach ($members as $value) {
                 $memberid = $value->memberid;
-                
+
                 $insert = new ClubIncome();
                 $insert->memberid = $memberid;
                 $insert->monthly_cto = $cto;
@@ -467,7 +469,7 @@ class TempController extends Controller
         }
 
         // third cto
-         $cto = monthlyCTO();
+        $cto = monthlyCTO();
         $members = MemberDetail::where([['status', 'Active'], ['club_status', 3]])->get();
         $membersCount = count($members);
         if ($cto > 0 && $membersCount > 0) {
@@ -475,7 +477,7 @@ class TempController extends Controller
             $amount = $total_amount / $membersCount;
             foreach ($members as $value) {
                 $memberid = $value->memberid;
-                
+
                 $insert = new ClubIncome();
                 $insert->memberid = $memberid;
                 $insert->monthly_cto = $cto;
@@ -491,6 +493,67 @@ class TempController extends Controller
                 $value->save();
 
                 walletTransfer($memberid, $amount, 'debit', $wallet, 'Club Income', 'Club Income amount has been transfered into wallet.');
+            }
+        }
+    }
+    public function mentorshipIncomeDiss()
+    {
+        $members = MemberDetail::where('status', 'Active')
+            ->where('downline', '>=', 2)
+            ->get();
+
+        foreach ($members as $value) {
+            $memberid = $value->memberid;
+            $downline = (int) $value->downline;
+
+            if ($memberid != 'Root') {
+                $limit = 5;
+                for ($i = 1; $i < $limit; $i++) {
+                    $level = $i;
+                    $levelData = montorshipLevelRate($level);
+                    $requiredDirects = (int) ($levelData['direct'] ?? 2);
+                    $rate = (int) ($levelData['rate'] ?? 2);
+
+                    if ($downline < $requiredDirects) {
+                        break;
+                    }
+
+                    $downlineMemberIds = UplineMember::where('upline_' . $level, $memberid)->pluck('memberid')->toArray();
+                    if (count($downlineMemberIds) == 0) {
+                        break;
+                    }
+                    $sum = BinaryIncome::whereIn('memberid', $downlineMemberIds)->whereDate('created_at', date('Y-m-d'))->sum('amount');
+
+                    $amount = $sum * $rate / 100;
+
+                    if ($amount > 0) {
+
+                        $new = new MentorshipIncome();
+                        $new->memberid = $memberid;
+                        $new->level = $level;
+                        $new->total_members = count($downlineMemberIds);
+                        $new->rate = $rate;
+                        $new->downline = $downline;
+                        $new->total_matching = $sum;
+                        $new->amount = $amount;
+                        $new->type = 'Mentorship Income';
+                        $new->status = 'Paid';
+                        $new->save();
+
+                        $wallet = $value->wallet;
+                        $value->wallet += $amount;
+                        $value->save();
+
+                        walletTransfer(
+                            $memberid,
+                            $amount,
+                            'debit',
+                            $wallet,
+                            'Mentorship Income',
+                            'Level ' . $level . ' Mentorship Income Amount Added into wallet.'
+                        );
+                    }
+                }
             }
         }
     }

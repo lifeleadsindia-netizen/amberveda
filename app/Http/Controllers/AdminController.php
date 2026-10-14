@@ -27,6 +27,7 @@ use App\Models\FranchiseDetail;
 use App\Models\Level;
 use App\Models\LinkOrderRequest;
 use App\Models\RoyaltyIncome;
+use App\Models\MentorshipIncome;
 use App\Models\IndiaState;
 use App\Models\City;
 use App\Models\OrderDetail;
@@ -1763,6 +1764,12 @@ class AdminController extends Controller
     {
         $result['data'] = ClubIncome::all();
         return view('admin.income.club-income')->with($result);
+    }
+    
+    public function mentorshipIncome()
+    {
+        $result['data'] = MentorshipIncome::orderBy('id', 'desc')->get();
+        return view('admin.income.mentorship-income')->with($result);
     }
     
     public function travelInc($id)
