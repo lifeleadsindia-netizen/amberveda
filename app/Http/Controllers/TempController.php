@@ -25,82 +25,73 @@ class TempController extends Controller
 
     public function binaryIncomedis()
     {
-        $members = MemberDetail::where('status', 'Active')->get();
-
-        $levels = [
-            ['rank' => 'Basic',             'min' => 100,      'max' => 350,       'amount' => 1000,      'status' => 1],
-            ['rank' => 'Starter',           'min' => 350,      'max' => 850,       'amount' => 2500,      'status' => 2],
-            ['rank' => 'Bronze',            'min' => 850,      'max' => 1850,      'amount' => 5000,      'status' => 3],
-            ['rank' => 'Silver',            'min' => 1850,     'max' => 3850,      'amount' => 10000,     'status' => 4],
-            ['rank' => 'Gold',              'min' => 3850,     'max' => 7850,      'amount' => 20000,     'status' => 5],
-            ['rank' => 'Ruby',              'min' => 7850,     'max' => 15850,     'amount' => 40000,     'status' => 6],
-            ['rank' => 'Pearl',             'min' => 15850,    'max' => 31850,     'amount' => 80000,     'status' => 7],
-            ['rank' => 'Sapphire',          'min' => 31850,    'max' => 63850,     'amount' => 160000,    'status' => 8],
-            ['rank' => 'Emerald',           'min' => 63850,    'max' => 127850,    'amount' => 320000,    'status' => 9],
-            ['rank' => 'Diamond',           'min' => 127850,   'max' => 255850,    'amount' => 640000,    'status' => 10],
-            ['rank' => 'Crown Diamond',     'min' => 255850,   'max' => 511850,    'amount' => 1280000,   'status' => 11],
-            ['rank' => 'Royal Diamond',     'min' => 511850,   'max' => 1023850,   'amount' => 2560000,   'status' => 12],
-            ['rank' => 'Star Diamond',      'min' => 1023850,  'max' => 2047850,   'amount' => 5120000,   'status' => 13],
-            ['rank' => 'Blue Diamond',      'min' => 2047850,  'max' => 4095850,   'amount' => 10240000,  'status' => 14],
-            ['rank' => 'Black Diamond',     'min' => 4095850,  'max' => 8191850,   'amount' => 20480000,  'status' => 15],
-            ['rank' => 'Ambassador',        'min' => 8191850,  'max' => 16383850,  'amount' => 40960000,  'status' => 16],
-            ['rank' => 'Crown Ambassador',  'min' => 16383850, 'max' => 180223850,  'amount' => 81920000,  'status' => 17],
-            ['rank' => 'Royal Ambassador',  'min' => 180223850, 'max' => null,      'amount' => 163840000, 'status' => 18],
-        ];
-
+        $members = MemberDetail::where([['status', 'Active'], ['left_balance', '>=', 30], ['right_balance', '>=', 30]])->get();
         foreach ($members as $member) {
+            $left = $member['left_balance'];
+            $right = $member['right_balance'];
 
-            $memberid  = $member->memberid;
-            $left  = $member->left_amount;
-            $right = $member->right_amount;
-            $rank = $member->rank;
+            if ($left != 0 && $right != 0) {
 
-            if ($left == 0 || $right == 0) {
-                continue;
-            }
+                $left_balance = 0;
+                $right_balance = 0;
 
-            $amount = 0;
-            $binaryStatus = $member->binary_status;
-            $nextStatus = $binaryStatus + 1;
-
-            $level = null;
-            foreach ($levels as $lvl) {
-                if ($lvl['status'] == $nextStatus && $lvl['rank'] == $rank) {
-                    $level = $lvl;
-                    break;
+                if ($left > $right) {
+                    $matching = $right;
+                    $left_balance = $left - $right;
+                    $right_balance = 0;
+                } elseif ($right > $left) {
+                    $matching = $left;
+                    $right_balance = $right - $left;
+                    $left_balance = 0;
+                } elseif ($right == $left) {
+                    $matching = $left;
+                    $left_balance = 0;
+                    $right_balance = 0;
                 }
-            }
+                $memberid = $member['memberid'];
 
-            if ($level && $left >= $level['min'] && $right >= $level['min'] && $binaryStatus < $nextStatus) {
-                $amount = $level['amount'];
-                $binaryStatus = $nextStatus;
-            }
+                if ($matching > 0) {
+                    $rate = 10;
 
-            if ($amount > 0) {
-                $new = new BinaryIncome();
-                $new->memberid = $memberid;
-                $new->left_sp = $left;
-                $new->right_sp = $right;
-                $new->package = $member->package;
-                $new->rank = $level['rank'];
-                $new->amount = $amount;
-                $new->total_amount = $amount;
-                $new->status = 'Paid';
-                $new->save();
+                    $c_amount = $rate * $matching;
 
-                $wallet = $member->wallet;
-                $member->wallet += $amount;
-                $member->binary_status = $binaryStatus;
-                $member->save();
+                    if ($c_amount > 3000) {
+                        $amount = 3000;
+                        $flushout = $c_amount - 3000;
+                    } else {
+                        $amount = $c_amount;
+                        $flushout = 0;
+                    }
 
-                walletTransfer(
-                    $memberid,
-                    $amount,
-                    'debit',
-                    $wallet,
-                    'Binary Income',
-                    'Binary Income Amount Added into Commission wallet.'
-                );
+                    $frd_left = checkForwarded($memberid, 'Left');
+                    $frd_right =  checkForwarded($memberid, 'Right');
+
+                    $var = new BinaryIncome();
+                    $var->memberid = $memberid;
+                    $var->left_forwarded = $frd_left;
+                    $var->left_new = $left - $frd_left;
+                    $var->total_left = $left;
+                    $var->right_forwarded = $frd_right;
+                    $var->right_new = $right - $frd_right;
+                    $var->total_right = $right;
+                    $var->matching = $matching;
+                    $var->total_amount = $c_amount;
+                    $var->flushout = $flushout;
+                    $var->amount = $amount;
+                    $var->forward_left = $left_balance;
+                    $var->forward_right = $right_balance;
+                    $var->status = 'Paid';
+                    $var->save();
+
+                    $qry = MemberDetail::find($member['id']);
+                    $qry->left_balance = $left_balance;
+                    $qry->right_balance = $right_balance;
+                    $wallet = $qry->wallet;
+                    $qry->wallet += $amount;
+                    $qry->save();
+
+                    walletTransfer($memberid, $amount, 'debit', $wallet, 'Binary Income', 'Binary Income Amount Added into wallet.');
+                }
             }
         }
     }
@@ -496,6 +487,7 @@ class TempController extends Controller
             }
         }
     }
+
     public function mentorshipIncomeDiss()
     {
         $members = MemberDetail::where('status', 'Active')
@@ -523,8 +515,9 @@ class TempController extends Controller
                         break;
                     }
                     $sum = BinaryIncome::whereIn('memberid', $downlineMemberIds)->whereDate('created_at', date('Y-m-d'))->sum('amount');
+                    $share = $sum / count($downlineMemberIds);
 
-                    $amount = $sum * $rate / 100;
+                    $amount = $share * $rate / 100;
 
                     if ($amount > 0) {
 
@@ -535,6 +528,7 @@ class TempController extends Controller
                         $new->rate = $rate;
                         $new->downline = $downline;
                         $new->total_matching = $sum;
+                        $new->share = $share;
                         $new->amount = $amount;
                         $new->type = 'Mentorship Income';
                         $new->status = 'Paid';
