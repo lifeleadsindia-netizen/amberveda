@@ -1047,6 +1047,15 @@
                         <label class="form-label small fw-bold text-uppercase text-muted" for="distributor_otp_input">Enter 6-Digit Email Verification OTP</label>
                         <input type="text" class="form-control text-center" id="distributor_otp_input" maxlength="6" placeholder="______" autocomplete="one-time-code">
                         <div class="invalid-feedback text-center" id="otpInputFeedback">Please enter the 6-digit OTP received on your email.</div>
+
+                        <!-- Demo OTP Display (Testing Only) -->
+                        <div id="demoOtpContainer" class="d-none mt-2 p-2 rounded text-center" style="background: rgba(201, 170, 111, 0.15); border: 1.5px dashed #c9aa6f;">
+                            <div class="d-flex align-items-center justify-content-center gap-2 mb-1">
+                                <span class="badge bg-warning text-dark fw-bold">Demo OTP (Testing Only)</span>
+                                <span class="fs-5 fw-bold text-dark font-monospace" id="demoOtpValue" style="letter-spacing: 2px; cursor: pointer;" title="Click to auto-fill OTP"></span>
+                            </div>
+                            <div class="text-muted" style="font-size: 11px;">Enter this code in the box above to verify. (Email delivery paused in Demo Mode)</div>
+                        </div>
                     </div>
 
                     <div class="alert alert-danger py-2 small d-none" id="otpErrorAlert"></div>
@@ -1416,6 +1425,12 @@
                     success: function(res) {
                         if (res.success) {
                             $('#otpMaskedEmail').text(res.masked_email || res.email);
+                            if (res.demo_otp) {
+                                $('#demoOtpValue').text(res.demo_otp);
+                                $('#demoOtpContainer').removeClass('d-none');
+                            } else {
+                                $('#demoOtpContainer').addClass('d-none');
+                            }
                             if (callback) callback(true, res);
                         } else {
                             if (callback) callback(false, res.message || 'Failed to dispatch OTP to email');
@@ -1427,6 +1442,14 @@
                     }
                 });
             }
+
+            // Auto-fill OTP on clicking the Demo OTP badge (testing convenience)
+            $(document).on('click', '#demoOtpValue', function() {
+                const otpVal = $(this).text().trim();
+                if (otpVal) {
+                    $('#distributor_otp_input').val(otpVal).removeClass('is-invalid').focus();
+                }
+            });
 
             // STEP 3: KYC "I AGREE AND ACCEPT" HANDLER
             $('#btnKycAgreeAccept').on('click', function(e) {

@@ -110,28 +110,39 @@ class MemberDetailController extends Controller
         session()->put('distributor_otp_sponsor', $request->post('sponsor'));
         session()->put('distributor_otp_time', now());
 
-        // Dispatch OTP to registrant's email
-        $mailData = [
-            'name' => $name,
-            'email' => $email,
-            'otp' => $otp,
-        ];
+        // DEMO OTP MODE: Disable this condition to restore normal OTP delivery.
+        $isDemoOtpMode = env('DEMO_OTP_MODE', true) && (config('app.debug') || app()->environment('local', 'development'));
 
-        try {
-            Mail::send('member.mails.registration-otp', $mailData, function ($message) use ($email) {
-                $message->to($email);
-                $message->subject('AMBER VEDA - Registration Verification OTP');
-            });
-            \Log::info("[EmailService] Registration OTP dispatched to email", [
+        if (!$isDemoOtpMode) {
+            // Dispatch OTP to registrant's email
+            $mailData = [
+                'name' => $name,
+                'email' => $email,
+                'otp' => $otp,
+            ];
+
+            try {
+                Mail::send('member.mails.registration-otp', $mailData, function ($message) use ($email) {
+                    $message->to($email);
+                    $message->subject('AMBER VEDA - Registration Verification OTP');
+                });
+                \Log::info("[EmailService] Registration OTP dispatched to email", [
+                    'email' => $email,
+                    'otp' => $otp,
+                    'timestamp' => now()->toDateTimeString()
+                ]);
+            } catch (\Exception $e) {
+                \Log::warning("[EmailService] SMTP Dispatch notice", [
+                    'email' => $email,
+                    'otp' => $otp,
+                    'error' => $e->getMessage()
+                ]);
+            }
+        } else {
+            \Log::info("[DemoOtpMode] Registration Demo OTP generated (Email delivery bypassed)", [
                 'email' => $email,
                 'otp' => $otp,
                 'timestamp' => now()->toDateTimeString()
-            ]);
-        } catch (\Exception $e) {
-            \Log::warning("[EmailService] SMTP Dispatch notice", [
-                'email' => $email,
-                'otp' => $otp,
-                'error' => $e->getMessage()
             ]);
         }
 
@@ -142,12 +153,18 @@ class MemberDetailController extends Controller
         $maskedUser = strlen($userPart) > 2 ? substr($userPart, 0, 2) . '***' : $userPart . '***';
         $maskedEmail = $maskedUser . '@' . $domainPart;
 
-        return response()->json([
+        $response = [
             'success' => true,
-            'message' => 'Verification OTP has been sent to your registered email address.',
+            'message' => $isDemoOtpMode ? 'Demo OTP generated successfully for testing.' : 'Verification OTP has been sent to your registered email address.',
             'masked_email' => $maskedEmail,
             'email' => $email
-        ]);
+        ];
+
+        if ($isDemoOtpMode) {
+            $response['demo_otp'] = $otp;
+        }
+
+        return response()->json($response);
     }
 
     public function sendDistributorOtp(Request $request)
@@ -186,8 +203,21 @@ class MemberDetailController extends Controller
         session()->put('distributor_otp_sponsor', $sponsorId);
         session()->put('distributor_otp_time', now());
 
-        // Dispatch via SmsService to the registered distributor's mobile
-        $smsResult = SmsService::sendDistributorOtp($distributorMobile, $otp, $distributor->name);
+        // DEMO OTP MODE: Disable this condition to restore normal OTP delivery.
+        $isDemoOtpMode = env('DEMO_OTP_MODE', true) && (config('app.debug') || app()->environment('local', 'development'));
+
+        $smsStatus = 'bypassed_demo_mode';
+        if (!$isDemoOtpMode) {
+            // Dispatch via SmsService to the registered distributor's mobile
+            $smsResult = SmsService::sendDistributorOtp($distributorMobile, $otp, $distributor->name);
+            $smsStatus = $smsResult['status'] ?? 'sent';
+        } else {
+            \Log::info("[DemoOtpMode] Distributor Mobile Demo OTP generated (SMS bypassed)", [
+                'mobile' => $distributorMobile,
+                'otp' => $otp,
+                'timestamp' => now()->toDateTimeString()
+            ]);
+        }
 
         // Mask distributor mobile (e.g. ******5891)
         $len = strlen($distributorMobile);
@@ -195,13 +225,19 @@ class MemberDetailController extends Controller
             ? str_repeat('*', max(0, $len - 4)) . substr($distributorMobile, -4)
             : '****';
 
-        return response()->json([
+        $response = [
             'success' => true,
-            'message' => 'OTP sent to registered distributor mobile number.',
+            'message' => $isDemoOtpMode ? 'Demo OTP generated successfully for testing.' : 'OTP sent to registered distributor mobile number.',
             'masked_mobile' => $maskedMobile,
             'distributor_name' => $distributor->name,
-            'sms_status' => $smsResult['status'] ?? 'sent'
-        ]);
+            'sms_status' => $smsStatus
+        ];
+
+        if ($isDemoOtpMode) {
+            $response['demo_otp'] = $otp;
+        }
+
+        return response()->json($response);
     }
 
     public function register(Request $request)
