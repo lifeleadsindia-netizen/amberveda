@@ -18,12 +18,13 @@ use App\Models\SponsorMatching;
 use App\Models\StakingIncome;
 use App\Models\StakingDetail;
 use App\Models\TravelFundDetail;
+use App\Models\MentorshipIncome;
 use App\Models\ClubIncome;
 use Illuminate\Http\Request;
 
 class IncomeController extends Controller
 {
-     public function rankAssuredBonus()
+    public function rankAssuredBonus()
     {
         $result['data'] = MemberDetail::find(session('MEMBER_ID'));
         $memberid = $result['data']['memberid'];
@@ -52,7 +53,7 @@ class IncomeController extends Controller
         $result['clubData'] = ClubIncome::where('memberid', $memberid)->get();
         return view('member.income.club-income')->with($result);
     }
-   
+
 
     public function binaryMatchingIncome()
     {
@@ -60,6 +61,14 @@ class IncomeController extends Controller
         $memberid = $result['data']['memberid'];
         $result['bdata'] = BinaryIncome::where('memberid', $memberid)->get();
         return view('member.income.binary-matching-income')->with($result);
+    }
+
+    public function mentorshipIncome()
+    {
+        $result['data'] = MemberDetail::find(session('MEMBER_ID'));
+        $memberid = $result['data']['memberid'];
+        $result['mdata'] = MentorshipIncome::where('memberid', $memberid)->get();
+        return view('member.income.mentorship-income')->with($result);
     }
 
 
@@ -133,8 +142,8 @@ class IncomeController extends Controller
         $result['kdata'] = BonusLevelIncome::where('memberid', $memberid)->get();
         return view('member.income.keyin-income')->with($result);
     }
-    
-     public function rewardInc()
+
+    public function rewardInc()
     {
         $result['data'] = MemberDetail::find(session('MEMBER_ID'));
         $memberid = $result['data']['memberid'];

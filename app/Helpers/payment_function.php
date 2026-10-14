@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\BinaryIncome;
 use App\Models\BonusLevelIncome;
 use App\Models\DirectIncome;
 use App\Models\InvoiceTable;
@@ -163,25 +164,18 @@ function levelRate($level)
 {
     if ($level == 1) {
         $rate = 10;
-
     } elseif ($level == 2) {
         $rate = 5;
-
     } elseif ($level == 3) {
         $rate = 3;
-
     } elseif ($level >= 4 && $level <= 5) {
         $rate = 2;
-
     } elseif ($level >= 6 && $level <= 10) {
         $rate = 1;
-
     } elseif ($level >= 11 && $level <= 15) {
         $rate = 0.5;
-
-    }  elseif ($level >= 16 && $level <= 18) {
+    } elseif ($level >= 16 && $level <= 18) {
         $rate = 0.25;
-
     } else {
         $rate = 0;
     }
@@ -360,4 +354,29 @@ function checkForwarded($memberid, $side)
     } else {
         return 0;
     }
+}
+function montorshipLevelRate($level)
+{
+
+    if ($level == 1) {
+        $rate = 10;
+        $direct = 2;
+    } elseif ($level == 2) {
+        $rate = 5;
+        $direct = 3;
+    } elseif ($level == 3) {
+        $rate = 3;
+        $direct = 4;
+    } elseif ($level == 4) {
+        $rate = 2;
+        $direct = 5;
+    } else {
+        $rate = 0;
+        $direct = 0;
+    }
+
+    return [
+        'rate' => $rate,
+        'direct' => $direct,
+    ];
 }

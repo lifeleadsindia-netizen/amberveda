@@ -237,6 +237,10 @@
                         <a href="{{ url('admin/income/club-inc') }}"
                             class="menu-item {{ $segment1 == 'alerts' ? 'active' : '' }}">{{ __('Club Income') }}</a>
                     </div>
+                    <div class="submenu-content">
+                        <a href="{{ url('admin/income/mentorship-income') }}"
+                            class="menu-item {{ $segment1 == 'alerts' ? 'active' : '' }}">{{ __('Mentorship Income') }}</a>
+                    </div>
 
                 </div>
 

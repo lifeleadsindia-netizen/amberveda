@@ -63,16 +63,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
     //Free Pin Activation
     Route::get('/free-pin-account', [AdminController::class, 'freePinAccount']);
     Route::post('/PinUserAccount', [AdminController::class, 'PinUserAccount'])->name('PinUserAccount');
-    
-     // franchise 
+
+    // franchise 
     // Route::get('/create-franchise', [AdminController::class, 'createFranchise']);
     // Route::post('/create-franchise', [AdminController::class, 'storeFranchise'])->name('storeFranchise');
     // Route::get('/franchise-details', [AdminController::class, 'franchiseDetail']);
     // Route::get('franchise/inventory-details/{franchise_id}', [AdminController::class, 'franchiseInventory']);
     // Route::get('/franchise-login/{id}', [AdminController::class, 'franchiseLogin']);
-    
+
     // Cities Routes
-    
+
     // Route::get('/create-cities', [AdminController::class, 'createCities']);
     // Route::post('/create-cities', [AdminController::class, 'storeCity'])->name('storeCity');
 
@@ -84,8 +84,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
     Route::post('updateAfront', [AdminController::class, 'updateAfront'])->name('updateAfront');
     Route::post('updateAback', [AdminController::class, 'updateAback'])->name('updateAback');
     Route::post('updateCheque', [AdminController::class, 'updateCheque'])->name('updateCheque');
-    
-     // franchise kyc 
+
+    // franchise kyc 
     // Route::get('/franchise-new-kyc-requests', [AdminController::class, 'newKycRequests']);
     // Route::get('/franchise/KYC/view/{id}', [AdminController::class, 'franchiseKycView']);
     // Route::get('/franchise/kyc/verify/{id}', [AdminController::class, 'franchisekycVerify']);
@@ -108,7 +108,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
     Route::get('/release-payment/{id}', [AdminController::class, 'releasePay']);
     Route::post('wAccept', [AdminController::class, 'wAccept'])->name('wAccept');
     Route::post('wCancel', [AdminController::class, 'wCancel'])->name('wCancel');
-    
+
     Route::get('/gst-report', [AdminController::class, 'gstReport']);
     Route::get('/tds-report', [AdminController::class, 'tdsReport']);
 
@@ -118,13 +118,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
     Route::post('/depositDataInr', [AdminController::class, 'depositDataInr'])->name('depositDataInr');
     Route::post('/depositDataUSDT', [AdminController::class, 'depositDataUSDT'])->name('depositDataUSDT');
 
-     // Income Section
+    // Income Section
     Route::get('/income/travel-fund-inc', [AdminController::class, 'travelFundInc']);
     Route::get('/travel/accept-travel/{id}', [AdminController::class, 'travelInc']);
     // Route::get('/income/level-inc', [AdminController::class, 'levelIncome']);
     Route::get('/income/club-inc', [AdminController::class, 'clubIncome']);
     Route::get('/income/binary-matching-inc', [AdminController::class, 'binaryMatchingIncome']);
     Route::get('/income/sales-bonus-inc', [AdminController::class, 'salesBonusInc']);
+    Route::get('/income/mentorship-income', [AdminController::class, 'mentorshipIncome']);
     Route::get('/assured-bonus/achieved-members', [AdminController::class, 'achievedMem']);
     Route::get('/assured-bonus/pay-amount', [AdminController::class, 'payAssuredBonus']);
     Route::post('/paidAssuredBonus', [AdminController::class, 'paidAssuredBonus'])->name('paidAssuredBonus');
@@ -154,7 +155,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
     // Route::get('/delivered-orders', [ProductController::class, 'completedOrders']);
     Route::get('/order/address/{id}', [ProductController::class, 'orderAddress']);
     Route::get('/complete-orders/{id}', [ProductController::class, 'completeOrders']);
-    
+
     // Route::get('/pending-orders', [ProductController::class, 'pendingOrders']);
     Route::get('/add-franchise/{sid}', [ProductController::class, 'addFranchise']);
     Route::post('/add-franchise-store', [ProductController::class, 'addFranchiseStore'])->name('addFranchiseStore');
@@ -235,7 +236,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
     Route::get('/income/binary-bonus', [AdminController::class, 'binaryBonus']);
     Route::get('/income/keyin-bonus', [AdminController::class, 'keyinBonus']);
     Route::get('/income/ranking-reward', [AdminController::class, 'rankingReward']);
-    
+
 
     //level details & Update
     Route::get('/level-details', [AdminController::class, 'levelDetails']);
@@ -261,7 +262,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
 
     // sales bonus inc 
     Route::get('/income/sales-bonus-inc', [AdminController::class, 'salesBonusInc']);
-    
+
     Route::get('/reward/paid-rewards', [AdminController::class, 'totalrewardIncomes']);
 
     //support ticket sections
@@ -438,7 +439,7 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
     Route::post('/createTicket', [SupportController::class, 'createTicket'])->name('createTicket');
     Route::post('/MbReplyTicket', [SupportController::class, 'MbReplyTicket'])->name('MbReplyTicket');
 
-     // Income Section
+    // Income Section
     Route::get('/income/travel-fund-income', [IncomeController::class, 'travelIncome']);
     // Route::get('/income/level-income', [IncomeController::class, 'levelIncome']);
     Route::get('/income/sales-bonus-income', [IncomeController::class, 'salesBonusIncome']);
@@ -448,6 +449,7 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
     Route::get('/assured-bonus/rank-assured-details', [IncomeController::class, 'rankBonusDetails']);
     Route::get('/income/reward-income', [IncomeController::class, 'rewardInc']);
     Route::get('/income/reward-details', [IncomeController::class, 'rewardDetails']);
+    Route::get('/income/mentorship-income', [IncomeController::class, 'mentorshipIncome']);
 
     //Team Routes
     Route::get('/team/direct-partner', [LevelsController::class, 'directMembers']);
@@ -464,11 +466,11 @@ Route::group(['prefix' => 'franchise_panel', 'middleware' => 'FranchiseAuth'], f
 
     Route::get('/dashboard', [FranchiseController::class, 'dashboard']);
     Route::get('/logout', [FranchiseController::class, 'logout']);
-    
+
     // Inventory Routes
     Route::get('/inventory/current-inventory', [FranchiseController::class, 'currentInventory']);
     Route::get('/inventory/received-inventory', [FranchiseController::class, 'receivedInventory']);
-    
+
     // Profile Routes
     Route::get('/profile/profile-details', [FranchiseController::class, 'profileDetails']);
     Route::post('updateProfile', [FranchiseController::class, 'updateProfile'])->name('updateProfile');
@@ -476,23 +478,22 @@ Route::group(['prefix' => 'franchise_panel', 'middleware' => 'FranchiseAuth'], f
     Route::post('passwordChange', [FranchiseController::class, 'passwordChange'])->name('passwordChange');
     Route::get('/profile/kyc-verified', [FranchiseController::class, 'kycVerified']);
     Route::post('franchiseKyc', [FranchiseController::class, 'franchiseKyc'])->name('franchiseKyc');
-    
+
     // Order Management
     Route::get('/order/order-details', [FranchiseController::class, 'orderDetails'])->name('franchise.order.details');
     Route::get('/order/completed-orders', [FranchiseController::class, 'deliveredOrders'])->name('franchise.order.delivered');
     Route::get('/order/order-management-details/{id}', [FranchiseController::class, 'orderManagementDetails'])->name('franchise.order.management.details');
     Route::post('/order/update-order-status', [FranchiseController::class, 'updateOrderStatus'])->name('franchise.update.order.status');
-    
+
     //wallet section
     Route::get('/wallet/main-wallet', [FranchiseController::class, 'mainWallets']);
     Route::get('/wallet/wallet-transfer', [FranchiseController::class, 'passbook']);
     Route::get('/wallet/withdrawal-history', [FranchiseController::class, 'withdrlHistory']);
     Route::post('mainWithdrawal', [FranchiseController::class, 'mainWithdrawal'])->name('mainWithdrawal');
     Route::get('/view-detail/{id}', [FranchiseController::class, 'viewDetails']);
-    
-     // income
+
+    // income
     Route::get('/delivery-commission', [FranchiseController::class, 'deliveryCommission']);
-    
 });
 
 Route::fallback(function () {
@@ -506,6 +507,8 @@ Route::get('/rewardsGen', [TempController::class, 'rewardsGen']);
 Route::get('/weeklyPayouts', [TempController::class, 'weeklyPayouts']);
 Route::get('/travelFund', [TempController::class, 'travelFund']);
 Route::get('/clubIncomeDis', [TempController::class, 'clubIncomeDis']);
+Route::get('/mentorshipIncomeDiss', [TempController::class, 'mentorshipIncomeDiss']);
+
 
 
 
