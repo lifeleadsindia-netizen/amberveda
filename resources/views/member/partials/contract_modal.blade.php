@@ -595,26 +595,27 @@
                 <div class="contract-consent-acknowledgement text-muted small" id="contractConsentNotice">
                     <span id="contractScrollNotice">
                         <i class="fa-solid fa-arrow-down text-warning me-1"></i>
-                        Please scroll through all 12 pages to the bottom to unlock the KYC step.
+                        Please scroll through all 12 pages to the bottom to unlock the agreement options.
                     </span>
                     <span id="contractUnlockedNotice" class="text-success fw-semibold" style="display: none;">
                         <i class="fa-solid fa-circle-check me-1"></i>
-                        Agreement reviewed completely. Click <strong>&ldquo;Accept Agreement &amp; Proceed to KYC&rdquo;</strong> to continue.
+                        Agreement reviewed completely. Click <strong>&ldquo;Accept Agreement &amp; Proceed to KYC&rdquo;</strong> to continue, or <strong>&ldquo;Skip KYC&rdquo;</strong>.
                     </span>
                 </div>
-                <div class="d-flex align-items-center gap-2">
-                    <button type="button" class="btn btn-outline-secondary px-3" data-bs-dismiss="modal" id="btnContractCancel">
-                        <i class="fa-solid fa-arrow-left me-1"></i> Back to Form
-                    </button>
+                <div class="d-flex align-items-center gap-2 flex-wrap">
                     <!-- Scroll to bottom indicator badge (shown before reaching bottom) -->
-                    {{-- <span id="contractScrollBadge" class="badge bg-warning text-dark py-2 px-3 fw-semibold">
-                        <i class="fa-solid fa-arrow-down me-1"></i> Scroll to Bottom to Unlock KYC
-                    </span> --}}
-                    <!-- KYC Step button: Hidden until user scrolls to bottom -->
+                    <span id="contractScrollBadge" class="badge bg-warning text-dark py-2 px-3 fw-semibold">
+                        <i class="fa-solid fa-arrow-down me-1"></i> Scroll to Bottom to Unlock
+                    </span>
+                    <!-- Buttons hidden until user scrolls to bottom of agreement -->
+                    <button type="button" class="btn btn-outline-warning px-3 fw-bold btnSkipKycAction" id="btnContractSkipKyc" style="border-width: 2px; display: none;">
+                        <i class="fa-solid fa-forward me-1"></i> Skip KYC
+                    </button>
                     <button type="button" class="btn btn-success px-4 fw-bold" id="btnContractAccept" style="display: none;">
                         <i class="fa-solid fa-check-circle me-1"></i> Accept Agreement &amp; Proceed to KYC <i class="fa-solid fa-arrow-right ms-1"></i>
                     </button>
                 </div>
+                <div class="alert alert-danger py-2 px-3 small w-100 d-none mt-2 mb-0" id="contractSkipKycErrorAlert"></div>
             </div>
         </div>
     </div>

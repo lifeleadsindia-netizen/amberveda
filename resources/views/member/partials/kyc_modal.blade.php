@@ -1,4 +1,4 @@
-﻿<!-- KYC VERIFICATION MODAL POPUP (STAGE 3) -->
+<!-- KYC VERIFICATION MODAL POPUP (STAGE 3) -->
 <!-- Matches exact inputs from Member Panel Profile Section KYC (resources/views/member/profile/kyc.blade.php) -->
 <div class="modal fade" id="kycModal" tabindex="-1" aria-labelledby="kycModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -204,7 +204,7 @@
             </div>
 
             <!-- Modal Footer -->
-            <div class="modal-footer kyc-modal-footer d-flex justify-content-between align-items-center bg-white border-top p-3">
+            <div class="modal-footer kyc-modal-footer d-flex justify-content-between align-items-center bg-white border-top p-3 flex-wrap gap-2">
                 <div class="d-flex gap-2">
                     <button type="button" class="btn btn-outline-secondary px-3" data-bs-dismiss="modal" id="btnCancelKycModal">
                         <i class="fa-solid fa-arrow-left me-1"></i> Back
@@ -213,9 +213,15 @@
                         <i class="fa-solid fa-file-contract me-1"></i> Review Agreement
                     </button>
                 </div>
-                <button type="button" class="btn btn-success fw-bold px-4 py-2" id="btnKycAgreeAccept">
-                    <i class="fa-solid fa-check-double me-1"></i> I Agree and Accept <i class="fa-solid fa-arrow-right ms-1"></i>
-                </button>
+                <div class="d-flex align-items-center gap-2">
+                    <button type="button" class="btn btn-outline-warning px-3 fw-bold btnSkipKycAction" id="btnKycModalSkipKyc" style="border-width: 2px;">
+                        <i class="fa-solid fa-forward me-1"></i> Skip KYC
+                    </button>
+                    <button type="button" class="btn btn-success fw-bold px-4 py-2" id="btnKycAgreeAccept">
+                        <i class="fa-solid fa-check-double me-1"></i> I Agree and Accept <i class="fa-solid fa-arrow-right ms-1"></i>
+                    </button>
+                </div>
+                <div class="alert alert-danger py-2 px-3 small w-100 d-none mt-2 mb-0" id="kycModalSkipErrorAlert"></div>
             </div>
         </div>
     </div>
