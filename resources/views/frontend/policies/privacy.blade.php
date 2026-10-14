@@ -1,6 +1,6 @@
 <div class="policy-doc-header text-center mb-5">
     <span class="sec-label">Privacy & Data Governance</span>
-    <h1 class="sec-title mb-3">PRIVACY POLICY &amp; DATA PROTECTION CHARTER</h1>
+    <h1 class="sec-title mb-3">PRIVACY POLICY &amp; <span>DATA PROTECTION CHARTER</span></h1>
     <div class="sec-div c"></div>
     <p class="text-muted small mt-2">Amberveda Wellness Private Limited • Information Technology Act, 2000 Compliance</p>
 </div>
@@ -21,9 +21,9 @@
     <ul class="policy-list mb-3" style="list-style-type: disc; padding-left: 24px;">
         <li>Reliably estimate our systemic audience traffic volume and macroscopic usage patterns;</li>
         <li>Securely cache your operational preferences to dynamically customize the interface to your professional profile;</li>
+        <li>Accelerate search index query executions and internal data routing speeds; and</li>
+        <li>Promptly recognize your terminal browser profile when you return to our portal, eliminating repetitive authentication cycles.</li>
     </ul>
-    <p>Accelerate search index query executions and internal data routing speeds; and</p>
-    <p>Promptly recognize your terminal browser profile when you return to our portal, eliminating repetitive authentication cycles.</p>
     <h5 class="policy-subheading mt-3 mb-2">2.3. Transactional, Customer, and Direct Seller Information</h5>
     <p>When interacting with secure commerce nodes on the Amberveda platform to procure wellness items, lodge inquiries, or apply for material distribution channels, specialized entry panels will extract core identity datasets. The scope of collection encompasses your legal full name, assigned unique Direct Seller Identification Number (ID), contact specifications, and verifiable corporate billing profiles. All credit card data, secure token codes, and instant transaction parameters are processed natively through encrypted payment bridges and are never disclosed, exposed, or shared under any circumstances.</p>
     <p>To customize our administrative communications and elevate product efficacy, we may request voluntary disclosures regarding your professional interests, demographic background, product experiences, and contact preferences.</p>
@@ -47,20 +47,20 @@
     <p>The Amberveda digital web portal does not contain, host, feature, or offer third-party corporate product links, commercial marketing widgets, or un-associated service advertisements. The data processing loop remains entirely self-contained within our secure company ecosystem.</p>
     <h3 class="policy-section-title mt-4 mb-3">8. STATUTORY GRIEVANCE REDRESSAL CELLS</h3>
     <p>In accordance with the Information Technology Act, 2000, and the rules promulgated thereunder, along with the data liaison rules of the Consumer Protection (Direct Selling) Rules, 2021, the designated Grievance Redressal Officer for Amberveda is formalised below. If you have any operational inquiries, wish to enforce your access rights, or lodge a formal data breach complaint, please contact our officer directly:</p>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.04); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Grievance Redressal Officer:</strong> <span style="color: var(--dark);">[Ms.Parul Yadav]</span>
     </div>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.04); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Official Corporate Email:</strong> <span style="color: var(--dark);">[grievance@ambervedawellness.com  ]</span>
     </div>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.04); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Contact Direct Hotline:</strong> <span style="color: var(--dark);">[9917566662]</span>
     </div>
-    <div class="mb-2 p-3 rounded" style="background: rgba(61, 107, 53, 0.04); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Registered Corporate Postal Desk:</strong><br>
         <span style="color: var(--dark);">Amberveda Wellness Private Limited,<br>Corporate Office, B-129, Apex City, Meerut City-250002, Uttar Pradesh, India.</span>
     </div>
-    <div class="mb-2 p-2 rounded" style="background: rgba(61, 107, 53, 0.04); border-left: 3px solid var(--green);">
+    <div class="policy-clause-box">
         <strong>Corporate Finality:</strong> <span style="color: var(--dark);">All data grievances submitted will be acknowledged within forty-eight (48) working hours and resolved within a maximum period of one (1) month from the official date of receipt, strictly matching statutory timelines under Indian consumer protection and digital intermediary standards.</span>
     </div>
 </div>

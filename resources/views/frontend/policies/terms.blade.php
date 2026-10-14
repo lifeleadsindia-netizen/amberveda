@@ -1,6 +1,6 @@
 <div class="policy-doc-header text-center mb-5">
     <span class="sec-label">Legal Agreement & Terms of Service</span>
-    <h1 class="sec-title mb-3">WEBSITE TERMS OF USE</h1>
+    <h1 class="sec-title mb-3">WEBSITE TERMS OF <span>USE</span></h1>
     <div class="sec-div c"></div>
     <p class="text-muted small mt-2">Amberveda Wellness Private Limited • Information Technology Act Electronic Record</p>
 </div>
@@ -35,21 +35,20 @@
     </ul>
     <h3 class="policy-section-title mt-4 mb-3">5. PROHIBITIONS AND USER CONDUCT</h3>
     <ul class="policy-list mb-3" style="list-style-type: disc; padding-left: 24px;">
-        <li>Eligibility and Agency Authorization: The Services available on this Website are restricted to customers who have expressed interest and requested to become a Customer-cum-Direct Seller with the company. Upon registration, you expressly permit and authorize Amberveda to populate the Amberveda registration form on your behalf and to insert your name wherever your signature is required.</li>
-        <li>Misuse Prohibited: You shall not misuse this Website. Specifically, you are prohibited from:</li>
-        <li>Committing or encouraging a criminal offense;</li>
-    </ul>
-    <p>Transmitting or distributing viruses, Trojans, worms, logic bombs, or any other material that is malicious, technologically harmful, offensive, obscene, or in breach of confidence;</p>
-    <ul class="policy-list mb-3" style="list-style-type: disc; padding-left: 24px;">
-        <li>Hacking into any aspect of the Service or corrupting data;</li>
-        <li>Causing annoyance or disruption to other users;</li>
-        <li>Infringing upon the proprietary or intellectual property rights of any other person;</li>
-        <li>Sending unsolicited advertising or promotional materials (commonly referred to as &quot;spam&quot;); or</li>
-    </ul>
-    <p>Attempting to alter or affect the performance or functionality of any computer facilities accessed through this Website.</p>
-    <ul class="policy-list mb-3" style="list-style-type: disc; padding-left: 24px;">
-        <li>Criminal Offenses: A breach of this provision may constitute a criminal offense. Amberveda reserves the right to report any such breach to relevant law enforcement authorities and disclose your identity to them.</li>
-        <li>Technological Liability Disclaimer: Amberveda shall not be liable for any loss or damage caused by a distributed denial-of-service (DDoS) attack, viruses, or other technologically harmful material that may infect your computer equipment, computer programs, data, or other proprietary material resulting from your use of this Website, or your downloading of any material posted on it or any website linked hereto.</li>
+        <li><strong>Eligibility and Agency Authorization:</strong> The Services available on this Website are restricted to customers who have expressed interest and requested to become a Customer-cum-Direct Seller with the company. Upon registration, you expressly permit and authorize Amberveda to populate the Amberveda registration form on your behalf and to insert your name wherever your signature is required.</li>
+        <li><strong>Misuse Prohibited:</strong> You shall not misuse this Website. Specifically, you are prohibited from:
+            <ul style="list-style-type: circle; margin-top: 8px; margin-bottom: 8px; padding-left: 20px;">
+                <li>Committing or encouraging a criminal offense;</li>
+                <li>Transmitting or distributing viruses, Trojans, worms, logic bombs, or any other material that is malicious, technologically harmful, offensive, obscene, or in breach of confidence;</li>
+                <li>Hacking into any aspect of the Service or corrupting data;</li>
+                <li>Causing annoyance or disruption to other users;</li>
+                <li>Infringing upon the proprietary or intellectual property rights of any other person;</li>
+                <li>Sending unsolicited advertising or promotional materials (commonly referred to as "spam"); or</li>
+                <li>Attempting to alter or affect the performance or functionality of any computer facilities accessed through this Website.</li>
+            </ul>
+        </li>
+        <li><strong>Criminal Offenses:</strong> A breach of this provision may constitute a criminal offense. Amberveda reserves the right to report any such breach to relevant law enforcement authorities and disclose your identity to them.</li>
+        <li><strong>Technological Liability Disclaimer:</strong> Amberveda shall not be liable for any loss or damage caused by a distributed denial-of-service (DDoS) attack, viruses, or other technologically harmful material that may infect your computer equipment, computer programs, data, or other proprietary material resulting from your use of this Website, or your downloading of any material posted on it or any website linked hereto.</li>
     </ul>
     <h3 class="policy-section-title mt-4 mb-3">6. INTELLECTUAL PROPERTY, SOFTWARE, AND CONTENT</h3>
     <p>The intellectual property rights in all software and content (including, without limitation, photographic images) made available to you on or through this Website remain the exclusive property of Amberveda or its licensors and are protected by applicable copyright laws and international treaties. All such rights are expressly reserved by Amberveda and its licensors.</p>
@@ -68,8 +67,8 @@
     <ul class="policy-list mb-3" style="list-style-type: disc; padding-left: 24px;">
         <li>All details provided to us are true, accurate, and complete;</li>
         <li>You are an authorized user of the credit or debit card utilized to place the order; and</li>
+        <li>There are sufficient funds to cover the total cost of the goods. (Note: The cost of foreign products and services may fluctuate. All advertised prices are subject to such fluctuations.)</li>
     </ul>
-    <p>There are sufficient funds to cover the total cost of the goods. (Note: The cost of foreign products and services may fluctuate. All advertised prices are subject to such fluctuations.)</p>
     <h5 class="policy-subheading mt-3 mb-2">7.4. Formation of Contract</h5>
     <p>A contract between the parties shall not be formed upon the placement of an order. Upon placing an order, you will receive an acknowledgement email confirming receipt; this email constitutes a mere acknowledgement and does not amount to an acceptance of your order. A binding contract shall only be established when we transmit a confirmation email verifying that the ordered goods have been dispatched to you. The contract shall only encompass those specific goods listed in the confirmation email sent at the time of dispatch.</p>
     <h5 class="policy-subheading mt-3 mb-2">7.5. Pricing and Availability Errors</h5>
@@ -83,9 +82,9 @@
     <p>The material and content displayed on this Website are provided without any guarantees, conditions, or warranties as to their accuracy. Unless expressly stated to the contrary, and to the maximum extent permitted by applicable law, Amberveda and its suppliers, content providers, and advertisers hereby explicitly exclude all conditions, warranties, and other terms which might otherwise be implied by statute, common law, or the law of equity.</p>
     <p>Amberveda shall not be liable for any damages whatsoever, including but not limited to any direct, indirect, special, consequential, punitive, or incidental damages, or damages for loss of use, profits, data, or other intangibles, damage to goodwill or reputation, or the cost of procurement of substitute goods and services, arising out of or related to the use, inability to use, performance, or failures of this Website or any linked sites and any materials posted thereon, irrespective of whether such damages were foreseeable or arise in contract, tort, equity, restitution, by statute, at common law, or otherwise.</p>
     <p>This disclaimer does not affect Amberveda’s liability for death or personal injury arising from its negligence, fraudulent misrepresentation, misrepresentation as to a fundamental matter, or any other liability which cannot be excluded or limited under applicable law.</p>
-    <p>10. THIRD-PARTY LINKS AND ADVERTISEMENTS</p>
+    <h3 class="policy-section-title mt-4 mb-3">10. THIRD-PARTY LINKS AND ADVERTISEMENTS</h3>
     <p>Amberveda does not include, offer, or market third-party products or services on this Website.</p>
-    <p>11. DISCLAIMER AS TO OWNERSHIP OF TRADEMARKS, IMAGES, AND THIRD-PARTY COPYRIGHT</p>
+    <h3 class="policy-section-title mt-4 mb-3">11. DISCLAIMER AS TO OWNERSHIP OF TRADEMARKS, IMAGES, AND THIRD-PARTY COPYRIGHT</h3>
     <p>Except where expressly stated to the contrary, all persons (including their names and images), third-party trademarks and content, services, and/or locations featured on this Website are in no way associated, linked, or affiliated with Amberveda. Users should not rely on the existence of any such connection or affiliation. Any third-party trademarks or names featured on this Website remain the exclusive property of their respective trademark owners. References to a trademark or brand name are used solely to describe or identify the products and services and do not constitute an assertion that such products or services are endorsed by, or connected to, Amberveda.</p>
     <h3 class="policy-section-title mt-4 mb-3">12. INDEMNIFICATION</h3>
     <p>You agree to indemnify, defend, and hold harmless Amberveda, its directors, officers, employees, consultants, agents, and affiliates from any and all third-party claims, liabilities, damages, and/or costs (including, but not limited to, reasonable legal fees) arising out of or in connection with your use of this Website or your breach of these Terms of Use.</p>

@@ -15,12 +15,14 @@ $testCases = [
         'slug' => 'privacy-policy',
         'title' => 'Privacy Policy & Data Protection Charter',
         'expectedText' => [
-            'PRIVACY POLICY &amp; DATA PROTECTION CHARTER',
+            'PRIVACY POLICY &amp; <span>DATA PROTECTION CHARTER</span>',
             'STATUTORY DECREE &amp; LEGAL FRAMEWORK',
             'Ms.Parul Yadav',
             'grievance@ambervedawellness.com',
             'Back to Website',
-            'Return to Main Website'
+            'Return to Main Website',
+            'fa-arrow-left',
+            'fa-home'
         ],
         'notExpected' => ['Two Pillars of', 'Empowering Health']
     ],
@@ -28,12 +30,14 @@ $testCases = [
         'slug' => 'terms-of-use',
         'title' => 'Website Terms of Use',
         'expectedText' => [
-            'WEBSITE TERMS OF USE',
+            'WEBSITE TERMS OF <span>USE</span>',
             'LEGAL COMPLIANCE AND ELECTRONIC RECORD NOTICE',
             '1. PRELIMINARY DEFINITIONS AND CORPORATE INFORMATION',
             '7. TERMS OF SALE',
             'Back to Website',
-            'Return to Main Website'
+            'Return to Main Website',
+            'fa-arrow-left',
+            'fa-home'
         ],
         'notExpected' => ['Two Pillars of', 'Empowering Health']
     ],
@@ -41,13 +45,15 @@ $testCases = [
         'slug' => 'shipping-policy',
         'title' => 'Shipping Policy',
         'expectedText' => [
-            'SHIPPING POLICY',
+            'SHIPPING &amp; <span>DELIVERY POLICY</span>',
             'STATUTORY PREAMBLE &amp; COMPLIANCE ACKNOWLEDGEMENT',
             '1. MODALITIES OF ORDER PLACEMENT AND FULFILLMENT',
             'Monday through Friday: 10:00 AM to 06:00 PM',
             'Arbitration and Conciliation Act, 1996',
             'Back to Website',
-            'Return to Main Website'
+            'Return to Main Website',
+            'fa-arrow-left',
+            'fa-home'
         ],
         'notExpected' => ['Two Pillars of', 'Empowering Health']
     ],
@@ -55,13 +61,15 @@ $testCases = [
         'slug' => 'buyback-refund-policy',
         'title' => 'Buyback / Refund / Cancellation Policy',
         'expectedText' => [
-            'BUY BACK / EXCHANGE / REFUND POLICY',
+            'BUY BACK / EXCHANGE / <span>REFUND POLICY</span>',
             'Buyback / Refund Policy:',
             '100% of the amount as refund will be given within 10 working days',
             'Marketable refers to products that are unopened',
             'Product Return Form',
             'Back to Website',
-            'Return to Main Website'
+            'Return to Main Website',
+            'fa-arrow-left',
+            'fa-home'
         ],
         'notExpected' => ['Two Pillars of', 'Empowering Health']
     ],
@@ -69,12 +77,14 @@ $testCases = [
         'slug' => 'cooling-off-policy',
         'title' => 'Cooling Off Policy',
         'expectedText' => [
-            'COOLING OFF POLICY',
+            'STATUTORY <span>COOLING OFF POLICY</span>',
             '7 (seven) days',
             '(Ankit Yadav)',
             'Nodal Officer',
             'Back to Website',
-            'Return to Main Website'
+            'Return to Main Website',
+            'fa-arrow-left',
+            'fa-home'
         ],
         'notExpected' => ['Two Pillars of', 'Empowering Health']
     ]
