@@ -50,16 +50,16 @@
                         <div class="row justify-content-center">
                             <div class="col-xxl-12 col-lg-12 col-md-12">
                                 <div class="table-responsive card-body">
-                                    <table class="table mb-0 text-center">
+                                    <table class="table mb-0 text-center align-middle">
                                         <thead>
                                             <tr>
                                                 {{-- <th class="pt-0 pb-2">S.No.</th> --}}
-                                                <th class="pt-0 pb-2">Product</th>
+                                                <th class="pt-0 pb-2 text-start ps-2" style="min-width: 220px;">Product</th>
                                                 <th class="pt-0 pb-2 text-end">Price</th>
                                                 <!--<th class="pt-0 pb-2 text-center">PV</th>-->
                                                 <th class="pt-0 pb-2 text-center">Qty</th>
                                                 <th class="pt-0 pb-2 text-center">Amount</th>
-                                                <th class="pt-0 pb-2 text-end">Action</th>
+                                                <th class="pt-0 pb-2 text-end pe-2">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="pList">

@@ -52,29 +52,52 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-5">
-                                <!-- Product image -->
-                                <a href="javascript: void(0);" class="text-center d-block mb-4">
-                                    <img src="{{ asset('uploads') }}/{{ $pro_data['image'] }}" class="img-fluid"
-                                        style="max-width: 280px;" alt="Product Image">
-                                </a>
+                                @php
+                                    $galleryImages = [];
+                                    $imgKeys = ['image', 'image2', 'image3'];
+                                    foreach ($imgKeys as $imgKey) {
+                                        if (!empty($pro_data[$imgKey])) {
+                                            $val = $pro_data[$imgKey];
+                                            if (file_exists(public_path('uploads/' . $val))) {
+                                                $galleryImages[] = asset('uploads/' . $val);
+                                            } elseif (file_exists(public_path($val))) {
+                                                $galleryImages[] = asset($val);
+                                            } else {
+                                                $galleryImages[] = asset('uploads/' . $val);
+                                            }
+                                        }
+                                    }
+                                    if (empty($galleryImages)) {
+                                        $galleryImages[] = asset('mem_assets/images/products/product-1.jpg');
+                                    }
+                                @endphp
 
-                                <!--<div class="d-lg-flex d-none justify-content-center">-->
-                                <!--    <a href="javascript: void(0);">-->
-                                <!--        <img src="{{ asset('uploads') }}/{{ $pro_data['image2'] }}"-->
-                                <!--            class="img-fluid img-thumbnail p-2" style="max-width: 75px;"-->
-                                <!--            alt="Product-img" />-->
-                                <!--    </a>-->
-                                <!--    <a href="javascript: void(0);" class="ms-2">-->
-                                <!--        <img src="{{ asset('uploads') }}/{{ $pro_data['image3'] }}"-->
-                                <!--            class="img-fluid img-thumbnail p-2" style="max-width: 75px;"-->
-                                <!--            alt="Product-img" />-->
-                                <!--    </a>-->
-                                <!--    <a href="javascript: void(0);" class="ms-2">-->
-                                <!--        <img src="{{ asset('uploads') }}/{{ $pro_data['image'] }}"-->
-                                <!--            class="img-fluid img-thumbnail p-2" style="max-width: 75px;"-->
-                                <!--            alt="Product-img" />-->
-                                <!--    </a>-->
-                                <!--</div>-->
+                                <!-- Product main display image -->
+                                <div class="text-center mb-3">
+                                    <div class="d-flex align-items-center justify-content-center bg-white border rounded p-3 shadow-sm mx-auto"
+                                         style="height: 350px; max-width: 380px; overflow: hidden; background: #fff;">
+                                        <img id="mainProductPreview" 
+                                             src="{{ $galleryImages[0] }}" 
+                                             class="img-fluid" 
+                                             alt="{{ $pro_data['product'] }}"
+                                             style="max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; transition: opacity 0.2s ease-in-out;" />
+                                    </div>
+                                </div>
+
+                                <!-- Thumbnails (only displayed if multiple images exist) -->
+                                @if (count($galleryImages) > 1)
+                                    <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap mb-4" id="productThumbContainer">
+                                        @foreach ($galleryImages as $index => $imgUrl)
+                                            <div class="product-thumb-item {{ $index === 0 ? 'active' : '' }}" 
+                                                 onclick="switchProductGalleryImage('{{ $imgUrl }}', this)"
+                                                 style="width: 72px; height: 72px; padding: 4px; border: 2px solid {{ $index === 0 ? '#0ab39c' : '#dee2e6' }}; border-radius: 8px; cursor: pointer; background: #ffffff; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                <img src="{{ $imgUrl }}" 
+                                                     alt="Thumbnail {{ $index + 1 }}" 
+                                                     style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block;" />
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div> <!-- end col -->
                             <div class="col-lg-7">
                                 <div class="ps-lg-4">
@@ -166,4 +189,38 @@
     <!-- ============================================================== -->
 
     <!-- END wrapper -->
+
+    <style>
+        .product-thumb-item {
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .product-thumb-item:hover {
+            border-color: #0ab39c !important;
+            transform: translateY(-2px);
+        }
+        .product-thumb-item.active {
+            border-color: #0ab39c !important;
+            box-shadow: 0 0 0 2px rgba(10, 179, 156, 0.25) !important;
+        }
+    </style>
+    <script>
+        function switchProductGalleryImage(src, thumbElement) {
+            var mainImg = document.getElementById('mainProductPreview');
+            if (!mainImg) return;
+            mainImg.style.opacity = '0.25';
+            setTimeout(function() {
+                mainImg.src = src;
+                mainImg.style.opacity = '1';
+            }, 150);
+
+            var thumbs = document.querySelectorAll('.product-thumb-item');
+            thumbs.forEach(function(item) {
+                item.style.borderColor = '#dee2e6';
+                item.classList.remove('active');
+            });
+            thumbElement.style.borderColor = '#0ab39c';
+            thumbElement.classList.add('active');
+        }
+    </script>
 @endsection

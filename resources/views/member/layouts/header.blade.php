@@ -855,6 +855,13 @@
                     </li>
 
                     <li class="side-nav-item">
+                        <a href="{{ url('member/downloads-document') }}" class="side-nav-link">
+                            <i class="uil-file-download-alt"></i>
+                            <span> Downloads Document </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
                         <a href="{{ url('member/logout') }}" class="side-nav-link">
                             <i class="uil-comments-alt"></i>
                             <span> Logout </span>

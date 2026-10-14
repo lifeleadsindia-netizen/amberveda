@@ -186,57 +186,38 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="example-image-input"
-                                    class="col-md-12 col-form-label form-control-label">Product
-                                    Image</label>
-                                <div class="col-md-12">
-                                    <input type="file" class="form-control" name="image">
-                                    @error('image')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label font-weight-bold">Product Image 1 <span class="text-danger">*</span></label>
+                                        <input type="file" class="form-control" name="image" required accept="image/png,image/jpeg,image/jpg">
+                                        <small class="text-muted d-block mt-1">Main display image (Required)</small>
+                                        @error('image')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label font-weight-bold">Product Image 2</label>
+                                        <input type="file" class="form-control" name="image2" accept="image/png,image/jpeg,image/jpg">
+                                        <small class="text-muted d-block mt-1">Additional gallery image (Optional)</small>
+                                        @error('image2')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label font-weight-bold">Product Image 3</label>
+                                        <input type="file" class="form-control" name="image3" accept="image/png,image/jpeg,image/jpg">
+                                        <small class="text-muted d-block mt-1">Additional gallery image (Optional)</small>
+                                        @error('image3')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-                            <!--<div class="form-group row">-->
-                            <!--    <label for="example-image-input"-->
-                            <!--        class="col-md-12 col-form-label form-control-label">Product-->
-                            <!--        Image 2</label>-->
-                            <!--    <div class="col-md-12">-->
-                            <!--        <input type="file" class="form-control" name="image2">-->
-                            <!--        @error('image2')
-        -->
-                                <!--            <span class="text-danger">{{ $message }}</span>-->
-                                <!--
-    @enderror-->
-                            <!--    </div>-->
-                            <!--</div>-->
-                            <!--<div class="form-group row">-->
-                            <!--    <label for="example-image-input"-->
-                            <!--        class="col-md-12 col-form-label form-control-label">Product-->
-                            <!--        Image 3</label>-->
-                            <!--    <div class="col-md-12">-->
-                            <!--        <input type="file" class="form-control" name="image3">-->
-                            <!--        @error('image3')
-        -->
-                                <!--            <span class="text-danger">{{ $message }}</span>-->
-                                <!--
-    @enderror-->
-                            <!--    </div>-->
-                            <!--</div>-->
-                            <!--<div class="form-group row">-->
-                            <!--    <label for="example-image-input"-->
-                            <!--        class="col-md-12 col-form-label form-control-label">Product-->
-                            <!--        Image 4</label>-->
-                            <!--    <div class="col-md-12">-->
-                            <!--        <input type="file" class="form-control" name="image4">-->
-                            <!--        @error('image4')
-        -->
-                                <!--            <span class="text-danger">{{ $message }}</span>-->
-                                <!--
-    @enderror-->
-                            <!--    </div>-->
-                            <!--</div>-->
-
                             <div class="">
                                 <button type="submit" class="btn btn-primary my-4 float-right">Create Product</button>
                             </div>

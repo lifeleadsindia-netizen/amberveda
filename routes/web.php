@@ -292,13 +292,18 @@ Route::post('/sendRegistrationOtp', [MemberDetailController::class, 'sendRegistr
 Route::post('/getSponname', [MemberDetailController::class, 'getSponname']);
 Route::post('/getMember', [MemberDetailController::class, 'getMember']);
 Route::post('/getUserid', [MemberDetailController::class, 'getUserid']);
-Route::get('member/download/business-plan', [MemberDetailController::class, 'downloads']);
+// Route::get('member/download/business-plan', [MemberDetailController::class, 'downloads']);
 Route::get('/member-forget-password', [MemberDetailController::class, 'memforgetPassword']);
 Route::post('/memretrivePassword', [MemberDetailController::class, 'memretrivePassword'])->name('memretrivePassword');
 
 Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
 
     Route::get('/dashboard', [MemberDetailController::class, 'dashboard']);
+
+    // Downloads Document routes
+    Route::get('/downloads-document', [MemberDetailController::class, 'downloadsDocument'])->name('member.downloadsDocument');
+    Route::get('/downloads-document/view/{slug}', [MemberDetailController::class, 'viewDocument'])->name('member.viewDocument');
+    Route::get('/downloads-document/download/{slug}', [MemberDetailController::class, 'downloadDocument'])->name('member.downloadDocument');
     Route::get('/logout', [MemberDetailController::class, 'logout']);
     Route::get('/cheakout-step1', [MemberDetailController::class, 'CheackoutStep1']);
     Route::get('/cheakout-step2', [MemberDetailController::class, 'CheackoutStep2']);

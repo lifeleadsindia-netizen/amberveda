@@ -1056,4 +1056,199 @@ class MemberDetailController extends Controller
         session()->flash('kycMsg', 'KYC Details have been submitted successfully!');
         return redirect()->back();
     }
+
+    /**
+     * Document list configuration for Member Panel Downloads
+     */
+    private function getDownloadDocumentsList()
+    {
+        return [
+            [
+                'id' => 1,
+                'order' => 1,
+                'slug' => 'business-plan',
+                'title' => 'Business Plan',
+                'description' => 'Comprehensive Amberveda Wellness business plan, compensation structure, and company profile.',
+                'file_name' => 'business-plan.pdf',
+                'download_name' => 'Amberveda-Business-Plan.pdf',
+                'file_type' => 'PDF',
+                'icon' => 'mdi-file-pdf-box',
+                'icon_color' => '#dc2626',
+                'badge_color' => '#fef2f2',
+            ],
+            [
+                'id' => 2,
+                'order' => 2,
+                'slug' => 'direct-seller-contract',
+                'title' => 'Direct Seller Contract',
+                'description' => 'Official Direct Seller E-Contract Agreement governing direct seller terms and compliance.',
+                'file_name' => 'direct-seller-contract.pdf',
+                'download_name' => 'Direct-Seller-Contract-Agreement.pdf',
+                'file_type' => 'PDF',
+                'icon' => 'mdi-file-document-outline',
+                'icon_color' => '#2563eb',
+                'badge_color' => '#eff6ff',
+            ],
+            [
+                'id' => 3,
+                'order' => 3,
+                'slug' => 'product-brochure',
+                'title' => 'Product Brochure',
+                'description' => 'Complete catalog and product overview highlighting high-rated Ayurvedic wellness formulations.',
+                'file_name' => 'product-brochure.pdf',
+                'download_name' => 'Amberveda-Product-Brochure.pdf',
+                'file_type' => 'PDF',
+                'icon' => 'mdi-book-open-page-variant',
+                'icon_color' => '#059669',
+                'badge_color' => '#f0fdf4',
+            ],
+            [
+                'id' => 4,
+                'order' => 4,
+                'slug' => 'order-form-consumer',
+                'title' => 'Order Form Consumer',
+                'description' => 'Standard retail consumer purchase order form for direct product ordering.',
+                'file_name' => null,
+                'download_name' => null,
+                'file_type' => 'PDF',
+                'icon' => 'mdi-file-table-outline',
+                'icon_color' => '#d97706',
+                'badge_color' => '#fffbeb',
+            ],
+            [
+                'id' => 5,
+                'order' => 5,
+                'slug' => 'order-form-direct-seller',
+                'title' => 'Order Form Direct Seller',
+                'description' => 'Official direct seller replenishment and distribution product order form.',
+                'file_name' => null,
+                'download_name' => null,
+                'file_type' => 'PDF',
+                'icon' => 'mdi-clipboard-text-outline',
+                'icon_color' => '#7c3aed',
+                'badge_color' => '#f5f3ff',
+            ],
+            [
+                'id' => 6,
+                'order' => 6,
+                'slug' => 'price-list-with-sp',
+                'title' => 'Price List with SP',
+                'description' => 'Official price schedule detailing MRP, DP, SP value, and GST breakdown for all products.',
+                'file_name' => null,
+                'download_name' => null,
+                'file_type' => 'PDF',
+                'icon' => 'mdi-tag-text-outline',
+               'icon_color' => '#0d9488',
+                'badge_color' => '#f0fdfa',
+            ],
+            [
+                'id' => 7,
+                'order' => 7,
+                'slug' => 'any-other-product-leaflet-if-any',
+                'title' => 'Any Other Product Leaflet If Any',
+                'description' => 'Supplementary marketing leaflets, product monographs, and promotional literature.',
+                'file_name' => null,
+                'download_name' => null,
+                'file_type' => 'PDF',
+                'icon' => 'mdi-file-multiple-outline',
+                'icon_color' => '#475569',
+                'badge_color' => '#f8fafc',
+            ],
+        ];
+    }
+
+    /**
+     * Display Downloads Document page in Member Panel
+     */
+    public function downloadsDocument(Request $request)
+    {
+        $data = MemberDetail::find(session('MEMBER_ID'));
+        $rawDocs = $this->getDownloadDocumentsList();
+        $documents = [];
+
+        foreach ($rawDocs as $doc) {
+            $isUploaded = false;
+            $fileSize = null;
+            if (!empty($doc['file_name'])) {
+                $filePath = public_path('uploads/documents/downloads/' . $doc['file_name']);
+                if (file_exists($filePath)) {
+                    $isUploaded = true;
+                    $bytes = filesize($filePath);
+                    if ($bytes >= 1048576) {
+                        $fileSize = number_format($bytes / 1048576, 1) . ' MB';
+                    } elseif ($bytes >= 1024) {
+                        $fileSize = number_format($bytes / 1024, 0) . ' KB';
+                    } else {
+                        $fileSize = $bytes . ' B';
+                    }
+                }
+            }
+            $doc['is_uploaded'] =  $isUploaded;
+            $doc['file_size'] = $fileSize;
+            $documents[] = $doc;
+        }
+
+        return view('member.downloads-document', compact('data', 'documents'));
+    }
+
+    /**
+     * View document inline in browser tab
+     */
+    public function viewDocument($slug)
+    {
+        $docs = $this->getDownloadDocumentsList();
+        $target = null;
+        foreach ($docs as $doc) {
+            if ($doc['slug'] === $slug) {
+                $target = $doc;
+                break;
+            }
+        }
+
+        if (!$target || empty($target['file_name'])) {
+            session()->flash('failedMsg', 'This document has not been uploaded yet.');
+            return redirect()->back();
+        }
+
+        $filePath = public_path('uploads/documents/downloads/' . $target['file_name']);
+        if (!file_exists($filePath)) {
+            session()->flash('failedMsg', 'Document file was not found on the server.');
+            return redirect()->back();
+        }
+
+        $headers = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . ($target['download_name'] ?? $target['file_name']) . '"',
+        ];
+
+        return response()->file($filePath, $headers);
+    }
+
+    /**
+     * Download original document file preserving filename
+     */
+    public function downloadDocument($slug)
+    {
+        $docs = $this->getDownloadDocumentsList();
+        $target = null;
+        foreach ($docs as $doc) {
+            if ($doc['slug'] === $slug) {
+                $target = $doc;
+                break;
+            }
+        }
+
+        if (!$target || empty($target['file_name'])) {
+            session()->flash('failedMsg', 'This document has not been uploaded yet.');
+            return redirect()->back();
+        }
+
+        $filePath = public_path('uploads/documents/downloads/' . $target['file_name']);
+        if (!file_exists($filePath)) {
+            session()->flash('failedMsg', 'Document file was not found on the server.');
+            return redirect()->back();
+        }
+
+        return response()->download($filePath, $target['download_name'] ?? $target['file_name']);
+    }
 }

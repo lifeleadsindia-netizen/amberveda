@@ -144,18 +144,53 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group row">
-                                <label for="example-image-input"
-                                    class="col-md-12 col-form-label form-control-label">Product
-                                    Image</label>
-                                <div class="col-md-12">
-                                    <input type="file" class="form-control" name="image">
-                                    @error('image')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label font-weight-bold">Product Image 1</label>
+                                        @if (!empty($data['image']) && file_exists(public_path('uploads/' . $data['image'])))
+                                            <div class="mb-2 p-1 border rounded" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background: #fafafa;">
+                                                <img src="{{ asset('uploads/' . $data['image']) }}" alt="Image 1" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                                            </div>
+                                        @endif
+                                        <input type="file" class="form-control" name="image" accept="image/png,image/jpeg,image/jpg">
+                                        <small class="text-muted d-block mt-1">Leave blank to keep existing image</small>
+                                        @error('image')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label font-weight-bold">Product Image 2</label>
+                                        @if (!empty($data['image2']) && file_exists(public_path('uploads/' . $data['image2'])))
+                                            <div class="mb-2 p-1 border rounded" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background: #fafafa;">
+                                                <img src="{{ asset('uploads/' . $data['image2']) }}" alt="Image 2" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                                            </div>
+                                        @endif
+                                        <input type="file" class="form-control" name="image2" accept="image/png,image/jpeg,image/jpg">
+                                        <small class="text-muted d-block mt-1">Leave blank to keep existing image</small>
+                                        @error('image2')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label font-weight-bold">Product Image 3</label>
+                                        @if (!empty($data['image3']) && file_exists(public_path('uploads/' . $data['image3'])))
+                                            <div class="mb-2 p-1 border rounded" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background: #fafafa;">
+                                                <img src="{{ asset('uploads/' . $data['image3']) }}" alt="Image 3" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                                            </div>
+                                        @endif
+                                        <input type="file" class="form-control" name="image3" accept="image/png,image/jpeg,image/jpg">
+                                        <small class="text-muted d-block mt-1">Leave blank to keep existing image</small>
+                                        @error('image3')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <input type="hidden" value="{{ $data['id'] }}" name="id">
                                 <button class="btn btn-primary float-right">Update Product</button>

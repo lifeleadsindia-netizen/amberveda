@@ -76,16 +76,45 @@ class ProductController extends Controller
         $var->distributor_price = $sp_value + $gst;
         $var->model_no = $request->post('model_no');
         $var->about = $request->post('about');
+        // Product Image 1 (Required)
         $bimage = $request->file('image');
-        $ext = $bimage->getClientOriginalExtension();
-        if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
-            session()->flash('failedMsg', 'Allowed image type is jpg, jpeg, png. Please change image type');
+        $ext = strtolower($bimage->getClientOriginalExtension());
+        if (!in_array($ext, ['png', 'jpg', 'jpeg'])) {
+            session()->flash('failedMsg', 'Allowed image type for Image 1 is jpg, jpeg, png. Please change image type');
 
             return redirect()->back();
         }
-        $imagename = 'product' . time() . '.' . $ext;
+        $imagename = 'product' . time() . '_1.' . $ext;
         $bimage->move(public_path('uploads'), $imagename);
         $var->image = $imagename;
+
+        // Product Image 2 (Optional)
+        if ($request->hasFile('image2')) {
+            $bimage2 = $request->file('image2');
+            $ext2 = strtolower($bimage2->getClientOriginalExtension());
+            if (!in_array($ext2, ['png', 'jpg', 'jpeg'])) {
+                session()->flash('failedMsg', 'Allowed image type for Image 2 is jpg, jpeg, png. Please change image type');
+
+                return redirect()->back();
+            }
+            $imagename2 = 'product' . time() . '_2.' . $ext2;
+            $bimage2->move(public_path('uploads'), $imagename2);
+            $var->image2 = $imagename2;
+        }
+
+        // Product Image 3 (Optional)
+        if ($request->hasFile('image3')) {
+            $bimage3 = $request->file('image3');
+            $ext3 = strtolower($bimage3->getClientOriginalExtension());
+            if (!in_array($ext3, ['png', 'jpg', 'jpeg'])) {
+                session()->flash('failedMsg', 'Allowed image type for Image 3 is jpg, jpeg, png. Please change image type');
+
+                return redirect()->back();
+            }
+            $imagename3 = 'product' . time() . '_3.' . $ext3;
+            $bimage3->move(public_path('uploads'), $imagename3);
+            $var->image3 = $imagename3;
+        }
 
         $var->save();
 
@@ -129,12 +158,46 @@ class ProductController extends Controller
         $var->distributor_price = $sp_value + $gst;
         $var->model_no = $request->post('model_no');
         $var->about = $request->post('about');
+        // Product Image 1
         if ($request->hasFile('image')) {
             $bimage = $request->file('image');
-            $ext = $bimage->getClientOriginalExtension();
-            $imagename = 'product' . time() . '.' . $ext;
+            $ext = strtolower($bimage->getClientOriginalExtension());
+            if (!in_array($ext, ['png', 'jpg', 'jpeg'])) {
+                session()->flash('failedMsg', 'Allowed image type for Image 1 is jpg, jpeg, png.');
+
+                return redirect()->back();
+            }
+            $imagename = 'product' . time() . '_1.' . $ext;
             $bimage->move(public_path('uploads'), $imagename);
             $var->image = $imagename;
+        }
+
+        // Product Image 2
+        if ($request->hasFile('image2')) {
+            $bimage2 = $request->file('image2');
+            $ext2 = strtolower($bimage2->getClientOriginalExtension());
+            if (!in_array($ext2, ['png', 'jpg', 'jpeg'])) {
+                session()->flash('failedMsg', 'Allowed image type for Image 2 is jpg, jpeg, png.');
+
+                return redirect()->back();
+            }
+            $imagename2 = 'product' . time() . '_2.' . $ext2;
+            $bimage2->move(public_path('uploads'), $imagename2);
+            $var->image2 = $imagename2;
+        }
+
+        // Product Image 3
+        if ($request->hasFile('image3')) {
+            $bimage3 = $request->file('image3');
+            $ext3 = strtolower($bimage3->getClientOriginalExtension());
+            if (!in_array($ext3, ['png', 'jpg', 'jpeg'])) {
+                session()->flash('failedMsg', 'Allowed image type for Image 3 is jpg, jpeg, png.');
+
+                return redirect()->back();
+            }
+            $imagename3 = 'product' . time() . '_3.' . $ext3;
+            $bimage3->move(public_path('uploads'), $imagename3);
+            $var->image3 = $imagename3;
         }
 
         $var->save();
@@ -316,16 +379,28 @@ class ProductController extends Controller
                 $rowAmount = number_format($unitPrice * $key->quantity, 2, '.', '');
 
                 $url = url('/').'/'; // 'http://127.0.0.1:8000/';
-                $itext .= '<tr>';
-                //  $itext .= '<td>';
-                // $itext .= '<div class="flex-shrink-0">';
-                // //$itext .= '<img src="''" alt="" height="50" class="rounded">';
-                // $itext .= '</div>';
-                // $itext .= '</td>';
-                $itext .= '<td scope="row" class="text-center">';
-                $itext .= "<h6 class='mb-1'>".getProductName($key->pro_id).'</h6>';
-                $itext .= '</td>';
+                $placeholderUrl = asset('mem_assets/images/products/product-1.jpg');
+                $imageUrl = $placeholderUrl;
+                if ($proData && !empty($proData->image)) {
+                    if (file_exists(public_path('uploads/' . $proData->image))) {
+                        $imageUrl = asset('uploads/' . $proData->image);
+                    } elseif (file_exists(public_path($proData->image))) {
+                        $imageUrl = asset($proData->image);
+                    }
+                }
+                $proName = htmlspecialchars(getProductName($key->pro_id) ?: ($proData ? $proData->product : 'Product'), ENT_QUOTES, 'UTF-8');
 
+                $itext .= '<tr>';
+                $itext .= '<td scope="row" class="text-start py-2">';
+                $itext .= '<div class="d-flex align-items-center">';
+                $itext .= '<div class="cart-img-box me-3 flex-shrink-0" style="width: 54px; height: 54px; min-width: 54px; border-radius: 8px; border: 1px solid #e9ecef; background: #ffffff; display: flex; align-items: center; justify-content: center; padding: 4px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">';
+                $itext .= '<img src="' . $imageUrl . '" alt="' . $proName . '" onerror="this.onerror=null; this.src=\'' . $placeholderUrl . '\';" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block;" />';
+                $itext .= '</div>';
+                $itext .= '<div class="cart-product-title text-start">';
+                $itext .= '<h6 class="mb-0 fw-semibold text-dark" style="font-size: 0.92rem; line-height: 1.35;">' . $proName . '</h6>';
+                $itext .= '</div>';
+                $itext .= '</div>';
+                $itext .= '</td>';
                 $itext .= '<td>';
                 $itext .= "<h6 class='mb-1 text-end'>₹ $key->price</h6>";
                 $itext .= '</td>';
