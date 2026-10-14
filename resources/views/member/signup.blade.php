@@ -1257,6 +1257,7 @@
                 $('#contractScrollNotice').hide();
                 $('#contractScrollBadge').hide();
                 $('#contractUnlockedNotice').fadeIn(200);
+                $('#btnContractSkipKyc').fadeIn(300).css('display', 'inline-flex');
                 $('#btnContractAccept').fadeIn(300).css('display', 'inline-flex');
             }
 
@@ -1275,6 +1276,7 @@
                     if (!modalBody) return;
 
                     if (!contractScrolledToBottom) {
+                        $('#btnContractSkipKyc').hide();
                         $('#btnContractAccept').hide();
                         $('#contractScrollBadge').show();
                         $('#contractScrollNotice').show();
@@ -1308,7 +1310,37 @@
                 $('#btnContractAccept').trigger('click');
             });
 
-            // STEP 2: E-CONTRACT MODAL ACCEPTANCE -> TRANSITION TO KYC MODAL POPUP
+            // PATH A: SKIP KYC HANDLER
+            // Directly submits the form with skip_kyc=1, triggering native browser navigation to account-created
+            $(document).on('click', '.btnSkipKycAction, #btnContractSkipKyc, #btnKycModalSkipKyc', function(e) {
+                e.preventDefault();
+                const skipBtn = $(this);
+
+                // Disable buttons to prevent duplicate submissions
+                $('.btnSkipKycAction, #btnContractAccept, #btnKycAgreeAccept').prop('disabled', true);
+                skipBtn.html('<span class="spinner-border spinner-border-sm me-2"></span> Skipping KYC & Redirecting...');
+
+                const formEl = document.getElementById('signupForm');
+                if (!formEl) {
+                    return;
+                }
+
+                // Add or update hidden skip_kyc input inside form
+                let skipInput = document.getElementById('skip_kyc_input');
+                if (!skipInput) {
+                    skipInput = document.createElement('input');
+                    skipInput.type = 'hidden';
+                    skipInput.name = 'skip_kyc';
+                    skipInput.id = 'skip_kyc_input';
+                    formEl.appendChild(skipInput);
+                }
+                skipInput.value = '1';
+
+                // Submit form directly -> Browser executes standard POST and redirects to account-created
+                formEl.submit();
+            });
+
+            // PATH B: E-CONTRACT MODAL ACCEPTANCE -> TRANSITION TO KYC MODAL POPUP
             $('#btnContractAccept, #btnAcceptContract').on('click', function(e) {
                 e.preventDefault();
                 if (!contractScrolledToBottom) {

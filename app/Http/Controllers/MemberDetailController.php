@@ -216,49 +216,54 @@ class MemberDetailController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        // 1. Verify Verification OTP (sent to registrant's email)
-        $otp = $request->post('distributor_otp') ?: ($request->post('registration_otp') ?: $request->post('otp'));
-        $sessionOtp = session()->get('registration_otp') ?: session()->get('distributor_otp');
-        $sessionEmail = session()->get('registration_otp_email');
-        $otpTime = session()->get('registration_otp_time') ?: session()->get('distributor_otp_time');
+        // Check if KYC was skipped
+        $isKycSkipped = $request->boolean('skip_kyc') || $request->post('skip_kyc') === '1' || $request->input('skip_kyc') == '1' || $request->filled('skip_kyc');
 
-        if (empty($otp)) {
-            if ($request->ajax() || $request->expectsJson()) {
-                return response()->json(['success' => false, 'message' => 'Please enter the verification OTP sent to your registered email.'], 422);
+        if (!$isKycSkipped) {
+            // 1. Verify Verification OTP (sent to registrant's email) only when KYC is required
+            $otp = $request->post('distributor_otp') ?: ($request->post('registration_otp') ?: $request->post('otp'));
+            $sessionOtp = session()->get('registration_otp') ?: session()->get('distributor_otp');
+            $sessionEmail = session()->get('registration_otp_email');
+            $otpTime = session()->get('registration_otp_time') ?: session()->get('distributor_otp_time');
+
+            if (empty($otp)) {
+                if ($request->ajax() || $request->expectsJson()) {
+                    return response()->json(['success' => false, 'message' => 'Please enter the verification OTP sent to your registered email.'], 422);
+                }
+                session()->flash('failedMsg', 'Please enter the verification OTP sent to your registered email.');
+                return redirect()->back()->withInput();
             }
-            session()->flash('failedMsg', 'Please enter the verification OTP sent to your registered email.');
-            return redirect()->back()->withInput();
-        }
 
-        if (empty($sessionOtp) || ($sessionEmail && $sessionEmail != $request->post('email'))) {
-            if ($request->ajax() || $request->expectsJson()) {
-                return response()->json(['success' => false, 'message' => 'OTP has expired or was not requested. Please request a new OTP.'], 422);
+            if (empty($sessionOtp) || ($sessionEmail && $sessionEmail != $request->post('email'))) {
+                if ($request->ajax() || $request->expectsJson()) {
+                    return response()->json(['success' => false, 'message' => 'OTP has expired or was not requested. Please request a new OTP.'], 422);
+                }
+                session()->flash('failedMsg', 'OTP has expired or was not requested. Please request a new OTP.');
+                return redirect()->back()->withInput();
             }
-            session()->flash('failedMsg', 'OTP has expired or was not requested. Please request a new OTP.');
-            return redirect()->back()->withInput();
-        }
 
-        // Expire after 10 minutes (600 seconds)
-        if ($otpTime && now()->diffInSeconds($otpTime) > 600) {
+            // Expire after 10 minutes (600 seconds)
+            if ($otpTime && now()->diffInSeconds($otpTime) > 600) {
+                session()->forget(['registration_otp', 'registration_otp_email', 'registration_otp_time', 'distributor_otp', 'distributor_otp_sponsor', 'distributor_otp_time']);
+                if ($request->ajax() || $request->expectsJson()) {
+                    return response()->json(['success' => false, 'message' => 'OTP has expired. Please request a new OTP.'], 422);
+                }
+                session()->flash('failedMsg', 'OTP has expired. Please request a new OTP.');
+                return redirect()->back()->withInput();
+            }
+
+            // Verify OTP value match
+            if (trim((string)$otp) !== trim((string)$sessionOtp)) {
+                if ($request->ajax() || $request->expectsJson()) {
+                    return response()->json(['success' => false, 'message' => 'Entered OTP does not match. Please check and try again.'], 422);
+                }
+                session()->flash('failedMsg', 'Entered OTP does not match. Please check and try again.');
+                return redirect()->back()->withInput();
+            }
+
+            // OTP verified successfully: invalidate immediately to prevent reuse
             session()->forget(['registration_otp', 'registration_otp_email', 'registration_otp_time', 'distributor_otp', 'distributor_otp_sponsor', 'distributor_otp_time']);
-            if ($request->ajax() || $request->expectsJson()) {
-                return response()->json(['success' => false, 'message' => 'OTP has expired. Please request a new OTP.'], 422);
-            }
-            session()->flash('failedMsg', 'OTP has expired. Please request a new OTP.');
-            return redirect()->back()->withInput();
         }
-
-        // Verify OTP value match
-        if (trim((string)$otp) !== trim((string)$sessionOtp)) {
-            if ($request->ajax() || $request->expectsJson()) {
-                return response()->json(['success' => false, 'message' => 'Entered OTP does not match. Please check and try again.'], 422);
-            }
-            session()->flash('failedMsg', 'Entered OTP does not match. Please check and try again.');
-            return redirect()->back()->withInput();
-        }
-
-        // OTP verified successfully: invalidate immediately to prevent reuse
-        session()->forget(['registration_otp', 'registration_otp_email', 'registration_otp_time', 'distributor_otp', 'distributor_otp_sponsor', 'distributor_otp_time']);
 
         // 2. Validate sponsor, email, and mobile uniqueness
         $sponsorExists = MemberDetail::where('memberid', $request->post('sponsor'))->exists();
@@ -305,10 +310,11 @@ class MemberDetailController extends Controller
         $var->country = $country;
         $var->position = $position;
 
+        $var->kyc_status = 'Unverified';
         $var->save();
 
-        // Connect to existing member panel profile section KYC backend function (memKyc)
-        if ($request->filled('bank') || $request->filled('adhar_no') || $request->hasFile('pan_image')) {
+        // Connect to existing member panel profile section KYC backend function (memKyc) only if KYC not skipped
+        if (!$isKycSkipped && ($request->filled('bank') || $request->filled('adhar_no') || $request->hasFile('pan_image'))) {
             $request->request->set('id', $var->id);
             $request->merge(['id' => $var->id]);
             $this->memKyc($request);
