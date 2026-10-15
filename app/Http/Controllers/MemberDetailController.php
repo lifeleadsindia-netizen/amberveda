@@ -12,6 +12,7 @@ use App\Models\IndiaState;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Log;
 use App\Services\SmsService;
 
 class MemberDetailController extends Controller
@@ -126,20 +127,20 @@ class MemberDetailController extends Controller
                     $message->to($email);
                     $message->subject('AMBER VEDA - Registration Verification OTP');
                 });
-                \Log::info("[EmailService] Registration OTP dispatched to email", [
+                Log::info("[EmailService] Registration OTP dispatched to email", [
                     'email' => $email,
                     'otp' => $otp,
                     'timestamp' => now()->toDateTimeString()
                 ]);
             } catch (\Exception $e) {
-                \Log::warning("[EmailService] SMTP Dispatch notice", [
+                Log::warning("[EmailService] SMTP Dispatch notice", [
                     'email' => $email,
                     'otp' => $otp,
                     'error' => $e->getMessage()
                 ]);
             }
         } else {
-            \Log::info("[DemoOtpMode] Registration Demo OTP generated (Email delivery bypassed)", [
+            Log::info("[DemoOtpMode] Registration Demo OTP generated (Email delivery bypassed)", [
                 'email' => $email,
                 'otp' => $otp,
                 'timestamp' => now()->toDateTimeString()
@@ -212,7 +213,7 @@ class MemberDetailController extends Controller
             $smsResult = SmsService::sendDistributorOtp($distributorMobile, $otp, $distributor->name);
             $smsStatus = $smsResult['status'] ?? 'sent';
         } else {
-            \Log::info("[DemoOtpMode] Distributor Mobile Demo OTP generated (SMS bypassed)", [
+            Log::info("[DemoOtpMode] Distributor Mobile Demo OTP generated (SMS bypassed)", [
                 'mobile' => $distributorMobile,
                 'otp' => $otp,
                 'timestamp' => now()->toDateTimeString()
@@ -247,7 +248,7 @@ class MemberDetailController extends Controller
             'name' => 'required|string',
             'position' => 'required',
             'email' => 'required|email',
-            'mobile' => 'required|digits_between:10,15',
+            'mobile' => 'required|numeric|digits_between:10,15',
             'country' => 'required',
             'password' => 'required|min:6',
         ]);

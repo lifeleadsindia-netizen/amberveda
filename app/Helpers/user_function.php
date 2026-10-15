@@ -19,6 +19,7 @@ use App\Models\SalesBonusIncome;
 use App\Models\WalletTransfer;
 use App\Models\FranchiseDetail;
 use App\Models\IssueInventorie;
+use App\Models\MentorshipIncome;
 use App\Models\WithdrawalRequest;
 
 function userId()
@@ -212,6 +213,11 @@ function totalRewardIncome($memberid)
 function memTotTravelFund($memberid)
 {
     $var = TravelFundDetail::where('memberid', $memberid)->count();
+    return $var;
+}
+function memTotMentorshipIncome($memberid)
+{
+    $var = MentorshipIncome::where('memberid', $memberid)->sum('amount');
     return $var;
 }
 function totalBonusLvlIncome($memberid)

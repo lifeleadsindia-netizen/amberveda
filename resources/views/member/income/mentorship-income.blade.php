@@ -59,7 +59,7 @@
                                         <td>{{ !empty($list['created_at']) ? date('d-m-Y h:i A', strtotime($list['created_at'])) : 'N/A' }}</td>
                                         <td>{{ $list['memberid'] }}</td>
                                         <td>{{ $list['level'] }}</td>
-                                        <td>₹{{ number_format((float)($list['daily_team_biz'] ?? 0), 2) }}</td>
+                                        <td>₹{{ number_format((float)($list['monthly_biz'] ?? 0), 2) }}</td>
                                         <td>{{ $list['rate'] }}%</td>
                                         <td>₹{{ number_format((float)($list['amount'] ?? 0), 2) }}</td>
                                         <td>
