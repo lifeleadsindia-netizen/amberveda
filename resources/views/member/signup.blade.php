@@ -791,7 +791,7 @@
         <div class="space-ring ring-one"></div>
         <div class="space-planet planet-two"></div>
         <div class="space-ring ring-two"></div>
-        <div class="space-planet planet-three"></div><i class="fa-solid fa-user-astronaut space-astronaut"></i>
+        <div class="space-planet planet-three"></div>
     </div>
     <div class="space-particles">
         <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>

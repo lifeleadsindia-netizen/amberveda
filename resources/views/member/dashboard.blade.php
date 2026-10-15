@@ -1005,13 +1005,13 @@
                 <!--        <p class="signal-value">₹ {{ number_format((float) levelIncomeSum($memberId), 2) }}</p>-->
                 <!--    </div>-->
                 <!--</div>-->
-                <div class="col-md-6 col-xl-6">
+                <div class="col-md-6 col-xl-4">
                     <div class="signal-card">
                         <div class="signal-title">Binary Matching Income</div>
                         <p class="signal-value">₹ {{ number_format((float) binaryIncomeSum($memberId), 2) }}</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-6">
+                <div class="col-md-6 col-xl-4">
                     <div class="signal-card">
                         <div class="signal-title">Sales Bonus Income</div>
                         <p class="signal-value">₹ {{ number_format((float) salesBonusIncomeSum($memberId), 2) }}</p>
@@ -1020,19 +1020,25 @@
                 <div class="col-md-6 col-xl-4">
                     <div class="signal-card">
                         <div class="signal-title">Club Income</div>
-                        <p class="signal-value">₹ {{ number_format((float) clubIncomeSum($memberId)) }}</p>
+                        <p class="signal-value">₹ {{ number_format((float) clubIncomeSum($memberId), 2) }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="signal-card">
                         <div class="signal-title">Total Reward</div>
-                        <p class="signal-value">{{ totalRewardIncome($data['memberid']) }}</p>
+                        <p class="signal-value">₹ {{ number_format((float) totalRewardIncome($data['memberid']), 2) }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div class="signal-card">
                         <div class="signal-title"> Total Travel Fund</div>
-                        <p class="signal-value">{{ memTotTravelFund($data['memberid']) }}</p>
+                        <p class="signal-value">₹ {{ number_format((float) memTotTravelFund($data['memberid']), 2) }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-4">
+                    <div class="signal-card">
+                        <div class="signal-title"> Total mentorship Income</div>
+                        <p class="signal-value">₹ {{ number_format((float) memTotMentorshipIncome($data['memberid']), 2) }}</p>
                     </div>
                 </div>
             </div>
