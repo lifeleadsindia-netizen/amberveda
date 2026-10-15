@@ -48,12 +48,12 @@
                                     <th>{{ __('Date') }}</th>
                                     <th>{{ __('Member ID') }}</th>
                                     <th>{{ __('Generation / Level') }}</th>
-                                    <!-- <th>{{ __('Downline ID') }}</th>
-                                        <th>{{ __('Downline Name') }}</th> -->
-                                    <th>{{ __('Matching Biz') }}</th>
-                                    <th>{{ __('Rate (%)') }}</th>
+                                    <th>{{ __('Total Matching') }}</th>
+                                    <th>{{ __('Rate') }}</th>
+                                    <th>{{ __('Share') }}</th>
+                                    <th>{{ __('Total Members') }}</th>
                                     <th>{{ __('Income Amount') }}</th>
-                                    <!-- <th>{{ __('Type') }}</th> -->
+                                    <th>{{ __('Downline') }}</th>
                                     <th>{{ __('Status') }}</th>
                                 </tr>
                             </thead>
@@ -65,12 +65,12 @@
                                     <td>{{ !empty($list['created_at']) ? date('d-m-Y h:i A', strtotime($list['created_at'])) : 'N/A' }}</td>
                                     <td>{{ $list['memberid'] }}</td>
                                     <td>{{ $list['level'] }}</td>
-                                    <!-- <td>{{ $list['level_id'] }}</td> -->
-                                    <!-- <td>{{ $list['name'] }}</td> -->
-                                    <td>₹{{ number_format((float)($list['daily_team_biz'] ?? 0), 2) }}</td>
+                                    <td>{{ $list['total_matching'] }}</td>
                                     <td>{{ $list['rate'] }}%</td>
+                                    <td>{{ $list['share'] }}</td>
+                                    <td>{{ $list['total_members'] }}</td>
                                     <td>₹{{ number_format((float)($list['amount'] ?? 0), 2) }}</td>
-                                    <!-- <td>{{ $list['type'] }}</td> -->
+                                    <td>{{ $list['downline'] }}</td>
                                     <td>
                                         @if ($list['status'] == 'Unpaid')
                                         <span class="badge badge-danger">{{ $list['status'] }}</span>
