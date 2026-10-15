@@ -64,13 +64,13 @@
                                     <td>{{ $i }}</td>
                                     <td>{{ !empty($list['created_at']) ? date('d-m-Y h:i A', strtotime($list['created_at'])) : 'N/A' }}</td>
                                     <td>{{ $list['memberid'] }}</td>
-                                    <td>{{ $list['level'] }}</td>
-                                    <td>{{ $list['total_matching'] }}</td>
+                                    <td class="text-center">{{ $list['level'] }}</td>
+                                    <td>₹ {{ $list['total_matching'] }}</td>
                                     <td>{{ $list['rate'] }}%</td>
-                                    <td>{{ $list['share'] }}</td>
-                                    <td>{{ $list['total_members'] }}</td>
+                                    <td>₹ {{ $list['share'] }}</td>
+                                    <td class="text-center">{{ $list['total_members'] }}</td>
                                     <td>₹{{ number_format((float)($list['amount'] ?? 0), 2) }}</td>
-                                    <td>{{ $list['downline'] }}</td>
+                                    <td class="text-center">{{ $list['downline'] }}</td>
                                     <td>
                                         @if ($list['status'] == 'Unpaid')
                                         <span class="badge badge-danger">{{ $list['status'] }}</span>
