@@ -407,7 +407,7 @@
             <!--        </div>-->
             <!--    </div>-->
             <!--</div>-->
-            <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="col-lg-6 col-md-4 col-sm-12">
                 <div class="card income-stat-card income-card-reward">
                     <div class="card-block py-3">
                         <div class="d-flex justify-content-between align-items-center">
@@ -422,7 +422,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="col-lg-6 col-md-4 col-sm-12">
                 <div class="card income-stat-card income-card-level">
                     <div class="card-block py-3">
                         <div class="d-flex justify-content-between align-items-center">
@@ -437,13 +437,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="col-lg-6 col-md-4 col-sm-12">
                 <div class="card income-stat-card income-card-level">
                     <div class="card-block py-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <p class="income-label mb-1">Sales Bonus Income</p>
                                 <h3 class="income-value mb-0">₹ {{ number_format(totalSalesBonusIn(), 2) }}</h3>
+                            </div>
+                            <div class="income-icon">
+                                <i class="ik ik-zap"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="card income-stat-card income-card-level">
+                    <div class="card-block py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="income-label mb-1">Mentorship Income</p>
+                                <h3 class="income-value mb-0">₹ {{ number_format(totalMentorshipIn(), 2) }}</h3>
                             </div>
                             <div class="income-icon">
                                 <i class="ik ik-zap"></i>

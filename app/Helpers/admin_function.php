@@ -15,6 +15,7 @@ use App\Models\StakingIncome;
 use App\Models\SalesBonusIncome;
 use App\Models\BinaryIncome;
 use App\Models\AssuredBonus;
+use App\Models\MentorshipIncome;
 use App\Models\WithdrawalRequest;
 
 function totalMembersadmin()
@@ -130,6 +131,12 @@ function totalSalesBonusIn()
 function totalClubIn()
 {
     $var = ClubIncome::where('status', 'Paid')->sum('amount');
+    return $var;
+}
+
+function totalMentorshipIn()
+{
+    $var = MentorshipIncome::where('status', 'Paid')->sum('amount');
     return $var;
 }
 
