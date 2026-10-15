@@ -26,9 +26,15 @@ class BinaryIncomedis extends Command
      * Execute the console command.
      */
     public function handle()
-     {
+    {
         $members = MemberDetail::where([['status', 'Active'], ['left_balance', '>=', 30], ['right_balance', '>=', 30]])->get();
         foreach ($members as $member) {
+            $selfBiz = $member['self_biz'];
+
+            if ($selfBiz < 3000) {
+                continue;
+            }
+
             $left = $member['left_balance'];
             $right = $member['right_balance'];
 
@@ -53,17 +59,59 @@ class BinaryIncomedis extends Command
                 $memberid = $member['memberid'];
 
                 if ($matching > 0) {
+
                     $rate = 10;
 
                     $c_amount = $rate * $matching;
 
-                    if ($c_amount > 3000) {
-                        $amount = 3000;
-                        $flushout = $c_amount - 3000;
+                    if ($selfBiz >= 3000 || $selfBiz < 5000) {
+                        if ($c_amount > 3000) {
+                            $amount = 30000;
+                            $flushout = $c_amount - 30000;
+                        } else {
+                            $amount = $c_amount;
+                            $flushout = 0;
+                        }
+                    } elseif ($selfBiz >= 5000 || $selfBiz < 7500) {
+                        if ($c_amount > 60000) {
+                            $amount = 60000;
+                            $flushout = $c_amount - 60000;
+                        } else {
+                            $amount = $c_amount;
+                            $flushout = 0;
+                        }
+                    } elseif ($selfBiz >= 7500 || $selfBiz < 10000) {
+                        if ($c_amount > 100000) {
+                            $amount = 100000;
+                            $flushout = $c_amount - 100000;
+                        } else {
+                            $amount = $c_amount;
+                            $flushout = 0;
+                        }
+                    } elseif ($selfBiz >= 10000) {
+                        if ($c_amount > 150000) {
+                            $amount = 150000;
+                            $flushout = $c_amount - 150000;
+                        } else {
+                            $amount = $c_amount;
+                            $flushout = 0;
+                        }
                     } else {
-                        $amount = $c_amount;
+                        $amount = 0;
                         $flushout = 0;
                     }
+
+                    // $rate = 10;
+
+                    // $c_amount = $rate * $matching;
+
+                    // if ($c_amount > 3000) {
+                    //     $amount = 3000;
+                    //     $flushout = $c_amount - 3000;
+                    // } else {
+                    //     $amount = $c_amount;
+                    //     $flushout = 0;
+                    // }
 
                     $frd_left = checkForwarded($memberid, 'Left');
                     $frd_right =  checkForwarded($memberid, 'Right');
