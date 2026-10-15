@@ -1110,10 +1110,10 @@ class MemberDetailController extends Controller
                 'id' => 1,
                 'order' => 1,
                 'slug' => 'business-plan',
-                'title' => 'Business Plan',
+                'title' => 'BUSINESS PLAN',
                 'description' => 'Comprehensive Amberveda Wellness business plan, compensation structure, and company profile.',
                 'file_name' => 'business-plan.pdf',
-                'download_name' => 'Amberveda-Business-Plan.pdf',
+                'download_name' => 'BUSINESS-PLAN-AMBERVEDA.pdf',
                 'file_type' => 'PDF',
                 'icon' => 'mdi-file-pdf-box',
                 'icon_color' => '#dc2626',
@@ -1123,7 +1123,7 @@ class MemberDetailController extends Controller
                 'id' => 2,
                 'order' => 2,
                 'slug' => 'direct-seller-contract',
-                'title' => 'Direct Seller Contract',
+                'title' => 'DIRECT SELLER CONTRACT',
                 'description' => 'Official Direct Seller E-Contract Agreement governing direct seller terms and compliance.',
                 'file_name' => 'direct-seller-contract.pdf',
                 'download_name' => 'Direct-Seller-Contract-Agreement.pdf',
@@ -1136,7 +1136,7 @@ class MemberDetailController extends Controller
                 'id' => 3,
                 'order' => 3,
                 'slug' => 'product-brochure',
-                'title' => 'Product Brochure',
+                'title' => 'PRODUCT BROCHURE',
                 'description' => 'Complete catalog and product overview highlighting high-rated Ayurvedic wellness formulations.',
                 'file_name' => 'product-brochure.pdf',
                 'download_name' => 'Amberveda-Product-Brochure.pdf',
@@ -1149,10 +1149,10 @@ class MemberDetailController extends Controller
                 'id' => 4,
                 'order' => 4,
                 'slug' => 'order-form-consumer',
-                'title' => 'Order Form Consumer',
+                'title' => 'ORDER FORM CONSUMER',
                 'description' => 'Standard retail consumer purchase order form for direct product ordering.',
-                'file_name' => null,
-                'download_name' => null,
+                'file_name' => 'order-form-consumer.pdf',
+                'download_name' => 'Purchase-Order-Form-By-Consumer.pdf',
                 'file_type' => 'PDF',
                 'icon' => 'mdi-file-table-outline',
                 'icon_color' => '#d97706',
@@ -1162,10 +1162,10 @@ class MemberDetailController extends Controller
                 'id' => 5,
                 'order' => 5,
                 'slug' => 'order-form-direct-seller',
-                'title' => 'Order Form Direct Seller',
+                'title' => 'ORDER FORM DIRECT SELLER',
                 'description' => 'Official direct seller replenishment and distribution product order form.',
-                'file_name' => null,
-                'download_name' => null,
+                'file_name' => 'order-form-direct-seller.pdf',
+                'download_name' => 'Purchase-Order-Form-Direct-Seller.pdf',
                 'file_type' => 'PDF',
                 'icon' => 'mdi-clipboard-text-outline',
                 'icon_color' => '#7c3aed',
@@ -1175,20 +1175,20 @@ class MemberDetailController extends Controller
                 'id' => 6,
                 'order' => 6,
                 'slug' => 'price-list-with-sp',
-                'title' => 'Price List with SP',
+                'title' => 'PRICE LIST WITH SP',
                 'description' => 'Official price schedule detailing MRP, DP, SP value, and GST breakdown for all products.',
                 'file_name' => null,
                 'download_name' => null,
                 'file_type' => 'PDF',
                 'icon' => 'mdi-tag-text-outline',
-               'icon_color' => '#0d9488',
+                'icon_color' => '#0d9488',
                 'badge_color' => '#f0fdfa',
             ],
             [
                 'id' => 7,
                 'order' => 7,
                 'slug' => 'any-other-product-leaflet-if-any',
-                'title' => 'Any Other Product Leaflet If Any',
+                'title' => 'ANY OTHER PRODUCT LEAFLET IF ANY',
                 'description' => 'Supplementary marketing leaflets, product monographs, and promotional literature.',
                 'file_name' => null,
                 'download_name' => null,
@@ -1259,8 +1259,16 @@ class MemberDetailController extends Controller
             return redirect()->back();
         }
 
+        $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+        $mime = 'application/pdf';
+        if ($extension === 'docx') {
+            $mime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+        } elseif ($extension === 'doc') {
+            $mime = 'application/msword';
+        }
+
         $headers = [
-            'Content-Type' => 'application/pdf',
+            'Content-Type' => $mime,
             'Content-Disposition' => 'inline; filename="' . ($target['download_name'] ?? $target['file_name']) . '"',
         ];
 
