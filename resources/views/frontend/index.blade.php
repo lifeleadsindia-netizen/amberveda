@@ -1014,6 +1014,37 @@
             color: var(--gold-dark);
         }
 
+        .about-mgmt-bio {
+            padding-top: 16px;
+            border-top: 1px solid rgba(201, 168, 76, 0.16);
+            margin-top: 6px;
+        }
+
+        .about-mgmt-bio p {
+            font-size: 14px;
+            line-height: 1.68;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .about-mgmt-bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-mgmt-doc-btn {
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 767px) {
+            .about-mgmt-doc-btn {
+                width: 100%;
+            }
+            .about-mgmt-doc-btn .btn-doc-view {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
         /* BUSINESS PLAN (Phase 6) */
         .about-bp-section {
             position: relative;
@@ -2577,6 +2608,12 @@
                 padding: 22px 18px;
             }
 
+            .about-mgmt-bio p {
+                font-size: 13.5px;
+                line-height: 1.62;
+                margin-bottom: 12px;
+            }
+
             /* About Legal, Certificates & Compliance Tabs & Cards (Mobile Responsive) */
             .about-legal-section > .d-flex {
                 flex-direction: column;
@@ -3560,8 +3597,32 @@
                 </div>
 
                 <div class="row g-4 align-items-stretch">
-                    <!-- 1. DIRECTOR PROFILE -->
-                    <div class="col-lg-6 col-md-6">
+                    <!-- 1. DIRECTOR PROFILE: Er. Ankit Yadav -->
+                    <div class="col-lg-6 col-12">
+                        <div class="about-mgmt-card anim">
+                            <div>
+                                <div class="about-mgmt-header">
+                                    <div class="about-mgmt-icon" style="border-radius: 50%; overflow: hidden; padding: 0; width: 54px; height: 54px; border: 2px solid var(--gold); box-shadow: 0 4px 12px rgba(201, 168, 76, 0.22);">
+                                        <img src="{{ asset('front_assets/assets/img/ankit_yadav.jpg') }}" alt="Er. Ankit Yadav" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%; border-radius: 50%; display: block;">
+                                    </div>
+                                    <div>
+                                        <span class="about-mgmt-role">Director Profile</span>
+                                        <h4 class="about-mgmt-name">Er. Ankit Yadav</h4>
+                                        <p class="about-mgmt-desc">Managing Director &amp; CEO | AmberVeda Wellness Pvt. Ltd.</p>
+                                    </div>
+                                </div>
+                                <div class="about-mgmt-bio">
+                                    <p>Er. Ankit Yadav is the Managing Director and Chief Executive Officer (CEO) of AmberVeda Wellness Pvt. Ltd. He holds a degree in Chemical Engineering from the University of Mumbai and brings an engineering-oriented approach to leadership, innovation, and business development.</p>
+                                    <p>With a clear vision to build a trusted and growth-oriented organization, he is committed to advancing wellness and agricultural solutions while creating meaningful business opportunities. Under his leadership, AmberVeda aims to focus on product quality, customer satisfaction, professional development, and sustainable business growth.</p>
+                                    <p>He believes that integrity, teamwork, continuous learning, and consistent efforts are the foundations of long-term success. Through his leadership, he aspires to establish AmberVeda as a respected brand that creates value for its customers, business associates, and the wider community.</p>
+                                    <p>His vision is to empower people, promote quality-driven products, and build a sustainable organization that grows through trust, innovation, and shared success.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. DIRECTOR PROFILE: Mrs. Parul Yadav -->
+                    <div class="col-lg-6 col-12">
                         <div class="about-mgmt-card anim">
                             <div>
                                 <div class="about-mgmt-header">
@@ -3570,25 +3631,21 @@
                                     </div>
                                     <div>
                                         <span class="about-mgmt-role">Director Profile</span>
-                                        <h4 class="about-mgmt-name">Ankit Yadav &amp; Parul Yadav</h4>
-                                        <p class="about-mgmt-desc">Directors, Amberveda Wellness Private Limited</p>
+                                        <h4 class="about-mgmt-name">Mrs. Parul Yadav</h4>
+                                        <p class="about-mgmt-desc">Managing Director | AmberVeda Wellness Private Limited</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="about-mgmt-contacts">
-                                <div class="about-mgmt-citem">
-                                    <i class="fas fa-phone-alt"></i>
-                                    <span>Phone: <a href="tel:+919259234438">+91 9259234438</a></span>
-                                </div>
-                                <div class="about-mgmt-citem">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>Email: <a href="mailto:info@ambervedawellness.com">info@ambervedawellness.com</a></span>
+                                <div class="about-mgmt-bio">
+                                    <p>Mrs. Parul Yadav serves as the Managing Director of AmberVeda Wellness Private Limited, bringing a strong academic foundation in finance, international trade, and business management. She holds a Bachelor of Commerce (B.Com.) in Finance and International Trade from the Delhi University and a Master of Commerce (M.Com.) in International Trade and Business from the Delhi University.</p>
+                                    <p>Her educational background provides a valuable perspective on financial planning, business strategy, and international business practices. As a member of the company’s leadership, she is committed to strengthening operational efficiency, promoting responsible financial management, and supporting the organization’s long-term growth.</p>
+                                    <p>With a vision for sustainable development and business excellence, she aims to contribute to building a transparent, professionally managed, and growth-oriented organization in the wellness and agricultural sectors.</p>
+                                    <p>Her vision is to drive strategic growth, encourage business innovation, and help establish AmberVeda as a trusted brand through financial discipline, integrity, and a commitment to lasting value creation.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 2. NODAL OFFICER -->
+                    <!-- 3. NODAL OFFICER -->
                     <div class="col-lg-6 col-md-6">
                         <div class="about-mgmt-card anim">
                             <div>
@@ -3611,34 +3668,6 @@
                                 <div class="about-mgmt-citem">
                                     <i class="fas fa-envelope"></i>
                                     <span>Email: <a href="mailto:nodal@ambervedawellness.com">nodal@ambervedawellness.com</a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3. GRIEVANCE OFFICER -->
-                    <div class="col-lg-6 col-md-6">
-                        <div class="about-mgmt-card anim">
-                            <div>
-                                <div class="about-mgmt-header">
-                                    <div class="about-mgmt-icon">
-                                        <i class="fas fa-headset"></i>
-                                    </div>
-                                    <div>
-                                        <span class="about-mgmt-role">Grievance Officer</span>
-                                        <h4 class="about-mgmt-name">Grievance Redressal Officer</h4>
-                                        <p class="about-mgmt-desc">Consumer &amp; Direct Seller Grievance Redressal Cell</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="about-mgmt-contacts">
-                                <div class="about-mgmt-citem">
-                                    <i class="fas fa-phone-alt"></i>
-                                    <span>Phone: <a href="tel:+919917566662">+91 9917566662</a> / <a href="tel:+919259234438">+91 9259234438</a></span>
-                                </div>
-                                <div class="about-mgmt-citem">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>Email: <a href="mailto:grievance@ambervedawellness.com">grievance@ambervedawellness.com</a> / <a href="mailto:care@ambervedawellness.com">care@ambervedawellness.com</a></span>
                                 </div>
                             </div>
                         </div>
@@ -3667,6 +3696,43 @@
                                 <div class="about-mgmt-citem">
                                     <i class="fas fa-envelope"></i>
                                     <span>Email: <a href="mailto:accounts@ambervedawellness.com">accounts@ambervedawellness.com</a> / <a href="mailto:info@ambervedawellness.com">info@ambervedawellness.com</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. GRIEVANCE REDRESSAL OFFICER -->
+                    <div class="col-12">
+                        <div class="about-mgmt-card anim">
+                            <div>
+                                <div class="about-mgmt-header">
+                                    <div class="about-mgmt-icon">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <div>
+                                        <span class="about-mgmt-role">Grievance Officer</span>
+                                        <h4 class="about-mgmt-name">Grievance Redressal Officer</h4>
+                                        <p class="about-mgmt-desc">Consumer &amp; Direct Seller Grievance Redressal Cell</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 pt-3" style="border-top: 1px solid rgba(201, 168, 76, 0.15);">
+                                <div class="about-mgmt-contacts" style="border-top: none; padding-top: 0;">
+                                    <div class="about-mgmt-citem">
+                                        <i class="fas fa-phone-alt"></i>
+                                        <span>Phone: <a href="tel:+919917566662">+91 9917566662</a> / <a href="tel:+919259234438">+91 9259234438</a></span>
+                                    </div>
+                                    <div class="about-mgmt-citem">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>Email: <a href="mailto:grievance@ambervedawellness.com">grievance@ambervedawellness.com</a> / <a href="mailto:care@ambervedawellness.com">care@ambervedawellness.com</a></span>
+                                    </div>
+                                </div>
+                                <div class="about-mgmt-doc-btn">
+                                    <a href="{{ asset('uploads/documents/grievance-redressal-mechanism.pdf') }}" target="_blank" rel="noopener noreferrer" class="btn-doc-view">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>View Grievance Redressal Mechanism Document</span>
+                                        <i class="fas fa-external-link-alt ms-1" style="font-size: 11px;"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -4406,14 +4472,16 @@
                             <div class="legal-doc-left">
                                 <div class="legal-doc-num">01</div>
                                 <div class="legal-doc-info">
-                                    <h5 class="legal-doc-title">ISO Certificate</h5>
-                                    <p class="legal-doc-sub">International Organization for Standardization (ISO) Certification</p>
+                                    <h5 class="legal-doc-title">
+                                        <a href="{{ asset('uploads/documents/iso-9001-2015-certificate.jpg') }}" target="_blank" rel="noopener noreferrer">ISO 9001:2015 Quality Management System Certificate</a>
+                                    </h5>
+                                    <p class="legal-doc-sub">Certificate No: QMS/0A82/1026 &bull; International Organization for Standardization (ISO 9001:2015) &bull; Quality Control Certification</p>
                                 </div>
                             </div>
                             <div class="legal-doc-action">
-                                <span class="badge-doc-unavailable">
-                                    <i class="fas fa-info-circle"></i> Document not available
-                                </span>
+                                <a href="{{ asset('uploads/documents/iso-9001-2015-certificate.jpg') }}" target="_blank" rel="noopener noreferrer" class="btn-doc-view" title="View ISO 9001:2015 Certificate">
+                                    <i class="fas fa-certificate"></i> View Document <i class="fas fa-external-link-alt ms-1"></i>
+                                </a>
                             </div>
                         </div>
 

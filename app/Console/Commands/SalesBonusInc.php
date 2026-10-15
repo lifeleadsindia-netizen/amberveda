@@ -26,7 +26,7 @@ class SalesBonusInc extends Command
      * Execute the console command.
      */
     public function handle()
-     {
+    {
         $members = MemberDetail::where('status', 'Active')->get();
 
         $levels = [
@@ -56,6 +56,11 @@ class SalesBonusInc extends Command
             $left = $member->left_amount;
             $right = $member->right_amount;
             $rank = $member->rank;
+            $selfBiz = $member['self_biz'];
+
+            if ($selfBiz < 3000) {
+                continue;
+            }
 
             if ($left == 0 || $right == 0) {
                 continue;
