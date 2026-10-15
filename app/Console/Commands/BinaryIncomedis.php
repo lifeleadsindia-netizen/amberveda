@@ -64,7 +64,7 @@ class BinaryIncomedis extends Command
 
                     $c_amount = $rate * $matching;
 
-                    if ($selfBiz >= 3000 || $selfBiz < 5000) {
+                    if ($selfBiz >= 3000 && $selfBiz < 5000) {
                         if ($c_amount > 3000) {
                             $amount = 30000;
                             $flushout = $c_amount - 30000;
@@ -72,7 +72,7 @@ class BinaryIncomedis extends Command
                             $amount = $c_amount;
                             $flushout = 0;
                         }
-                    } elseif ($selfBiz >= 5000 || $selfBiz < 7500) {
+                    } elseif ($selfBiz >= 5000 && $selfBiz < 7500) {
                         if ($c_amount > 60000) {
                             $amount = 60000;
                             $flushout = $c_amount - 60000;
@@ -80,7 +80,7 @@ class BinaryIncomedis extends Command
                             $amount = $c_amount;
                             $flushout = 0;
                         }
-                    } elseif ($selfBiz >= 7500 || $selfBiz < 10000) {
+                    } elseif ($selfBiz >= 7500 && $selfBiz < 10000) {
                         if ($c_amount > 100000) {
                             $amount = 100000;
                             $flushout = $c_amount - 100000;
