@@ -144,12 +144,12 @@
 
                                     <!-- Product description -->
                                     <div class="mt-4 price product-pricing">
-                                        <span class="old">MRP ₹{{ number_format($pro_data['product_price'], 0) }}</span>
+                                        <span class="old">MRP ₹{{ number_format($pro_data['product_price'], 2) }}</span>
                                         <h4 class="font-14">Price:</h4>
                                         {{-- <h3 class="old">₹{{ number_format($pro_data['price'] + 1000, 0) }}</h3> --}}
-                                        <h3 class="new">₹{{ number_format($pro_data['distributor_price'], 0) }}  <span class="tax-info">(INCL OF ALL TAXES)</span></h3>
+                                        <h3 class="new">₹{{ number_format($pro_data['distributor_price'], 2) }}  <span class="tax-info">(INCL OF ALL TAXES)</span></h3>
                                         <hr>
-                                       <p class="text-muted" >COURIER CHARGES EXTRA AS APPLICABLE</p>
+                                       <p class="text-muted" >COURIER CHARGES EXTRA AS APPLICABLE.</p>
                                     </div>
 
                                     <!-- Quantity -->
