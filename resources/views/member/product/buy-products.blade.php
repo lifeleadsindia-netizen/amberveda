@@ -307,6 +307,7 @@
                                 <div class="price">
                                     <span class="old">MRP ₹{{ number_format($item['product_price'], 0) }}</span>
                                     <span class="new">DP ₹{{ number_format($item['distributor_price'], 0) }}</span>
+                                    <p class="tax-info">(INCL OF ALL TAXES)</p>
                                 </div>
                                 {{-- <form action="{{ route('addToCart') }}" method="POST"> --}}
                                 @csrf
