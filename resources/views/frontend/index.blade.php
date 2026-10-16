@@ -3523,7 +3523,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#about') : '#about' }}">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#products') : '#products' }}">Products</a></li>
                     {{-- <li class="nav-item"><a class="nav-link" href="#mission">Mission &amp; Vision</a></li> --}}
-                    <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#refer') : '#refer' }}">Refer &amp; Earn</a></li>
+                    {{-- <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#refer') : '#refer' }}">Refer &amp; Earn</a></li> --}}
                     <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#contact') : '#contact' }}">Contact</a></li>
                     
                 </ul>
@@ -4988,7 +4988,7 @@
                 @endforelse
             </div>
 
-            <!-- Two Pillars Category Overview -->
+            {{-- <!-- Two Pillars Category Overview -->
             <div class="mt-5 pt-4 border-top" style="border-color: rgba(201, 168, 76, 0.2) !important;">
                 <div class="text-center mb-4">
                     <span class="sec-label">Our Core Domains</span>
@@ -5078,7 +5078,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 
@@ -5630,7 +5630,7 @@
                         <li><a href="{{ $activePolicyData ? url('/#about') : '#about' }}"><i class="fas fa-chevron-right"></i> About Us</a></li>
                         <li><a href="{{ $activePolicyData ? url('/#products') : '#products' }}"><i class="fas fa-chevron-right"></i> Products</a></li>
                         <li><a href="{{ $activePolicyData ? url('/#mission') : '#mission' }}"><i class="fas fa-chevron-right"></i> Mission &amp; Vision</a></li>
-                        <li><a href="{{ $activePolicyData ? url('/#refer') : '#refer' }}"><i class="fas fa-chevron-right"></i> Refer &amp; Earn</a></li>
+                        {{-- <li><a href="{{ $activePolicyData ? url('/#refer') : '#refer' }}"><i class="fas fa-chevron-right"></i> Refer &amp; Earn</a></li> --}}
                         <li><a href="{{ $activePolicyData ? url('/#contact') : '#contact' }}"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
