@@ -1201,6 +1201,59 @@ class MemberDetailController extends Controller
     }
 
     /**
+     * Display Opportunity page in Member Panel
+     */
+    public function opportunity(Request $request)
+    {
+        $data = MemberDetail::find(session('MEMBER_ID'));
+
+        // English Business Plan check
+        $enFileName = 'business-plan.pdf';
+        $enPath = public_path('uploads/documents/downloads/' . $enFileName);
+        $enAvailable = file_exists($enPath);
+        $enSize = null;
+        if ($enAvailable) {
+            $bytes = filesize($enPath);
+            $enSize = $bytes >= 1048576 ? number_format($bytes / 1048576, 1) . ' MB' : ($bytes >= 1024 ? number_format($bytes / 1024, 0) . ' KB' : $bytes . ' B');
+        }
+
+        // Hindi Business Plan check
+        $hiFiles = ['business-plan-hindi.pdf', 'business-plan-hi.pdf', 'Amberveda-Business-Plan-Hindi.pdf'];
+        $hiFileName = null;
+        $hiAvailable = false;
+        $hiSize = null;
+        foreach ($hiFiles as $hf) {
+            $hp = public_path('uploads/documents/downloads/' . $hf);
+            if (file_exists($hp)) {
+                $hiFileName = $hf;
+                $hiAvailable = true;
+                $bytes = filesize($hp);
+                $hiSize = $bytes >= 1048576 ? number_format($bytes / 1048576, 1) . ' MB' : ($bytes >= 1024 ? number_format($bytes / 1024, 0) . ' KB' : $bytes . ' B');
+                break;
+            }
+        }
+
+        $opportunity = [
+            'en' => [
+                'title' => 'English Business Plan',
+                'file_name' => $enFileName,
+                'is_available' => $enAvailable,
+                'file_size' => $enSize,
+                'view_url' => $enAvailable ? route('member.viewDocument', 'business-plan') : '#',
+            ],
+            'hi' => [
+                'title' => 'Hindi Business Plan',
+                'file_name' => $hiFileName,
+                'is_available' => $hiAvailable,
+                'file_size' => $hiSize,
+                'view_url' => $hiAvailable ? route('member.viewDocument', 'business-plan-hindi') : '#',
+            ],
+        ];
+
+        return view('member.opportunity', compact('data', 'opportunity'));
+    }
+
+    /**
      * Display Downloads Document page in Member Panel
      */
     public function downloadsDocument(Request $request)
@@ -1239,6 +1292,30 @@ class MemberDetailController extends Controller
      */
     public function viewDocument($slug)
     {
+        // Special alias check for Opportunity Hindi Business Plan
+        if ($slug === 'business-plan-hindi' || $slug === 'business-plan-hi') {
+            $hiFiles = ['business-plan-hindi.pdf', 'business-plan-hi.pdf', 'Amberveda-Business-Plan-Hindi.pdf'];
+            $targetFile = null;
+            foreach ($hiFiles as $hf) {
+                if (file_exists(public_path('uploads/documents/downloads/' . $hf))) {
+                    $targetFile = $hf;
+                    break;
+                }
+            }
+
+            if (!$targetFile) {
+                session()->flash('failedMsg', 'Hindi Business Plan document has not been uploaded yet.');
+                return redirect()->back();
+            }
+
+            $filePath = public_path('uploads/documents/downloads/' . $targetFile);
+            $headers = [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="Amberveda-Business-Plan-Hindi.pdf"',
+            ];
+            return response()->file($filePath, $headers);
+        }
+
         $docs = $this->getDownloadDocumentsList();
         $target = null;
         foreach ($docs as $doc) {

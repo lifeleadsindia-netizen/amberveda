@@ -858,6 +858,13 @@
                     </li>
 
                     <li class="side-nav-item">
+                        <a href="{{ url('member/opportunity') }}" class="side-nav-link">
+                            <i class="uil-briefcase-alt"></i>
+                            <span> Opportunity </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
                         <a href="{{ url('member/downloads-document') }}" class="side-nav-link">
                             <i class="uil-file-download-alt"></i>
                             <span> Downloads Document </span>

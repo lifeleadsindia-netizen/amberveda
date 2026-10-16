@@ -301,6 +301,9 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
 
     Route::get('/dashboard', [MemberDetailController::class, 'dashboard']);
 
+    // Opportunity route
+    Route::get('/opportunity', [MemberDetailController::class, 'opportunity'])->name('member.opportunity');
+
     // Downloads Document routes
     Route::get('/downloads-document', [MemberDetailController::class, 'downloadsDocument'])->name('member.downloadsDocument');
     Route::get('/downloads-document/view/{slug}', [MemberDetailController::class, 'viewDocument'])->name('member.viewDocument');

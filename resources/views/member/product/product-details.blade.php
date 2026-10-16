@@ -4,6 +4,23 @@
     <link href="{{ asset('adm_assets/vendor/datatables/select.bootstrap5.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('adm_assets/vendor/datatables/responsive.bootstrap5.min.css') }}" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        /* Add any custom styles for the product details page here */
+         .old {
+            font-size: 13px;
+            text-decoration: line-through;
+            color: #A1A1AA;
+            margin-bottom: 2px
+        }
+        .text-muted {
+            font-size: 12px;
+            color: #6C757D;
+            margin-bottom: 2px;
+            font-weight: 400;
+            text-decoration-color: blanchedalmond ;
+
+        }
+    </style>
 
 
     <div class="container-fluid">
@@ -126,10 +143,13 @@
                                     </div>
 
                                     <!-- Product description -->
-                                    <div class="mt-4 price">
-                                        <h6 class="font-14">Price:</h6>
+                                    <div class="mt-4 price product-pricing">
+                                        <span class="old">MRP ₹{{ number_format($pro_data['product_price'], 2) }}</span>
+                                        <h4 class="font-14">Price:</h4>
                                         {{-- <h3 class="old">₹{{ number_format($pro_data['price'] + 1000, 0) }}</h3> --}}
-                                        <h3 class="new">₹{{ number_format($pro_data['distributor_price'], 0) }}</h3>
+                                        <h3 class="new">₹{{ number_format($pro_data['distributor_price'], 2) }}  <span class="tax-info">(INCL OF ALL TAXES)</span></h3>
+                                        <hr>
+                                       <p class="text-muted" >COURIER CHARGES EXTRA AS APPLICABLE.</p>
                                     </div>
 
                                     <!-- Quantity -->
@@ -202,6 +222,17 @@
         .product-thumb-item.active {
             border-color: #0ab39c !important;
             box-shadow: 0 0 0 2px rgba(10, 179, 156, 0.25) !important;
+        }
+        .product-pricing h2,
+        .product-pricing h4 {
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+        }
+        .product-pricing h3.new {
+            font-size: clamp(0.95rem, 3vw, 1.3rem);
+            line-height: 1.3;
+        }
+        .product-pricing .tax-info {
+            font-size: 0.65em;
         }
     </style>
     <script>
