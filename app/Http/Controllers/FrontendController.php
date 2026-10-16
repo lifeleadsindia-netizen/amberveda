@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Country;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -11,7 +13,12 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $products = Product::where('status', 'Live')
+            ->orderBy('id', 'ASC')
+            ->get();
+        $categories = Category::all();
+
+        return view('frontend.index', compact('products', 'categories'));
     }
 
     public function aboutus()

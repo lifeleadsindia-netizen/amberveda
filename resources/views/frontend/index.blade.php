@@ -23,6 +23,13 @@
     ];
     $currentPolicy = request()->query('policy');
     $activePolicyData = ($currentPolicy && isset($validPolicies[$currentPolicy])) ? $validPolicies[$currentPolicy] : null;
+
+    if (!isset($products)) {
+        $products = \App\Models\Product::where('status', 'Live')->orderBy('id', 'ASC')->get();
+    }
+    if (!isset($categories)) {
+        $categories = \App\Models\Category::all();
+    }
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -1661,6 +1668,264 @@
             box-shadow: 0 10px 25px rgba(201, 168, 76, 0.35);
         }
 
+        /* FRONTEND DYNAMIC PRODUCTS SHOWCASE */
+        .front-prod-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            font-family: 'Jost', sans-serif;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(201, 168, 76, 0.18);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            cursor: default;
+        }
+
+        .front-prod-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 36px rgba(61, 107, 53, 0.14);
+            border-color: rgba(61, 107, 53, 0.35);
+        }
+
+        .front-prod-badge-top {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #1E3D18 0%, #3D6B35 100%);
+            color: #fff;
+            padding: 4px 10px;
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            z-index: 5;
+        }
+
+        .front-prod-cat-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(4px);
+            color: var(--green-dark);
+            padding: 3px 9px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            border-radius: 6px;
+            border: 1px solid rgba(61, 107, 53, 0.2);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            z-index: 5;
+        }
+
+        .front-prod-img-box {
+            height: 230px;
+            background: #faf9f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            overflow: hidden;
+            border-bottom: 1px solid #f1f5f9;
+            position: relative;
+        }
+
+        .front-prod-img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+        .front-prod-card:hover .front-prod-img-box img {
+            transform: scale(1.06);
+        }
+
+        .front-prod-info {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .front-prod-cat-text {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #71717A;
+            margin-bottom: 4px;
+        }
+
+        .front-prod-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: #18181B;
+            margin: 0 0 8px;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+            min-height: 48px;
+        }
+
+        .front-prod-desc {
+            font-size: 12.5px;
+            color: #52525B;
+            line-height: 1.45;
+            margin-bottom: 12px;
+            min-height: 36px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .front-prod-feats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 12px;
+        }
+
+        .front-prod-feat {
+            font-size: 10px;
+            background: #F4F4F5;
+            color: #52525B;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .front-prod-feat-sp {
+            background: rgba(201, 168, 76, 0.15);
+            color: #8B6914;
+            font-weight: 600;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+        }
+
+        .front-prod-price-box {
+            background: #FAF7F0;
+            border-radius: 12px;
+            padding: 10px 12px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            margin-bottom: 12px;
+        }
+
+        .front-prod-old-price {
+            font-size: 12.5px;
+            text-decoration: line-through;
+            color: #A1A1AA;
+            margin-bottom: 2px;
+        }
+
+        .front-prod-new-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1E3D18;
+            line-height: 1.1;
+        }
+
+        .front-prod-tax {
+            font-size: 9.5px;
+            color: #71717A;
+            font-weight: 500;
+            margin-top: 3px;
+            margin-bottom: 0;
+            text-transform: uppercase;
+        }
+
+        .front-prod-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #F4F4F5;
+            padding-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .front-prod-rating {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .front-prod-rcount {
+            margin-left: 5px;
+            font-size: 11px;
+            color: #71717A;
+            font-weight: 500;
+        }
+
+        .front-prod-stock {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .front-prod-stock.in-stock {
+            color: #22C55E;
+        }
+
+        .front-prod-stock.out-of-stock {
+            color: #EF4444;
+        }
+
+        .front-prod-view-only {
+            text-align: center;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: rgba(61, 107, 53, 0.05);
+            border: 1px dashed rgba(61, 107, 53, 0.25);
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .prod-filter-btn {
+            border: 1px solid rgba(61, 107, 53, 0.25);
+            background: #ffffff;
+            color: var(--green);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 13.5px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .prod-filter-btn:hover,
+        .prod-filter-btn.active {
+            background: var(--green);
+            color: #ffffff;
+            border-color: var(--green);
+            box-shadow: 0 4px 14px rgba(61, 107, 53, 0.2);
+        }
+
+        @media (max-width: 575px) {
+            .front-prod-img-box {
+                height: 200px;
+            }
+            .front-prod-title {
+                font-size: 17px;
+                min-height: auto;
+            }
+            .front-prod-desc {
+                min-height: auto;
+            }
+            .prod-filter-btn {
+                padding: 6px 14px;
+                font-size: 12.5px;
+            }
+        }
+
         /* MLM OVERVIEW ROW */
         .mlm-overview-row {
             background: var(--white);
@@ -3258,7 +3523,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#about') : '#about' }}">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#products') : '#products' }}">Products</a></li>
                     {{-- <li class="nav-item"><a class="nav-link" href="#mission">Mission &amp; Vision</a></li> --}}
-                    <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#refer') : '#refer' }}">Refer &amp; Earn</a></li>
+                    {{-- <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#refer') : '#refer' }}">Refer &amp; Earn</a></li> --}}
                     <li class="nav-item"><a class="nav-link" href="{{ $activePolicyData ? url('/#contact') : '#contact' }}">Contact</a></li>
                     
                 </ul>
@@ -4594,106 +4859,226 @@
     <!-- PRODUCTS -->
     <section class="prod-sec" id="products">
         <div class="container">
-            <div class="text-center" style="margin-bottom: 60px;">
-                <span class="sec-label">Our Offerings</span>
-                <h2 class="sec-title">Two Pillars of <span>Natural Excellence</span></h2>
+            <!-- Section Header -->
+            <div class="text-center" style="margin-bottom: 40px;">
+                <span class="sec-label">Certified Product Catalog</span>
+                <h2 class="sec-title">Authentic Healthcare &amp; <span>Agricultural Formulations</span></h2>
                 <div class="sec-div c"></div>
-                <p
-                    style="max-width: 520px; margin: 0 auto; color: var(--text-light); font-size: 14.5px; line-height: 1.8;">
-                    From ancient Ayurvedic healing to sustainable agriculture — we bring nature's best directly to you.
+                <p style="max-width: 640px; margin: 0 auto; color: var(--text-light); font-size: 14.5px; line-height: 1.8;">
+                    Explore our complete portfolio of certified Ayurvedic wellness supplements and sustainable agriculture solutions, displayed dynamically from our official catalog.
                 </p>
             </div>
-            <div class="row g-5 justify-content-center">
 
-                <!-- AYURVEDIC WELLNESS -->
-                <div class="col-lg-6">
-                    <div class="prod-card-large anim">
-                        <div class="prod-large-header prod-header-ayur">
-                            <div class="prod-large-badge">Category 01</div>
-                            <div class="prod-large-ico">🌿</div>
-                            <h3>Ayurvedic Wellness</h3>
-                            <p>Ancient science. Modern results. Products that heal from within.</p>
-                        </div>
-                        <div class="prod-large-body">
-                            <div class="prod-feature-list">
-                                <div class="pfl-item">
-                                    <span class="pfl-dot"></span>
-                                    <div><strong>Herbal Supplements</strong> — Immunity boosters, adaptogens, digestive
-                                        care</div>
-                                </div>
-                                <div class="pfl-item">
-                                    <span class="pfl-dot"></span>
-                                    <div><strong>Ayurvedic Skincare</strong> — Face serums, herbal oils, body care
-                                        rituals</div>
-                                </div>
-                                <div class="pfl-item">
-                                    <span class="pfl-dot"></span>
-                                    <div><strong>Nutraceuticals</strong> — Ashwagandha, Turmeric Gold, Moringa blends
-                                    </div>
-                                </div>
-                                <div class="pfl-item">
-                                    <span class="pfl-dot"></span>
-                                    <div><strong>Wellness Therapies</strong> — Detox kits, massage oils, aromatherapy
-                                    </div>
-                                </div>
-                                <div class="pfl-item">
-                                    <span class="pfl-dot"></span>
-                                    <div><strong>Herbal Teas &amp; Drinks</strong> — Tulsi, detox brews, golden milk
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a href="#contact" class="prod-large-btn">Explore Wellness Range <i
-                                    class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AGRICULTURE PRODUCTS -->
-                <div class="col-lg-6">
-                    <div class="prod-card-large anim">
-                        <div class="prod-large-header prod-header-agri">
-                            <div class="prod-large-badge">Category 02</div>
-                            <div class="prod-large-ico">🌾</div>
-                            <h3>Agriculture Products</h3>
-                            <p>Farm-fresh. Sustainably grown. Directly from soil to soul.</p>
-                        </div>
-                        <div class="prod-large-body">
-                            <div class="prod-feature-list">
-                                <div class="pfl-item">
-                                    <span class="pfl-dot pfl-dot-gold"></span>
-                                    <div><strong>Organic Fertilizers</strong> — Bio-based nutrients for healthier yields
-                                    </div>
-                                </div>
-                                <div class="pfl-item">
-                                    <span class="pfl-dot pfl-dot-gold"></span>
-                                    <div><strong>Herbal Pesticides</strong> — Natural crop protection, zero chemicals
-                                    </div>
-                                </div>
-                                <div class="pfl-item">
-                                    <span class="pfl-dot pfl-dot-gold"></span>
-                                    <div><strong>Medicinal Herb Seeds</strong> — Ashwagandha, Tulsi, Neem, Shatavari
-                                    </div>
-                                </div>
-                                <div class="pfl-item">
-                                    <span class="pfl-dot pfl-dot-gold"></span>
-                                    <div><strong>Soil Enrichment</strong> — Vermicompost, bio-enzymes, micronutrients
-                                    </div>
-                                </div>
-                                <div class="pfl-item">
-                                    <span class="pfl-dot pfl-dot-gold"></span>
-                                    <div><strong>Farm-to-Table Foods</strong> — Cold-pressed oils, raw honey, organic
-                                        grains</div>
-                                </div>
-                            </div>
-
-                            <a href="#contact" class="prod-large-btn prod-large-btn-gold">Explore Agriculture Range <i
-                                    class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- Category Filter Tabs (View-Only Filter) -->
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-4 pb-2" id="prodFilterWrap">
+                <button type="button" class="prod-filter-btn active" data-filter="all">
+                    All Products ({{ count($products) }})
+                </button>
+                @foreach ($categories as $cat)
+                    @php
+                        $catCount = $products->where('cat_id', $cat->id)->count();
+                    @endphp
+                    @if ($catCount > 0)
+                        <button type="button" class="prod-filter-btn" data-filter="cat-{{ $cat->id }}">
+                            {{ ucfirst($cat->category) }} ({{ $catCount }})
+                        </button>
+                    @endif
+                @endforeach
             </div>
+
+            <!-- Dynamic Product Cards Grid (Strictly View-Only) -->
+            <div class="row g-4 justify-content-center mb-5" id="frontendProductsGrid">
+                @forelse ($products as $item)
+                    @php
+                        $catName = categoryName($item->cat_id) ?? 'Wellness';
+                        $imgSrc = !empty($item->image) && file_exists(public_path('uploads/' . $item->image))
+                            ? asset('uploads/' . $item->image)
+                            : asset('front_assets/assets/img/logo.png');
+                    @endphp
+                    <div class="col-xl-3 col-lg-4 col-sm-6 col-12 prod-grid-item" data-category="cat-{{ $item->cat_id }}">
+                        <div class="front-prod-card">
+                            <!-- Category Badge -->
+                            <div class="front-prod-cat-badge">
+                                @if(strtolower($catName) == 'agriculture')
+                                    <i class="fas fa-leaf me-1 text-warning"></i> Agriculture
+                                @else
+                                    <i class="fas fa-seedling me-1 text-success"></i> Wellness
+                                @endif
+                            </div>
+
+                            <!-- Hot Sale Top Badge -->
+                            <div class="front-prod-badge-top">HOT SALE</div>
+
+                            <!-- Image Container -->
+                            <div class="front-prod-img-box">
+                                <img src="{{ $imgSrc }}" alt="{{ $item->product }}" loading="lazy">
+                            </div>
+
+                            <!-- Card Body Information -->
+                            <div class="front-prod-info">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <div class="front-prod-cat-text">High-Rated Product</div>
+                                        @if(!empty($item->model_no))
+                                            <span style="font-size: 10px; color: #94a3b8; font-family: monospace;">#{{ $item->model_no }}</span>
+                                        @endif
+                                    </div>
+
+                                    <h4 class="front-prod-title">{{ $item->product }}</h4>
+                                    <p class="front-prod-desc" title="{{ $item->about }}">{{ $item->about }}</p>
+
+                                    <!-- Feature Tags & SP Value -->
+                                    <div class="front-prod-feats">
+                                        <span class="front-prod-feat">Best Quality</span>
+                                        <span class="front-prod-feat">100% Ayurvedic</span>
+                                        @if(!empty($item->sp_value))
+                                            <span class="front-prod-feat front-prod-feat-sp">SP: {{ number_format($item->sp_value, 2) }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <!-- Price Box -->
+                                    <div class="front-prod-price-box">
+                                        <div class="d-flex justify-content-between align-items-baseline mb-1">
+                                            <span class="front-prod-old-price">MRP ₹{{ number_format($item->product_price, 2) }}</span>
+                                            @if($item->product_price > $item->distributor_price)
+                                                <span style="font-size: 10px; color: #15803d; font-weight: 600; background: #dcfce7; padding: 1px 6px; border-radius: 4px;">
+                                                    Save ₹{{ number_format($item->product_price - $item->distributor_price, 2) }}
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-baseline">
+                                            <div>
+                                                <span style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">DP </span>
+                                                <span class="front-prod-new-price">₹{{ number_format($item->distributor_price, 2) }}</span>
+                                            </div>
+                                            <p class="front-prod-tax">(INCL OF ALL TAXES)</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Meta Row: Rating & Availability Status -->
+                                    <div class="front-prod-meta">
+                                        <div class="front-prod-rating">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                            <span class="front-prod-rcount">High Rating</span>
+                                        </div>
+                                        @if ($item->quantity > 0)
+                                            <div class="front-prod-stock in-stock"><i class="fas fa-check-circle me-1"></i> In Stock</div>
+                                        @else
+                                            <div class="front-prod-stock out-of-stock"><i class="fas fa-times-circle me-1"></i> Out of Stock</div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-12 text-center py-5">
+                        <div class="p-4 rounded-3" style="background: #fff; max-width: 450px; margin: 0 auto; border: 1px solid rgba(201, 168, 76, 0.2);">
+                            <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                            <h5 style="color: var(--green-dark);">No Products Available</h5>
+                            <p class="text-muted small mb-0">Products will appear here once published by the administrator.</p>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+
+            {{-- <!-- Two Pillars Category Overview -->
+            <div class="mt-5 pt-4 border-top" style="border-color: rgba(201, 168, 76, 0.2) !important;">
+                <div class="text-center mb-4">
+                    <span class="sec-label">Our Core Domains</span>
+                    <h3 class="sec-title" style="font-size: clamp(1.6rem, 3.5vw, 2.2rem);">Two Pillars of <span>Natural Excellence</span></h3>
+                    <div class="sec-div c"></div>
+                </div>
+                <div class="row g-4 justify-content-center">
+
+                    <!-- AYURVEDIC WELLNESS -->
+                    <div class="col-lg-6">
+                        <div class="prod-card-large anim">
+                            <div class="prod-large-header prod-header-ayur">
+                                <div class="prod-large-badge">Category 01</div>
+                                <div class="prod-large-ico">🌿</div>
+                                <h3>Ayurvedic Wellness</h3>
+                                <p>Ancient science. Modern results. Products that heal from within.</p>
+                            </div>
+                            <div class="prod-large-body">
+                                <div class="prod-feature-list">
+                                    <div class="pfl-item">
+                                        <span class="pfl-dot"></span>
+                                        <div><strong>Herbal Supplements</strong> — Immunity boosters, adaptogens, digestive care</div>
+                                    </div>
+                                    <div class="pfl-item">
+                                        <span class="pfl-dot"></span>
+                                        <div><strong>Ayurvedic Skincare</strong> — Face serums, herbal oils, body care rituals</div>
+                                    </div>
+                                    <div class="pfl-item">
+                                        <span class="pfl-dot"></span>
+                                        <div><strong>Nutraceuticals</strong> — Ashwagandha, Turmeric Gold, Moringa blends</div>
+                                    </div>
+                                    <div class="pfl-item">
+                                        <span class="pfl-dot"></span>
+                                        <div><strong>Wellness Therapies</strong> — Detox kits, massage oils, aromatherapy</div>
+                                    </div>
+                                    <div class="pfl-item">
+                                        <span class="pfl-dot"></span>
+                                        <div><strong>Herbal Teas &amp; Drinks</strong> — Tulsi, detox brews, golden milk</div>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="prod-large-btn border-0" onclick="filterFrontendProducts('cat-2')">
+                                    View Wellness Products <i class="fas fa-arrow-up ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AGRICULTURE PRODUCTS -->
+                    <div class="col-lg-6">
+                        <div class="prod-card-large anim">
+                            <div class="prod-large-header prod-header-agri">
+                                <div class="prod-large-badge">Category 02</div>
+                                <div class="prod-large-ico">🌾</div>
+                                <h3>Agriculture Products</h3>
+                                <p>Farm-fresh. Sustainably grown. Directly from soil to soul.</p>
+                            </div>
+                            <div class="prod-large-body">
+                                <div class="prod-feature-list">
+                                    <div class="pfl-item">
+                                        <span class="pfl-dot pfl-dot-gold"></span>
+                                        <div><strong>Organic Fertilizers</strong> — Bio-based nutrients for healthier yields</div>
+                                    </div>
+                                    <div class="pfl-item">
+                                        <span class="pfl-dot pfl-dot-gold"></span>
+                                        <div><strong>Herbal Pesticides</strong> — Natural crop protection, zero chemicals</div>
+                                    </div>
+                                    <div class="pfl-item">
+                                        <span class="pfl-dot pfl-dot-gold"></span>
+                                        <div><strong>Medicinal Herb Seeds</strong> — Ashwagandha, Tulsi, Neem, Shatavari</div>
+                                    </div>
+                                    <div class="pfl-item">
+                                        <span class="pfl-dot pfl-dot-gold"></span>
+                                        <div><strong>Soil Enrichment</strong> — Vermicompost, bio-enzymes, micronutrients</div>
+                                    </div>
+                                    <div class="pfl-item">
+                                        <span class="pfl-dot pfl-dot-gold"></span>
+                                        <div><strong>Farm-to-Table Foods</strong> — Cold-pressed oils, raw honey, organic grains</div>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="prod-large-btn prod-large-btn-gold border-0" onclick="filterFrontendProducts('cat-3')">
+                                    View Agriculture Products <i class="fas fa-arrow-up ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div> --}}
         </div>
     </section>
 
@@ -5245,7 +5630,7 @@
                         <li><a href="{{ $activePolicyData ? url('/#about') : '#about' }}"><i class="fas fa-chevron-right"></i> About Us</a></li>
                         <li><a href="{{ $activePolicyData ? url('/#products') : '#products' }}"><i class="fas fa-chevron-right"></i> Products</a></li>
                         <li><a href="{{ $activePolicyData ? url('/#mission') : '#mission' }}"><i class="fas fa-chevron-right"></i> Mission &amp; Vision</a></li>
-                        <li><a href="{{ $activePolicyData ? url('/#refer') : '#refer' }}"><i class="fas fa-chevron-right"></i> Refer &amp; Earn</a></li>
+                        {{-- <li><a href="{{ $activePolicyData ? url('/#refer') : '#refer' }}"><i class="fas fa-chevron-right"></i> Refer &amp; Earn</a></li> --}}
                         <li><a href="{{ $activePolicyData ? url('/#contact') : '#contact' }}"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
@@ -5388,6 +5773,39 @@
                 }
             });
         }
+
+        // Frontend products category filter
+        function filterFrontendProducts(categoryFilter) {
+            const btn = document.querySelector('.prod-filter-btn[data-filter="' + categoryFilter + '"]');
+            if (btn) {
+                btn.click();
+            }
+            const target = document.getElementById('products');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterBtns = document.querySelectorAll('.prod-filter-btn');
+            const items = document.querySelectorAll('.prod-grid-item');
+            if (filterBtns.length && items.length) {
+                filterBtns.forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        filterBtns.forEach(function (b) { b.classList.remove('active'); });
+                        this.classList.add('active');
+                        const filter = this.getAttribute('data-filter');
+                        items.forEach(function (item) {
+                            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                                item.style.display = '';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+            }
+        });
     </script>
 
     @if(!$activePolicyData)
