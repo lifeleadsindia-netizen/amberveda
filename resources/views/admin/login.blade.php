@@ -65,6 +65,9 @@
                                 <a href="{{ url('/send-admin-otp') }}" class="btn btn-custom text-white pt-2">Send
                                     OTP</a>
                             </div>
+                            @if (session()->has('admin_otp'))
+                                <span class="text-danger text-center">{{ session('admin_otp') }}</span>
+                            @endif
 
                             <div class="form-group">
                             
