@@ -3495,7 +3495,7 @@
                 <i class="fas fa-envelope me-2"></i>
                 <a href="mailto:info@ambervedawellness.com">info@ambervedawellness.com</a>
                 <span class="d-none d-md-inline">&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fas fa-phone me-2"></i><a
-                        href="tel:+919259234438">+91 9259234438</a></span>
+                        href="tel:+919917566662">+91 9917566662</a></span>
             </div>
             <div class="social-icons d-none d-md-flex">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -3891,8 +3891,8 @@
                         <div class="about-mgmt-card anim">
                             <div>
                                 <div class="about-mgmt-header">
-                                    <div class="about-mgmt-icon">
-                                        <i class="fas fa-user-tie"></i>
+                                    <div class="about-mgmt-icon" style="border-radius: 50%; overflow: hidden; padding: 0; width: 54px; height: 54px; border: 2px solid var(--gold); box-shadow: 0 4px 12px rgba(201, 168, 76, 0.22);">
+                                        <img src="{{ asset('front_assets/assets/img/parul_yadav.jpg') }}" alt="Mrs. Parul Yadav" style="width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 50%; display: block;">
                                     </div>
                                     <div>
                                         <span class="about-mgmt-role">Director Profile</span>
@@ -3928,7 +3928,7 @@
                             <div class="about-mgmt-contacts">
                                 <div class="about-mgmt-citem">
                                     <i class="fas fa-phone-alt"></i>
-                                    <span>Phone: <a href="tel:+919259234438">+91 9259234438</a></span>
+                                    <span>Phone: <a href="tel:+919917566662">+91 9917566662</a></span>
                                 </div>
                                 <div class="about-mgmt-citem">
                                     <i class="fas fa-envelope"></i>
@@ -3956,7 +3956,7 @@
                             <div class="about-mgmt-contacts">
                                 <div class="about-mgmt-citem">
                                     <i class="fas fa-phone-alt"></i>
-                                    <span>Phone: <a href="tel:+919259234438">+91 9259234438</a></span>
+                                    <span>Phone: <a href="tel:+919917566662">+91 9917566662</a></span>
                                 </div>
                                 <div class="about-mgmt-citem">
                                     <i class="fas fa-envelope"></i>
@@ -3985,7 +3985,7 @@
                                 <div class="about-mgmt-contacts" style="border-top: none; padding-top: 0;">
                                     <div class="about-mgmt-citem">
                                         <i class="fas fa-phone-alt"></i>
-                                        <span>Phone: <a href="tel:+919917566662">+91 9917566662</a> / <a href="tel:+919259234438">+91 9259234438</a></span>
+                                        <span>Phone: <a href="tel:+919917566662">+91 9917566662</a></span>
                                     </div>
                                     <div class="about-mgmt-citem">
                                         <i class="fas fa-envelope"></i>
@@ -5496,7 +5496,7 @@
                                 <div class="c-ico"><i class="fas fa-phone-alt"></i></div>
                                 <div>
                                     <h6>Phone</h6>
-                                    <p>+91 9259234438</p>
+                                    <p>+91 9917566662</p>
                                 </div>
                             </div>
                             <div class="c-detail">
@@ -5660,7 +5660,7 @@
                     <div class="f-contact-item"><i class="fas fa-map-marker-alt mt-1"></i> Amberveda Wellness Pvt Ltd,
                         India</div>
                     <div class="f-contact-item"><i class="fas fa-envelope mt-1"></i> info@ambervedawellness.com</div>
-                    <div class="f-contact-item"><i class="fas fa-phone mt-1"></i> +91 9259234438</div>
+                    <div class="f-contact-item"><i class="fas fa-phone mt-1"></i> +91 9917566662</div>
                     <div class="f-contact-item"><i class="fas fa-clock mt-1"></i> Mon–Sat, 9AM – 6PM</div>
                 </div>
             </div>
